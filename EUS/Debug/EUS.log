@@ -1,8 +1,15 @@
-﻿Build started 3.2.2015 21:18:11.
+﻿Build started 3.2.2015 21:32:23.
      1>Project "C:\Users\VoidBab\Gits\ogl\eus\EUS\EUS.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /IC:\Users\VoidBab\Gits\ogl\eus\EUS\include\ /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /FR"Debug\\" /Gd /TP /analyze- /errorReport:prompt ComponentManager.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /IC:\Users\VoidBab\Gits\ogl\eus\EUS\include\ /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /FR"Debug\\" /Gd /TP /analyze- /errorReport:prompt Component.cpp ComponentManager.cpp Entity.cpp Main.cpp TagContainer.cpp TestCp.cpp
+         TagContainer.cpp
+         Main.cpp
+         Entity.cpp
          ComponentManager.cpp
+         Component.cpp
+         Generating Code...
+         Skipping... (no relevant changes detected)
+         TestCp.cpp
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\VoidBab\Gits\ogl\eus\Debug\EUS.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\VoidBab\Gits\ogl\eus\Debug\EUS.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\VoidBab\Gits\ogl\eus\Debug\EUS.lib" /MACHINE:X86 Debug\Component.obj
          Debug\ComponentManager.obj
@@ -18,4 +25,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:01.87
+Time Elapsed 00:00:04.43

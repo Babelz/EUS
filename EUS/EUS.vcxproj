@@ -86,6 +86,7 @@
     <ClCompile Include="ComponentManager.cpp" />
     <ClCompile Include="DrawableComponent.cpp" />
     <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="EntityManager.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="TagContainer.cpp" />
     <ClCompile Include="TestCp.cpp" />
@@ -95,6 +96,7 @@
     <ClInclude Include="ComponentManager.h" />
     <ClInclude Include="DrawableComponent.h" />
     <ClInclude Include="Entity.h" />
+    <ClInclude Include="EntityManager.h" />
     <ClInclude Include="TagContainer.h" />
     <ClInclude Include="TestCp.h" />
   </ItemGroup>

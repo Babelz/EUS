@@ -24,6 +24,7 @@ void Component::changeUpdateOrder(int newOrder) {
 #pragma endregion
 
 Component::Component(Entity* const owner, int updateOrder) : owner(owner), updateOrder(updateOrder) {
+	assert(owner != nullptr);
 }
 
 #pragma region Protected members

@@ -27,6 +27,15 @@ bool ComponentManager::addComponent(Component* component) {
 
 	return add;
 }
+
+void ComponentManager::update() {
+	std::for_each(components.begin(), components.end(), [](Component* c) {
+		c->update();
+	});
+}
+void ComponentManager::draw() {
+	// TODO: draw components.
+}
 #pragma endregion 
 
 ComponentManager::~ComponentManager() {

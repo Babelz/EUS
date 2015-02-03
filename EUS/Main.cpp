@@ -1,6 +1,4 @@
 #include "Entity.h"
-#include <string>
-#include <cassert>
 #include "TestCp.h"
 
 void tagTests();
@@ -40,6 +38,12 @@ void componentTests() {
 
 	assert(!e.containsComponent(c));
 	assert(!e.removeComponent(c));
+
+	assert(e.addComponent(c));
+
+	TestCp* gg = e.getComponent<TestCp>();
+	assert(gg != nullptr);
+	assert(gg == c);
 
 	delete c;
 }

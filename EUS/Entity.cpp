@@ -43,16 +43,22 @@ void Entity::destroy() {
 
 // Component manager wrappers.
 bool Entity::addComponent(Component* component) {
+	assert(component != nullptr);
+
 	if (destroyed) return false;
 
 	return components.addComponent(component);
 }
 bool Entity::removeComponent(Component* component) {
+	assert(component != nullptr);
+
 	if (destroyed) return false;
 
 	return components.removeComponent(component);
 }
 bool Entity::containsComponent(Component* const component) const {
+	assert(component != nullptr);
+
 	if (destroyed) return false;
 
 	return components.containsComponent(component);
@@ -82,9 +88,7 @@ void Entity::update() {
 		return;
 	}
 
-	/*td::for_each(components.getComponents().begin(), components.getComponents().end(), [](Component* c) {
-		c->update();
-	});*/
+	components.update();
 }
 
 // Draw all components that are visible if entity is in enabled
@@ -94,7 +98,7 @@ void Entity::draw() {
 		return;
 	}
 
-	// TODO: draw components.
+	components.draw();
 }
 #pragma endregion
 

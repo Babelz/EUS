@@ -1,5 +1,4 @@
 #pragma once
-#include <string>
 #include "TagContainer.h"
 #include "ComponentManager.h"
 #include "Component.h"
@@ -29,6 +28,10 @@ public:
 	bool addComponent(Component* component);
 	bool removeComponent(Component* component);
 	bool containsComponent(Component* const component) const;
+
+	template<class T> T* const getComponent() const {
+		return components.getComponent<T>();
+	}
 
 	bool unTag(std::string tag);
 	bool isTagged(std::string tag) const;

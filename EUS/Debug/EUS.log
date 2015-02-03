@@ -1,14 +1,15 @@
-﻿Build started 3.2.2015 22:33:33.
-     1>Project "C:\Users\VoidBab\Gits\ogl\eus\EUS\EUS.vcxproj" on node 2 (Build target(s)).
+﻿Build started 3.2.2015 23:12:59.
+     1>Project "C:\Users\VoidBab\Gits\ogl\eus\EUS\EUS.vcxproj" on node 2 (Rebuild target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /IC:\Users\VoidBab\Gits\ogl\eus\EUS\include\ /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /FR"Debug\\" /Gd /TP /analyze- /errorReport:prompt Entity.cpp EntityManager.cpp Main.cpp TagContainer.cpp TestCp.cpp
-         TagContainer.cpp
-         Entity.cpp
-         Generating Code...
-         Compiling...
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /IC:\Users\VoidBab\Gits\ogl\eus\EUS\include\ /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /FR"Debug\\" /Gd /TP /analyze- /errorReport:prompt Component.cpp ComponentManager.cpp DrawableComponent.cpp Entity.cpp EntityManager.cpp Main.cpp TagContainer.cpp TestCp.cpp
          TestCp.cpp
+         TagContainer.cpp
          Main.cpp
          EntityManager.cpp
+         Entity.cpp
+         DrawableComponent.cpp
+         ComponentManager.cpp
+         Component.cpp
          Generating Code...
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\VoidBab\Gits\ogl\eus\Debug\EUS.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\VoidBab\Gits\ogl\eus\Debug\EUS.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\VoidBab\Gits\ogl\eus\Debug\EUS.lib" /MACHINE:X86 Debug\Component.obj
@@ -22,8 +23,8 @@
          EUS.vcxproj -> C:\Users\VoidBab\Gits\ogl\eus\Debug\EUS.exe
        BscMake:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\bscmake.exe /nologo /o"C:\Users\VoidBab\Gits\ogl\eus\Debug\EUS.bsc" /n Debug\Component.sbr Debug\ComponentManager.sbr Debug\DrawableComponent.sbr Debug\Entity.sbr Debug\EntityManager.sbr Debug\Main.sbr Debug\TagContainer.sbr Debug\TestCp.sbr
-     1>Done Building Project "C:\Users\VoidBab\Gits\ogl\eus\EUS\EUS.vcxproj" (Build target(s)).
+     1>Done Building Project "C:\Users\VoidBab\Gits\ogl\eus\EUS\EUS.vcxproj" (Rebuild target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:04.57
+Time Elapsed 00:00:05.18

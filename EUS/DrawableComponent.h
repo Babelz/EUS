@@ -17,7 +17,7 @@ protected:
 public:
 	int getDrawOrder() const;
 
-	DrawableComponent(Entity* const owner, int updateOrder = 0, int drawOrder = 0);
+	DrawableComponent(Entity& owner, int updateOrder = 0, int drawOrder = 0);
 
 	void show();
 	void hide();

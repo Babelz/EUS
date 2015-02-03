@@ -9,7 +9,7 @@ int main() {
 	componentTests();
 
 	Entity e;
-	TestCp c(&e);
+	TestCp c(e);
 
 	return 0;
 }
@@ -29,7 +29,7 @@ void componentTests() {
 	Entity e;
 	e.enable();
 
-	TestCp* c = new TestCp(&e);
+	TestCp* c = new TestCp(e);
 
 	assert(e.addComponent(c));
 	assert(!e.addComponent(c));

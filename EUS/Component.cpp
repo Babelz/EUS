@@ -1,15 +1,13 @@
 #include "Component.h"
 
-Component::Component(Entity* const owner, int updateOrder) : owner(owner), updateOrder(updateOrder) {
-	assert(owner != nullptr);
-
+Component::Component(Entity& owner, int updateOrder) : owner(owner), updateOrder(updateOrder) {
 	destroyed = false;
 	enabled = false;
 	initialized = false;
 }
 
 #pragma region Protected members
-Entity* const Component::getOwner() const {
+Entity& Component::getOwner() const {
 	return owner;
 }
 

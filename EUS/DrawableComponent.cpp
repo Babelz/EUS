@@ -1,6 +1,6 @@
 #include "DrawableComponent.h"
 
-DrawableComponent::DrawableComponent(Entity* const owner, int updateOrder, int drawOrder) 
+DrawableComponent::DrawableComponent(Entity& owner, int updateOrder, int drawOrder) 
 : Component(owner, updateOrder), drawOrder(drawOrder) {
 	visible = true;
 }

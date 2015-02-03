@@ -1,17 +1,19 @@
 #pragma once
-#include "Component.h"
+#include "DrawableComponent.h"
 #include <vector>
 #include <algorithm>
-
-//class Component;
+#include <functional>
+#include <list>
 
 class ComponentManager {
 private:
-	std::vector<Component*> components;
-	std::vector<Component*> destroyedComponents;
-public:
-	std::vector<Component*>& getComponents() const;
+	std::list<Component*> components;
+	std::list<DrawableComponent*> drawableComponents;
 
+	std::list<Component*> destroyedComponents;
+
+	void freeComponents();
+public:
 	ComponentManager();
 
 	bool containsComponent(Component* component) const;
@@ -22,16 +24,15 @@ public:
 	void draw();
 
 	template<class T> T* const getComponent() const {
-		for (size_t i = 0; i < components.size(); i++) {
-			const char* a = typeid(components[i]).name();
-			const char* b = typeid(T).name();
+		T* foundComponent = nullptr;
 
-			if (a == b) {
-				return static_cast<T* const>(components[i]);
-			}
-		}
+		std::find_if(components.begin(), components.end(), [=, &foundComponent](Component* component) {
+			foundComponent = dynamic_cast<T*>(component);
 
-		return nullptr;
+			return foundComponent != nullptr;
+		});
+
+		return foundComponent;
 	}
 
 	~ComponentManager();

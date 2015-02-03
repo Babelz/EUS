@@ -3,6 +3,7 @@
 
 class Entity;
 
+// Base class for components that can update.
 class Component {
 private:
 	Entity* const owner;
@@ -22,7 +23,7 @@ protected:
 	virtual void onDestroyed();
 
 	// Called when enabled value changes.
-	virtual void onEnabledChanged(bool newEnabled, bool oldEnabled);
+	virtual void onEnabledChanged(bool oldState, bool newState);
 
 	// Called when update order changes.
 	virtual void updateOrderChanged(int newOrder, int oldOrder);
@@ -30,6 +31,8 @@ protected:
 	// Called in first enable call.
 	virtual void onInitialize();
 public:
+	int getUpdateOrder() const;
+
 	Component(Entity* const owner, int updateOrder = 0);
 
 	void changeUpdateOrder(int newOrder);

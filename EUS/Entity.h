@@ -2,6 +2,8 @@
 #include "TagContainer.h"
 #include "ComponentManager.h"
 #include "Component.h"
+#include "Vector.hpp"
+#include "Vector2.hpp"
 
 class Entity {
 private:
@@ -11,6 +13,8 @@ private:
 	bool visible;
 	bool enabled;
 	bool destroyed;
+
+	pmath::Vec2f position;
 public:
 	Entity();
 

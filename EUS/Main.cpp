@@ -27,6 +27,7 @@ void tagTests() {
 
 void componentTests() {
 	Entity e;
+	e.enable();
 
 	TestCp* c = new TestCp(&e);
 
@@ -45,5 +46,8 @@ void componentTests() {
 	assert(gg != nullptr);
 	assert(gg == c);
 
-	delete c;
+	gg->destroy();
+
+	e.update();
+	e.update();
 }

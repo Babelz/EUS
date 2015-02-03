@@ -3,7 +3,7 @@
 TagContainer::TagContainer() {
 }
 
-#pragma region Private members.
+#pragma region Private members
 int TagContainer::indexOf(std::string tag) const {
 	for (size_t i = 0; i < tags.size(); i++) {
 		if (tags[i] == tag) {

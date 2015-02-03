@@ -26,10 +26,10 @@ void ComponentManager::freeComponents() {
 #pragma endregion
 
 #pragma region Public members
-bool ComponentManager::containsComponent(Component* component) const {
+bool ComponentManager::containsComponent(Component* const component) const {
 	return std::find(components.begin(), components.end(), component) != components.end();
 }
-bool ComponentManager::removeComponent(Component* component) {
+bool ComponentManager::removeComponent(Component* const component) {
 	bool remove = containsComponent(component);
 
 	if (remove) {
@@ -38,7 +38,7 @@ bool ComponentManager::removeComponent(Component* component) {
 
 	return remove;
 }
-bool ComponentManager::addComponent(Component* component) {
+bool ComponentManager::addComponent(Component* const component) {
 	bool add = !containsComponent(component);
 
 	if (add) {

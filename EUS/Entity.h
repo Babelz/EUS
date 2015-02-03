@@ -29,17 +29,17 @@ public:
 	void destroy();
 	bool isDestroyed() const;
 
-	bool addComponent(Component* component);
-	bool removeComponent(Component* component);
+	bool addComponent(Component* const component);
+	bool removeComponent(Component* const component);
 	bool containsComponent(Component* const component) const;
 
 	template<class T> T* const getComponent() const {
 		return components.getComponent<T>();
 	}
 
-	bool unTag(std::string tag);
-	bool isTagged(std::string tag) const;
-	bool tag(std::string tag);
+	bool unTag(const std::string& tag);
+	bool isTagged(const std::string& tag) const;
+	bool tag(const std::string& tag);
 
 	void update();
 	void draw();

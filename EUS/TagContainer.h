@@ -7,13 +7,13 @@ class TagContainer {
 private:
 	std::vector<std::string> tags;
 
-	int indexOf(std::string tag) const;
+	int indexOf(const std::string& tag) const;
 public:
 	TagContainer();
 
-	bool isTagged(std::string tag) const;
-	bool unTag(std::string tag);
-	bool tag(std::string tag);
+	bool isTagged(const std::string& tag) const;
+	bool unTag(const std::string& tag);
+	bool tag(const std::string& tag);
 
 	~TagContainer();
 };

@@ -64,17 +64,17 @@ bool Entity::containsComponent(Component* const component) const {
 }
 
 // Tag container wrappers.
-bool Entity::unTag(std::string tag) {
+bool Entity::unTag(const std::string& tag) {
 	if (destroyed) return false;
 
 	return tags.unTag(tag);
 }
-bool Entity::isTagged(std::string tag) const {
+bool Entity::isTagged(const std::string& tag) const {
 	if (destroyed) return false;
 
 	return tags.isTagged(tag);
 }
-bool Entity::tag(std::string tag) {
+bool Entity::tag(const std::string& tag) {
 	if (destroyed) return false;
 
 	return tags.tag(tag);

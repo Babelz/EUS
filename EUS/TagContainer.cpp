@@ -4,7 +4,7 @@ TagContainer::TagContainer() {
 }
 
 #pragma region Private members
-int TagContainer::indexOf(std::string tag) const {
+int TagContainer::indexOf(const std::string& tag) const {
 	for (size_t i = 0; i < tags.size(); i++) {
 		if (tags[i] == tag) {
 			return i;
@@ -16,7 +16,7 @@ int TagContainer::indexOf(std::string tag) const {
 #pragma endregion
 
 #pragma region Public members
-bool TagContainer::isTagged(std::string tag) const {
+bool TagContainer::isTagged(const std::string& tag) const {
 	bool tagged = false;
 
 	for (size_t i = 0; i < tags.size(); i++) {
@@ -29,7 +29,7 @@ bool TagContainer::isTagged(std::string tag) const {
 
 	return tagged;
 }
-bool TagContainer::unTag(std::string tag) {
+bool TagContainer::unTag(const std::string& tag) {
 	bool remove = isTagged(tag);
 
 	if (remove) {
@@ -38,11 +38,11 @@ bool TagContainer::unTag(std::string tag) {
 
 	return remove;
 }
-bool TagContainer::tag(std::string tag){
+bool TagContainer::tag(const std::string& tag){
 	bool add = !isTagged(tag);
 	
 	if (add) {
-		tags.push_back(tag);
+		tags.push_back(std::string(tag));
 	}
 
 	return add;

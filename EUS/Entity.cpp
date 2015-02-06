@@ -26,8 +26,8 @@ void Entity::setHeight(float value) {
 pmath::Vec2f Entity::getSize() const {
 	return size;
 }
-void Entity::setSize(pmath::Vec2f value) {
-	size = value;
+void Entity::setSize(pmath::Vec2f& value) {
+	size = pmath::Vec2f(value);
 }
 
 float Entity::getX() const {
@@ -46,8 +46,8 @@ void Entity::setY(float value) {
 pmath::Vec2f Entity::getPosition() const  {
 	return position;
 }
-void Entity::setPosition(pmath::Vec2f value)  {
-	position = value;
+void Entity::setPosition(pmath::Vec2f& value)  {
+	position = pmath::Vec2f(value);
 }
 
 void Entity::show() {

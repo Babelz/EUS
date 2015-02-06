@@ -4,16 +4,16 @@ EntityManager::EntityManager() {
 }
 
 #pragma region Public memebers
-void EntityManager::addEntity(Entity* entity) {
+void EntityManager::addEntity(Entity* const entity) {
 }
-void EntityManager::removeEntity(Entity* entity) {
+void EntityManager::removeEntity(Entity* const entity) {
 }
 
-std::vector<Entity* const> EntityManager::findEntitiesWithTag(std::string tag) const {
+std::vector<Entity* const> EntityManager::findEntitiesWithTag(const std::string& tag) const {
 	return std::vector<Entity* const>();
 }
 
-Entity* const EntityManager::findEntityWithTag(std::string tag) const {
+Entity* const EntityManager::findEntityWithTag(const std::string& tag) const {
 	return nullptr;
 }
 Entity* const EntityManager::findEntityWithID(int id) const {

@@ -1,6 +1,9 @@
 #include "Game.h"
 
-Game::Game(int windowWidth, int windowHeight) : windowWidth(windowWidth), windowHeight(windowHeight) {
+Game::Game(int windowWidth, int windowHeight) : windowWidth(windowWidth), 
+												windowHeight(windowHeight),
+												content(ContentManager("Content")),
+												spriteBatch(SpriteBatch()) {
 	windowTitle = std::string("OpenGL");
 }
 
@@ -45,12 +48,10 @@ void Game::internalInitialize() {
 	glGetIntegerv(GL_MAJOR_VERSION, &versionMajor);
 	glGetIntegerv(GL_MINOR_VERSION, &versionMinor);
 
-	glOrtho(0.0f, windowWidth, windowHeight, 0.0f, -10, 10);
+	//glOrtho(0.0f, windowWidth, windowHeight, 0.0f, -10, 10);
 	
 	std::cout << "OpenGL context version: " << versionMajor << "." << versionMinor << std::endl;
 	
-	spriteBatch = new SpriteBatch();
-
 	running = true;
 }
 void Game::internalUpdate() {
@@ -64,8 +65,17 @@ void Game::internalUpdate() {
 }
 void Game::internalDraw() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
+	
 	draw();
+
+	Texture* t = content.load<Texture>("tuksu");
+	assert(t != nullptr);
+
+	// TODO: tests
+	spriteBatch.begin();
+	spriteBatch.draw(t, pmath::Vec3f(0.5f), pmath::Vec4f(0.5f));
+	spriteBatch.draw(t, pmath::Vec3f(1.0f), pmath::Vec4f(0.5f));
+	spriteBatch.end();
 
 	SDL_GL_SwapWindow(window);
 }
@@ -90,7 +100,7 @@ int Game::getWindowHeight() const {
 }
 
 void Game::setWindowTitle(const std::string& value) {
-	windowTitle = value;
+	windowTitle = std::string(value);
 }
 std::string Game::getWindowTitle() const {
 	return windowTitle;

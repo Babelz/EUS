@@ -1,6 +1,6 @@
 #include "SpriteBatch.h"
 
-SpriteBatch::SpriteBatch() {
+SpriteBatch::SpriteBatch() : spritePointer(0), vertexPointer(0), flushPointer(0) {
 	allocSprites();
 	initIndicies();
 	initVertices();
@@ -10,23 +10,24 @@ SpriteBatch::SpriteBatch() {
 #pragma region Private members
 void SpriteBatch::allocSprites() {
 	sprites = new SpriteInfo[batchSize];
+
+	for (int i = 0; i < batchSize; i++) {
+		sprites[i] = SpriteInfo();
+	}
 }
 void SpriteBatch::initIndicies() {
-	indicies = new unsigned short[indicesPerSprite * batchSize];
-
 #ifdef _DEBUG
 	int index = 0;
 #endif
 
-	for (unsigned short i = 0; i < batchSize * indicesPerSprite; i++) {
-		indicies[i] = i;
-		indicies[i + 1] = i + 1;
-		indicies[i + 2] = i + 2;
+	for (unsigned short i = 0; i < batchSize * indicesPerSprite; i += verticesPerSprite) {
+		indices.push_back(i);
+		indices.push_back(i + 1);
+		indices.push_back(i + 2);
 
-		indicies[i + 3] = i + 1;
-		indicies[i + 4] = i + 3;
-		indicies[i + 2] = i + 2;
-
+		indices.push_back(i + 1);
+		indices.push_back(i + 3);
+		indices.push_back(i + 2);
 #ifdef _DEBUG
 		index = i;
 #endif
@@ -35,14 +36,14 @@ void SpriteBatch::initIndicies() {
 #ifdef _DEBUG
 	int len = indicesPerSprite * batchSize;
 	
-	assert(len - 1 == index);
+	//assert(len - 1 == index);
 #endif
 }
 void SpriteBatch::initVertices() {
-	vertices = new float[verticesPerSprite * batchSize];
+	vertices = new VertexPositionColorTexture[verticesPerSprite * batchSize];
 
 	for (int i = 0; i < verticesPerSprite * batchSize; i++) {
-		vertices[i] = 0.0f;
+		vertices[i] = VertexPositionColorTexture();
 	}
 }
 void SpriteBatch::initBuffers() {
@@ -55,44 +56,115 @@ void SpriteBatch::initBuffers() {
 	vertexBuffer = 0;
 	glGenBuffers(1, &vertexBuffer);
 	glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), &vertices, GL_DYNAMIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, verticesPerSprite * batchSize, vertices, GL_DYNAMIC_DRAW);
 
 	// Position attribs.
 	glEnableVertexAttribArray(0);
-	glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(VertexPositionColorTexture), (void*)(offsetof(VertexPositionColorTexture, position)));
 
 	// Color attribs.
 	glEnableVertexAttribArray(1);
-	glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
-	glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, offsetof(SpriteInfo, color), (void*)0);
+	glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(VertexPositionColorTexture), (void*)offsetof(VertexPositionColorTexture, color));
 	
 	// UV attribs.
 	glEnableVertexAttribArray(2);
-	glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
-	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, offsetof(SpriteInfo, uv), (void*)0);
+	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(VertexPositionColorTexture), (void*)offsetof(VertexPositionColorTexture, uv));
 
 	// Create index buffer.
 	indexBuffer = 0;
 	glGenBuffers(1, &indexBuffer);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBuffer);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, 6, &indicies, GL_DYNAMIC_DRAW);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned short) * indices.size(), indices.data(), GL_STATIC_DRAW);
 
 	// Initialize shaders.
-	ContentManager
+	ContentManager content("Content");
+
+	shader = content.load<Effect>("basic");
 }
 
+void SpriteBatch::renderBatch(SpriteInfo* const sprite) {
+	glActiveTexture(GL_TEXTURE0 + 0);
+	glBindTexture(GL_TEXTURE_2D, sprite->texture->getId());
 
-void SpriteBatch::renderBatch() {
+	shader->bind();
 
+	static float transform[] = {
+		1.0f, 0.0f,
+		0.0f, 1.0f,
+		1.0f, 0.0f,
+		0.0f, 0.0f
+	};
+
+	/*static const VertexPositionColorTexture points[] = {
+			VertexPositionColorTexture(-0.5f, 0.5f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f),
+			VertexPositionColorTexture(0.5f, 0.5f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 1.f, 1.f),
+			VertexPositionColorTexture(-0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.f, 0.f),
+			VertexPositionColorTexture(0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 1.f, 0.f)
+	};*/
+
+	vertices[vertexPointer++] = VertexPositionColorTexture(sprite->position.x,
+														   sprite->position.y,
+														   sprite->position.z,
+														   sprite->color.r,
+														   sprite->color.g,
+														   sprite->color.b,
+														   sprite->color.a,
+														   0.0f,
+														   1.0f);
+
+	
+	vertices[vertexPointer++] = VertexPositionColorTexture(sprite->position.x + 0.5f,
+														   sprite->position.y,
+														   sprite->position.z,
+														   sprite->color.r,
+														   sprite->color.g,
+														   sprite->color.b,
+														   sprite->color.a,
+														   1.0f,
+														   1.0f);
+
+	vertices[vertexPointer++] = VertexPositionColorTexture(sprite->position.x,
+														   sprite->position.y + 0.5f,
+														   sprite->position.z,
+														   sprite->color.r,
+														   sprite->color.g,
+														   sprite->color.b,
+														   sprite->color.a,
+														   0.0f,
+														   0.0f);
+
+	vertices[vertexPointer++] = VertexPositionColorTexture(sprite->position.x + 0.5f,
+														   sprite->position.y + 0.5f,
+													       sprite->position.z,
+														   sprite->color.r,
+														   sprite->color.g,
+														   sprite->color.b,
+														   sprite->color.a,
+														   1.0f,
+														   0.0f);
+
+	glBufferSubData(GL_ARRAY_BUFFER, flushPointer * sizeof(VertexPositionColorTexture), sizeof(VertexPositionColorTexture) * verticesPerSprite, vertices);
+
+	//glBindVertexArray(0);
+	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_SHORT, 0);
+	
+	shader->unbind();
 }
 void SpriteBatch::flushBatch() {
+	if (spritePointer != 0) {
+		for (int i = 0; i < spritePointer; i++) {
+			renderBatch(&sprites[i]);
+		}
+	}
 
+	spritePointer = 0;
+	vertexPointer = 0;
+	flushPointer = 0;
 }
 #pragma endregion
 
 #pragma region Public members
-void SpriteBatch::draw(Texture* const texture, pmath::Vec3f& const position, pmath::Vec4f& const color) {
+void SpriteBatch::draw(Texture* const texture, const pmath::Vec3f& position, const pmath::Vec4f& color) {
 	SpriteInfo& sprite = sprites[spritePointer];
 	sprite.texture = texture;
 	// Set position values.
@@ -100,8 +172,8 @@ void SpriteBatch::draw(Texture* const texture, pmath::Vec3f& const position, pma
 	// Set color values.
 	sprite.color = pmath::Vec4f(color);
 	// Set uv values.
-	sprite.uv.x = 1.0f;
-	sprite.uv.y = 1.0f;
+
+	std::cout << sprites[spritePointer].position << std::endl;
 
 	spritePointer++;
 }
@@ -126,6 +198,5 @@ void SpriteBatch::end() {
 
 SpriteBatch::~SpriteBatch() {
 	delete[] sprites;
-	delete[] indicies;
 	delete[] vertices;
 }

@@ -2,6 +2,7 @@
 #include <cassert>
 #include <string>
 #include <iostream>
+#include <cassert>
 #include "GL\glew.h"
 #include "SDL\SDL.h"
 #include "SpriteBatch.h"
@@ -12,9 +13,10 @@ private:
 	SDL_Window* window;
 	SDL_GLContext context;
 
-	SpriteBatch* spriteBatch;
-	std::string windowTitle;
+	ContentManager content;
+	SpriteBatch spriteBatch;
 
+	std::string windowTitle;
 	SDL_Event e;
 
 	bool running;

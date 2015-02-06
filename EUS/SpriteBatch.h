@@ -2,14 +2,22 @@
 #include "GL\glew.h"
 #include "Resources.h"
 #include "Vector.hpp"
+#include "Content.h"
+#include "VertexColorPositionTexture.h"
 #include <cassert>
+#include <vector>
 
 struct SpriteInfo {
 	pmath::Vec3f position;
 	pmath::Vec4f color;
-	pmath::Vec2f uv;
+	
+	float rotation;
 
 	Texture* texture;
+
+	SpriteInfo::SpriteInfo() {
+		texture = 0;
+	}
 };
 
 class SpriteBatch {
@@ -22,13 +30,15 @@ private:
 	GLuint vertexArray;
 	GLuint indexBuffer;
 
-	Effect* effect;
+	Effect* shader;
 
-	int spritePointer;
+	unsigned int spritePointer;
+	unsigned int vertexPointer;
+	unsigned int flushPointer;
 
 	SpriteInfo* sprites;
-	unsigned short* indicies;
-	float* vertices;
+	std::vector<unsigned short> indices;
+	VertexPositionColorTexture* vertices;
 
 	bool rendering;
 
@@ -37,15 +47,12 @@ private:
 	void initVertices();
 	void initBuffers();
 
-	void renderBatch();
+	void renderBatch(SpriteInfo* const sprite);
 	void flushBatch();
-
-	// TODO: need sorting
-	// void sortSprites();
 public:
 	SpriteBatch();
 
-	void draw(Texture* const texture, pmath::Vec3f& const position, pmath::Vec4f& const color);
+	void draw(Texture* const texture, const pmath::Vec3f& position, const pmath::Vec4f& color);
 
 	void begin();
 	void end();

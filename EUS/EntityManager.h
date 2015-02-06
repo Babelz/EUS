@@ -10,12 +10,12 @@ private:
 public:
 	EntityManager();
 
-	void addEntity(Entity* entity);
-	void removeEntity(Entity* entity);
+	void addEntity(Entity* const entity);
+	void removeEntity(Entity* const entity);
 
-	std::vector<Entity* const> findEntitiesWithTag(std::string tag) const;
+	std::vector<Entity* const> findEntitiesWithTag(const std::string& tag) const;
 	
-	Entity* const findEntityWithTag(std::string tag) const;
+	Entity* const findEntityWithTag(const std::string& tag) const;
 	Entity* const findEntityWithID(int id) const;
 
 	void update();

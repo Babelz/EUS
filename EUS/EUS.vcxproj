@@ -98,6 +98,7 @@
     <ClCompile Include="SpriteBatch.cpp" />
     <ClCompile Include="TagContainer.cpp" />
     <ClCompile Include="TestCp.cpp" />
+    <ClCompile Include="VertexColorPositionTexture.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Component.h" />
@@ -111,6 +112,7 @@
     <ClInclude Include="SpriteBatch.h" />
     <ClInclude Include="TagContainer.h" />
     <ClInclude Include="TestCp.h" />
+    <ClInclude Include="VertexColorPositionTexture.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

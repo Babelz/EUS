@@ -8,12 +8,13 @@ void componentTests();
 
 int main(int argc, char** argv) {
 	gameTests();
-
+	
 	return 0;
 }
 
 void gameTests() {
 	Game g;
+
 	g.run();
 }
 

@@ -48,6 +48,8 @@ void Game::internalInitialize() {
 	glOrtho(0.0f, windowWidth, windowHeight, 0.0f, -10, 10);
 	
 	std::cout << "OpenGL context version: " << versionMajor << "." << versionMinor << std::endl;
+	
+	spriteBatch = new SpriteBatch();
 
 	running = true;
 }

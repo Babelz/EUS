@@ -1,17 +1,20 @@
 #include "Entity.h"
 #include "TestCp.h"
+#include "Game.h"
 
+void gameTests();
 void tagTests();
 void componentTests();
 
-int main() {
-	tagTests();
-	componentTests();
-
-	Entity e;
-	TestCp c(e);
+int main(int argc, char** argv) {
+	gameTests();
 
 	return 0;
+}
+
+void gameTests() {
+	Game g;
+	g.run();
 }
 
 void tagTests() {

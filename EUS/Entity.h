@@ -15,8 +15,25 @@ private:
 	bool destroyed;
 
 	pmath::Vec2f position;
+	pmath::Vec2f size;
 public:
 	Entity();
+
+	float getWidth() const;
+	float getHeight() const;
+	void setWidth(float value);
+	void setHeight(float value);
+
+	pmath::Vec2f getSize() const;
+	void setSize(pmath::Vec2f value);
+
+	float getX() const;
+	float getY() const;
+	void setX(float value);
+	void setY(float value);
+	
+	pmath::Vec2f getPosition() const;
+	void setPosition(pmath::Vec2f value);
 
 	void show();
 	void hide();

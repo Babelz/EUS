@@ -10,6 +10,46 @@ Entity::Entity() {
 }
 
 #pragma region Public members
+float Entity::getWidth() const {
+	return size.x;
+}
+float Entity::getHeight() const {
+	return size.y;
+}
+void Entity::setWidth(float value) {
+	size.x = value;
+}
+void Entity::setHeight(float value) {
+	size.y = value;
+}
+
+pmath::Vec2f Entity::getSize() const {
+	return size;
+}
+void Entity::setSize(pmath::Vec2f value) {
+	size = value;
+}
+
+float Entity::getX() const {
+	return position.x;
+}
+float Entity::getY() const {
+	return position.y;
+}
+void Entity::setX(float value) {
+	position.x = value;
+}
+void Entity::setY(float value) {
+	position.y = value;
+}
+
+pmath::Vec2f Entity::getPosition() const  {
+	return position;
+}
+void Entity::setPosition(pmath::Vec2f value)  {
+	position = value;
+}
+
 void Entity::show() {
 	visible = true;
 }

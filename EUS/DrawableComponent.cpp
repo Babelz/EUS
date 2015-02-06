@@ -52,5 +52,5 @@ void DrawableComponent::draw() {
 #pragma endregion 
 
 DrawableComponent::~DrawableComponent() {
-}
 
+}

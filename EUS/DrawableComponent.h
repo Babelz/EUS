@@ -25,6 +25,6 @@ public:
 
 	void draw();
 
-	~DrawableComponent();
+	virtual ~DrawableComponent();
 };
 

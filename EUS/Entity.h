@@ -7,6 +7,10 @@
 
 class Entity {
 private:
+	static int idCounter; 
+	
+	const int id;
+	
 	TagContainer tags;
 	ComponentManager components;
 
@@ -18,6 +22,8 @@ private:
 	pmath::Vec2f size;
 public:
 	Entity();
+
+	int getID() const;
 
 	float getWidth() const;
 	float getHeight() const;

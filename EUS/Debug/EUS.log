@@ -1,16 +1,10 @@
-﻿Build started 6.2.2015 17:20:46.
-     1>Project "C:\Users\ttv14snikos\Desktop\gits\ogl\EUS\EUS\EUS.vcxproj" on node 2 (Build target(s)).
+﻿Build started 7.2.2015 16:12:57.
+     1>Project "C:\Users\VoidBab\Gits\ogl\eus\EUS\EUS.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I./include /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D GLEW_STATIC /D _MBCS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /FR"Debug\\" /Gd /TP /analyze- /errorReport:prompt Game.cpp Main.cpp SpriteBatch.cpp
-         SpriteBatch.cpp
-     1>c:\users\ttv14snikos\desktop\gits\ogl\eus\eus\spritebatch.cpp(155): warning C4018: '<' : signed/unsigned mismatch
-         Game.cpp
-         Generating Code...
-         Compiling...
-         Main.cpp
-         Generating Code...
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I./include /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D GLEW_STATIC /D _MBCS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /FR"Debug\\" /Gd /TP /analyze- /errorReport:prompt EntityManager.cpp
+         EntityManager.cpp
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\ttv14snikos\Desktop\gits\ogl\EUS\Debug\EUS.exe" /INCREMENTAL /NOLOGO /LIBPATH:./lib glew32s.lib OPENGL32.lib SDL2main.lib SDL2.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\ttv14snikos\Desktop\gits\ogl\EUS\Debug\EUS.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\ttv14snikos\Desktop\gits\ogl\EUS\Debug\EUS.lib" /MACHINE:X86 Debug\Component.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\VoidBab\Gits\ogl\eus\Debug\EUS.exe" /INCREMENTAL /NOLOGO /LIBPATH:./lib glew32s.lib OPENGL32.lib SDL2main.lib SDL2.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\VoidBab\Gits\ogl\eus\Debug\EUS.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\VoidBab\Gits\ogl\eus\Debug\EUS.lib" /MACHINE:X86 Debug\Component.obj
          Debug\ComponentManager.obj
          Debug\Content.obj
          Debug\DrawableComponent.obj
@@ -24,11 +18,9 @@
          Debug\TagContainer.obj
          Debug\TestCp.obj
          Debug\VertexColorPositionTexture.obj
-         EUS.vcxproj -> C:\Users\ttv14snikos\Desktop\gits\ogl\EUS\Debug\EUS.exe
-       BscMake:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\bscmake.exe /nologo /o"C:\Users\ttv14snikos\Desktop\gits\ogl\EUS\Debug\EUS.bsc" /n Debug\Component.sbr Debug\ComponentManager.sbr Debug\Content.sbr Debug\DrawableComponent.sbr Debug\Entity.sbr Debug\EntityManager.sbr Debug\Game.sbr Debug\lodepng.sbr Debug\Main.sbr Debug\Resources.sbr Debug\SpriteBatch.sbr Debug\TagContainer.sbr Debug\TestCp.sbr Debug\VertexColorPositionTexture.sbr
-     1>Done Building Project "C:\Users\ttv14snikos\Desktop\gits\ogl\EUS\EUS\EUS.vcxproj" (Build target(s)).
+     1>LINK : fatal error LNK1104: cannot open file 'glew32s.lib'
+     1>Done Building Project "C:\Users\VoidBab\Gits\ogl\eus\EUS\EUS.vcxproj" (Build target(s)) -- FAILED.
 
-Build succeeded.
+Build FAILED.
 
-Time Elapsed 00:00:03.99
+Time Elapsed 00:00:01.50

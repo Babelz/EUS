@@ -16,6 +16,7 @@ void ComponentManager::freeComponents() {
 				drawableComponents.remove(drawableComponent);
 			}
 
+			// Just release the memory, destroy has already been called.
 			delete component;
 			component = nullptr;
 		});
@@ -30,6 +31,8 @@ bool ComponentManager::containsComponent(Component* const component) const {
 	return std::find(components.begin(), components.end(), component) != components.end();
 }
 bool ComponentManager::removeComponent(Component* const component) {
+	assert(component != nullptr);
+	
 	bool remove = containsComponent(component);
 
 	if (remove) {
@@ -39,6 +42,8 @@ bool ComponentManager::removeComponent(Component* const component) {
 	return remove;
 }
 bool ComponentManager::addComponent(Component* const component) {
+	assert(component != nullptr && !component->isDestroyed());
+	
 	bool add = !containsComponent(component);
 
 	if (add) {
@@ -89,8 +94,13 @@ void ComponentManager::draw() {
 }
 #pragma endregion 
 
+// Call destroy for all components and release them.
 ComponentManager::~ComponentManager() {
 	std::for_each(components.begin(), components.end(), [](Component* c) {
+		if (!c->isDestroyed()) {
+			c->destroy();
+		}
+		
 		delete c;
 		c = nullptr;
 	});

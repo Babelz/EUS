@@ -1,15 +1,17 @@
 #include "Entity.h"
 
-Entity::Entity() {
+int Entity::idCounter = 0;
+
+Entity::Entity() : id(idCounter++) {
 	visible = true;
 	enabled = false;
 	destroyed = false;
-
-	position.x = 0.0f;
-	position.y = 0.0f;
 }
 
 #pragma region Public members
+int Entity::getID() const {
+	return id;
+}
 float Entity::getWidth() const {
 	return size.x;
 }

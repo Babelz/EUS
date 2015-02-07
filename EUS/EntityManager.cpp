@@ -3,31 +3,98 @@
 EntityManager::EntityManager() {
 }
 
-#pragma region Public memebers
-void EntityManager::addEntity(Entity* const entity) {
-}
-void EntityManager::removeEntity(Entity* const entity) {
-}
+#pragma region Private members
+void EntityManager::freeEntities() {
+	std::for_each(destroyedEntities.begin(), destroyedEntities.end(), [this](Entity* e) {
+		entities.remove(e);
 
-std::vector<Entity* const> EntityManager::findEntitiesWithTag(const std::string& tag) const {
-	return std::vector<Entity* const>();
-}
+		delete e;
+		e = nullptr;
+	});
 
-Entity* const EntityManager::findEntityWithTag(const std::string& tag) const {
-	return nullptr;
-}
-Entity* const EntityManager::findEntityWithID(int id) const {
-	return nullptr;
-}
-
-void EntityManager::update() {
-}
-void EntityManager::draw() {
+	destroyedEntities.clear();
 }
 #pragma endregion
 
-void EntityManager::freeEntities(){
+#pragma region Public memebers
+bool EntityManager::addEntity(Entity* const entity) {
+	assert(entity != nullptr && !entity->isDestroyed());
+	
+	bool add = !containsEntity(entity);
+
+	if (add) {
+		entities.push_back(entity);
+	}
+
+	return add;
+}
+bool EntityManager::removeEntity(Entity* const entity) {
+	assert(entity != nullptr);
+
+	bool remove = containsEntity(entity);
+
+	if (remove) {
+		entities.remove(entity);
+	}
+
+	return remove;
 }
 
+bool EntityManager::containsEntity(Entity* const entity) const {
+	return std::find(entities.begin(), entities.end(), entity) != entities.end();
+}
+
+std::vector<Entity* const>& EntityManager::findEntitiesWithTag(const std::string& tag) {
+	findResults.clear();
+
+	std::for_each(entities.begin(), entities.end(), [this, &tag](Entity* e) {
+		if (e->isTagged(tag)) {
+			findResults.push_back(e);
+		}
+	});
+
+	return findResults;
+}
+
+Entity* const EntityManager::findEntityWithTag(const std::string& tag) const {
+	auto result = std::find_if(entities.begin(), entities.end(), [this, &tag](Entity* e) {
+		return e->isTagged(tag);
+	});
+
+	return *result;
+}
+Entity* const EntityManager::findEntityWithID(int id) const {
+	auto result = std::find_if(entities.begin(), entities.end(), [this, &id](Entity* e) {
+		return e->getID() == id;
+	});
+
+	return *result;
+}
+
+void EntityManager::update() {
+	freeEntities();
+	
+	std::for_each(entities.begin(), entities.end(), [this](Entity* e) {
+		if (e->isDestroyed()) {
+			destroyedEntities.push_back(e);
+
+			return;
+		}
+
+		e->update();
+	});
+}
+void EntityManager::draw() {
+	std::for_each(entities.begin(), entities.end(), [](Entity* e) {
+		e->draw();
+	});
+}
+#pragma endregion
+
 EntityManager::~EntityManager() {
+	std::_For_each(entities.begin(), entities.end(), [](Entity* e) {
+		// No need to call destroy here.
+		delete e;
+		e = nullptr;
+	});
 }

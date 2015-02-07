@@ -7,10 +7,10 @@
 class EntityManager
 {
 private:
-	std::list<Entity*> entities;
+	std::list<Entity* const> entities;
 
-	// Just return a reference to this vector when user calls find.
-	// Use this vector as a "buffer".
+	// Use as a buffer when user wants to find 
+	// many entities.
 	std::vector<Entity* const> findResults;
 
 	// Keep destroyed entities here. Remove entities 

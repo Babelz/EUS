@@ -152,7 +152,7 @@ void SpriteBatch::renderBatch(SpriteInfo* const sprite) {
 }
 void SpriteBatch::flushBatch() {
 	if (spritePointer != 0) {
-		for (int i = 0; i < spritePointer; i++) {
+		for (unsigned int i = 0; i < spritePointer; i++) {
 			renderBatch(&sprites[i]);
 		}
 	}

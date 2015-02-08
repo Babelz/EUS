@@ -4,8 +4,7 @@
 #include <list>
 #include <vector>
 
-class EntityManager
-{
+class EntityManager {
 private:
 	std::list<Entity* const> entities;
 

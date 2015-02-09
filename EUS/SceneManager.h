@@ -35,6 +35,8 @@ public:
 
 class SceneManager {
 private:
+	std::string empty;
+
 	std::list<Scene* const> scenes;
 
 	Scene* activeScene;
@@ -51,8 +53,8 @@ public:
 	bool removeScene(Scene* const scene);
 	bool freeScene(const std::string& name);
 
-	// Changes scene and returns current scene.
-	Scene* const changeScene(const std::string& name);
+	// Changes scene and returns current scenes name.
+	std::string& changeScene(const std::string& name);
 
 	void update();
 	void draw();

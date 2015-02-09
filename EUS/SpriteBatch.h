@@ -22,9 +22,10 @@ struct SpriteInfo {
 
 class SpriteBatch {
 private:
-	const int batchSize = 1024;
 	const int verticesPerSprite = 4;
 	const int indicesPerSprite = 6;
+	// TODO: const for testing.
+	const int batchSize = 1024;
 
 	GLuint vertexBuffer;
 	GLuint vertexArray;
@@ -34,20 +35,18 @@ private:
 
 	unsigned int spritePointer;
 	unsigned int vertexPointer;
-	unsigned int flushPointer;
 
-	SpriteInfo* sprites;
+	std::vector<SpriteInfo> sprites;
 	std::vector<unsigned short> indices;
-	VertexPositionColorTexture* vertices;
+	std::vector<VertexPositionColorTexture> vertices;
 
 	bool rendering;
 
-	void allocSprites();
 	void initIndicies();
-	void initVertices();
 	void initBuffers();
 
-	void renderBatch(SpriteInfo* const sprite);
+	void renderBatch(SpriteInfo& sprite);
+	void prepRendering();
 	void flushBatch();
 public:
 	SpriteBatch();

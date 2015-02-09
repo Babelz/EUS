@@ -85,10 +85,7 @@ void ComponentManager::freeComponents() {
 
 	components.clear();
 	drawableComponents.clear();
-
-	if (destroyedComponents.size() > 0) {
-		freeDestroyedComponents();
-	}
+	destroyedComponents.clear();
 }
 
 void ComponentManager::update() {

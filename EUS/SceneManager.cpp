@@ -111,18 +111,17 @@ bool SceneManager::freeScene(const std::string& name) {
 	return freeScene;
 }
 
-// Changes scene and returns current scene.
-Scene* const SceneManager::changeScene(const std::string& name) {
+std::string& SceneManager::changeScene(const std::string& name) {
 	Scene* scene = findSceneWithName(name);
 
 	if (scene != nullptr) {
 		Scene* last = activeScene;
 		activeScene = scene;
 
-		return last;
+		return activeScene->getName();
 	}
 
-	return activeScene;
+	return empty;
 }
 
 void SceneManager::update() {

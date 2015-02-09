@@ -1,22 +1,12 @@
-﻿Build started 9.2.2015 9:50:05.
-     1>Project "C:\Users\ttv14snikos\Desktop\EUS\EUS\EUS\EUS.vcxproj" on node 2 (Rebuild target(s)).
+﻿Build started 9.2.2015 10:30:32.
+     1>Project "C:\Users\ttv14snikos\Desktop\EUS\EUS\EUS\EUS.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I./include /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D GLEW_STATIC /D _MBCS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /FR"Debug\\" /Gd /TP /analyze- /errorReport:prompt Component.cpp ComponentManager.cpp Content.cpp DrawableComponent.cpp Entity.cpp EntityManager.cpp Game.cpp lodepng.cpp Main.cpp Resources.cpp SceneManager.cpp SpriteBatch.cpp TagContainer.cpp TestCp.cpp VertexColorPositionTexture.cpp
-         VertexColorPositionTexture.cpp
-         TestCp.cpp
-         TagContainer.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I./include /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D GLEW_STATIC /D _MBCS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /FR"Debug\\" /Gd /TP /analyze- /errorReport:prompt Game.cpp Main.cpp SpriteBatch.cpp
          SpriteBatch.cpp
-         SceneManager.cpp
-         Resources.cpp
+         Generating Code...
+         Compiling...
          Main.cpp
-         lodepng.cpp
          Game.cpp
-         EntityManager.cpp
-         Entity.cpp
-         DrawableComponent.cpp
-         Content.cpp
-         ComponentManager.cpp
-         Component.cpp
          Generating Code...
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\ttv14snikos\Desktop\EUS\EUS\Debug\EUS.exe" /INCREMENTAL /NOLOGO /LIBPATH:./lib glew32s.lib OPENGL32.lib SDL2main.lib SDL2.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\ttv14snikos\Desktop\EUS\EUS\Debug\EUS.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\ttv14snikos\Desktop\EUS\EUS\Debug\EUS.lib" /MACHINE:X86 Debug\Component.obj
@@ -39,8 +29,8 @@
          EUS.vcxproj -> C:\Users\ttv14snikos\Desktop\EUS\EUS\Debug\EUS.exe
        BscMake:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\bscmake.exe /nologo /o"C:\Users\ttv14snikos\Desktop\EUS\EUS\Debug\EUS.bsc" /n Debug\Component.sbr Debug\ComponentManager.sbr Debug\Content.sbr Debug\DrawableComponent.sbr Debug\Entity.sbr Debug\EntityManager.sbr Debug\Game.sbr Debug\lodepng.sbr Debug\Main.sbr Debug\Resources.sbr Debug\SceneManager.sbr Debug\SpriteBatch.sbr Debug\TagContainer.sbr Debug\TestCp.sbr Debug\VertexColorPositionTexture.sbr
-     1>Done Building Project "C:\Users\ttv14snikos\Desktop\EUS\EUS\EUS\EUS.vcxproj" (Rebuild target(s)).
+     1>Done Building Project "C:\Users\ttv14snikos\Desktop\EUS\EUS\EUS\EUS.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:07.89
+Time Elapsed 00:00:04.00

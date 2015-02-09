@@ -1,17 +1,21 @@
 #version 330
 
-layout(location = 0)
+layout(location = 0) 
 in vec3 inPosition;
 
-layout(location = 1)
-in vec4 color;
+layout(location = 1) 
+in vec4 inColor;
 
 layout(location = 2)
 in vec2 coords;
 
 out vec2 texCoords;
+out vec4 color;
+
+uniform mat4 perspective;
 
 void main() {
-	gl_Position = vec4(inPosition, 1.0);
+	gl_Position = perspective * vec4(inPosition, 1.0);
 	texCoords = coords;
+	color = inColor;
 }

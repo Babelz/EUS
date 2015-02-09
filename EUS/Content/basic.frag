@@ -4,8 +4,10 @@ out vec4 outColour;
 
 in vec2 texCoords;
 
+in vec4 color;
+
 uniform sampler2D tex;
 
 void main() {
-	outColour = texture(tex, vec2(texCoords.x, texCoords.y) );
+	outColour = texture(tex, vec2(texCoords.x, -texCoords.y)) * color;
 }

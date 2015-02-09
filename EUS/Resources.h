@@ -19,10 +19,11 @@ public:
 
 class Texture : public Resource {
 private:
-	size_t width;
-	size_t height;
 	GLuint id;
 public:
+	size_t width;
+	size_t height;
+	
 	Texture();
 
 	bool readFromFile(const std::string& path);

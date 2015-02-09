@@ -6,54 +6,62 @@
 #include "VertexColorPositionTexture.h"
 #include <cassert>
 #include <vector>
+#include <GLM.h>
 
 struct SpriteInfo {
 	pmath::Vec3f position;
 	pmath::Vec4f color;
-	
-	float rotation;
+	pmath::Vec2f uv;
 
 	Texture* texture;
-
-	SpriteInfo::SpriteInfo() {
-		texture = 0;
-	}
 };
 
 class SpriteBatch {
 private:
-	const int verticesPerSprite = 4;
-	const int indicesPerSprite = 6;
-	// TODO: const for testing.
-	const int batchSize = 1024;
+	// Max size in sprites.
+	const size_t MAX_BATCH_SIZE = 256;
+	// Initial size of the batch.
+	const size_t INITIAL_BATCH_SIZE = 64;
+
+	const unsigned short INDICES_PER_SPRITE = 6;
+	const unsigned short VERTICES_PER_SPRITE = 4;
+
+	size_t batchSize;
+	size_t spritesCount;
+
+	bool isDrawing;
 
 	GLuint vertexBuffer;
 	GLuint vertexArray;
 	GLuint indexBuffer;
 
+	glm::mat4 projection;
+	glm::mat4 world;
+	glm::mat4 view;
+	glm::mat4 perspective;
+
 	Effect* shader;
 
-	unsigned int spritePointer;
-	unsigned int vertexPointer;
-
-	std::vector<SpriteInfo> sprites;
 	std::vector<unsigned short> indices;
 	std::vector<VertexPositionColorTexture> vertices;
-
-	bool rendering;
-
-	void initIndicies();
-	void initBuffers();
+	std::vector<SpriteInfo> spriteQueue;
+	
+	void initializeShader();
+	void initializeBuffers();
+	void createIndices();
 
 	void renderBatch(SpriteInfo& sprite);
-	void prepRendering();
 	void flushBatch();
+
+	void growSpriteQueue();
 public:
 	SpriteBatch();
 
-	void draw(Texture* const texture, const pmath::Vec3f& position, const pmath::Vec4f& color);
+	// TODO: for testing..
+	void draw();
 
 	void begin();
+	void draw(Texture* texture, pmath::Vec3f& position, pmath::Vec4f& color);
 	void end();
 
 	~SpriteBatch();

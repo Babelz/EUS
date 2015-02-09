@@ -2,8 +2,7 @@
 
 Game::Game(int windowWidth, int windowHeight) : windowWidth(windowWidth), 
 												windowHeight(windowHeight),
-												content(ContentManager("Content")),
-												spriteBatch(SpriteBatch()) {
+												content(ContentManager("Content")) {
 	windowTitle = std::string("OpenGL");
 }
 
@@ -41,6 +40,8 @@ void Game::internalInitialize() {
 	// Init glew.
 	glewExperimental = GL_TRUE;
 	const GLenum glewResult = glewInit();
+	glGetError();
+
 	assert(glewResult == GLEW_OK);
 
 	int versionMajor, versionMinor;
@@ -52,6 +53,8 @@ void Game::internalInitialize() {
 	
 	std::cout << "OpenGL context version: " << versionMajor << "." << versionMinor << std::endl;
 	
+	spriteBatch = new SpriteBatch();
+
 	running = true;
 }
 void Game::internalUpdate() {
@@ -68,14 +71,8 @@ void Game::internalDraw() {
 	
 	draw();
 
-	Texture* t = content.load<Texture>("tuksu");
-	assert(t != nullptr);
-
 	// TODO: tests
-	spriteBatch.begin();
-	spriteBatch.draw(t, pmath::Vec3f(0.5f), pmath::Vec4f(0.5f));
-	spriteBatch.draw(t, pmath::Vec3f(1.0f), pmath::Vec4f(0.5f));
-	spriteBatch.end();
+	spriteBatch->draw();
 
 	SDL_GL_SwapWindow(window);
 }

@@ -14,7 +14,7 @@ private:
 	SDL_GLContext context;
 
 	ContentManager content;
-	SpriteBatch spriteBatch;
+	SpriteBatch* spriteBatch;
 
 	std::string windowTitle;
 	SDL_Event e;

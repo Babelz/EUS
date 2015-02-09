@@ -4,7 +4,7 @@ ComponentManager::ComponentManager() {
 }
 
 #pragma region Private members
-void ComponentManager::freeComponents() {
+void ComponentManager::freeDestroyedComponents() {
 	if (destroyedComponents.size() > 0) {
 		std::for_each(destroyedComponents.begin(), destroyedComponents.end(), [this](Component* component) {
 			components.remove(component);
@@ -71,8 +71,28 @@ bool ComponentManager::addComponent(Component* const component) {
 	return add;
 }
 
+void ComponentManager::freeComponents() {
+	std::for_each(components.begin(), components.end(), [](Component* c) {
+		if (c->isDestroyed()) {
+			return;
+		}
+
+		c->destroy();
+
+		delete c;
+		c = 0;
+	});
+
+	components.clear();
+	drawableComponents.clear();
+
+	if (destroyedComponents.size() > 0) {
+		freeDestroyedComponents();
+	}
+}
+
 void ComponentManager::update() {
-	freeComponents();
+	freeDestroyedComponents();
 	
 	std::for_each(components.begin(), components.end(), [this](Component* c) {
 		// Component was destroyed in last frame, some other
@@ -96,12 +116,5 @@ void ComponentManager::draw() {
 
 // Call destroy for all components and release them.
 ComponentManager::~ComponentManager() {
-	std::for_each(components.begin(), components.end(), [](Component* c) {
-		if (!c->isDestroyed()) {
-			c->destroy();
-		}
-		
-		delete c;
-		c = nullptr;
-	});
+	freeComponents();
 }

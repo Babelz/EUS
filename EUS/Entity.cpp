@@ -73,6 +73,12 @@ bool Entity::isEnabled() const {
 }
 
 void Entity::destroy() {
+	if (destroyed) {
+		return;
+	}
+
+	components.freeComponents();
+
 	destroyed = true;
 }
 bool Entity::isDestroyed() const {

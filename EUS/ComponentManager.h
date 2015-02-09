@@ -12,13 +12,15 @@ private:
 
 	std::list<Component*> destroyedComponents;
 
-	void freeComponents();
+	void freeDestroyedComponents();
 public:
 	ComponentManager();
 
 	bool containsComponent(Component* const component) const;
 	bool removeComponent(Component* const component);
 	bool addComponent(Component* const component);
+
+	void freeComponents();
 
 	void update();
 	void draw();

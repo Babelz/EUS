@@ -2,10 +2,10 @@
 
 int Entity::idCounter = 0;
 
-Entity::Entity() : id(idCounter++) {
-	visible = true;
-	enabled = false;
-	destroyed = false;
+Entity::Entity() : id(idCounter++), 
+				   visible(true),
+				   enabled(true),
+				   destroyed(false) {
 }
 
 #pragma region Public members
@@ -79,6 +79,12 @@ void Entity::destroy() {
 
 	components.freeComponents();
 
+	for_each(childs.begin(), childs.end(), [](Entity* c) {
+		c->destroy();
+	});
+
+	childs.clear();
+
 	destroyed = true;
 }
 bool Entity::isDestroyed() const {
@@ -126,6 +132,34 @@ bool Entity::tag(const std::string& tag) {
 	if (destroyed) return false;
 
 	return tags.tag(tag);
+}
+
+bool Entity::isParentOf(const Entity* const child) {
+	assert(child != nullptr);
+	
+	return std::find(childs.begin(), childs.end(), child) != childs.end();
+}
+bool Entity::addChild(Entity* const child) {
+	if (destroyed) return false;
+
+	bool add = !isParentOf(child);
+
+	if (add) {
+		childs.push_back(child);
+	}
+
+	return add;
+}
+bool Entity::removeChild(Entity* const child) {
+	if (destroyed) return false;
+
+	bool remove = isParentOf(child);
+
+	if (remove) {
+		childs.remove(child);
+	}
+
+	return remove;
 }
 
 // Update all components that are enabled if entity is in enabled

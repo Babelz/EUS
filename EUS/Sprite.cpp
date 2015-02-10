@@ -5,6 +5,10 @@ Sprite::Sprite(Texture* texture) : color(1.0f),
 								   texture(texture) {
 	assert(texture != nullptr);
 }
+Sprite::Sprite() : color(1.0f),
+				   scale(1.0f),
+				   texture(texture) {
+}
 
 #pragma region Public members
 float Sprite::x() const {
@@ -67,6 +71,8 @@ void Sprite::swapTexture(Texture* texture) {
 }
 
 void Sprite::draw(SpriteBatch& spriteBatch) {
+	assert(texture != nullptr);
+
 	spriteBatch.draw(texture, position, origin, color, scale.x, scale.y);
 }
 #pragma endregion

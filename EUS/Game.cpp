@@ -90,8 +90,11 @@ void Game::draw() { }
 ContentManager& Game::content() {
 	return m_content;
 }
-SpriteBatch Game::spriteBatch() {
+SpriteBatch& Game::spriteBatch() {
 	return m_spriteBatch;
+}
+SceneManager& Game::sceneManager() {
+	return m_sceneManager;
 }
 SDL_Window& Game::window() {
 	return *m_window;

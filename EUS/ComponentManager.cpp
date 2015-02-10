@@ -36,9 +36,13 @@ bool ComponentManager::removeComponent(Component* const component) {
 	bool remove = containsComponent(component);
 
 	if (remove) {
-		components.erase(std::remove(components.begin(), components.end(), component), components.end());
+		components.remove(component);
 		
-		// TODO: check component if drawable.
+		DrawableComponent* drawableComponent = dynamic_cast<DrawableComponent*>(component);
+
+		if (drawableComponent != nullptr) {
+			drawableComponents.remove(drawableComponent);
+		}
 	}
 
 	return remove;
@@ -50,7 +54,7 @@ bool ComponentManager::addComponent(Component* const component) {
 
 	if (add) {
 		// TODO: could just check beg and end to skip sorting?
-		// TODO: sorting is performed only when component gets added.
+		// TODO: sorting is performed only when component is added.
 		
 		// Check if component is drawable.
 		DrawableComponent* drawableComponent = dynamic_cast<DrawableComponent*>(component);

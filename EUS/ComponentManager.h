@@ -37,6 +37,12 @@ public:
 		return foundComponent;
 	}
 
+	Component* const getComponent(std::function<bool(Component const*)> predicate) {
+		auto result = std::find_if(components.begin(), components.end(), predicate);
+
+		return *result;
+	}
+
 	~ComponentManager();
 };
 

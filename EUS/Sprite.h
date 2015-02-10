@@ -14,6 +14,7 @@ private:
 	Texture* texture;
 public:
 	Sprite(Texture* texture);
+	Sprite();
 
 	float x() const;
 	float y() const;

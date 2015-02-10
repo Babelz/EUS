@@ -240,7 +240,7 @@ void SpriteBatch::end() {
 		throw std::logic_error("Begin must be called before end.");
 	}
 
-	if (!spritesCount) {
+	if (spritesCount > 0) {
 		flushBatch();
 		spritesCount = 0;
 	}

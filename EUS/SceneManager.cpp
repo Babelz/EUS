@@ -111,7 +111,7 @@ bool SceneManager::freeScene(const std::string& name) {
 	return freeScene;
 }
 
-std::string& SceneManager::changeScene(const std::string& name) {
+const std::string& SceneManager::changeScene(const std::string& name) {
 	Scene* scene = findSceneWithName(name);
 
 	if (scene != nullptr) {

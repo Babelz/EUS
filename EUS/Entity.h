@@ -20,6 +20,10 @@ private:
 
 	pmath::Vec2f position;
 	pmath::Vec2f size;
+
+	std::list<Entity* const> childs;
+
+	void freeChilds();
 public:
 	Entity();
 
@@ -60,9 +64,17 @@ public:
 		return components.getComponent<T>();
 	}
 
+	Component* const getComponent(std::function<bool(Component const*)> predicate) {
+		return components.getComponent(predicate);
+	}
+
 	bool unTag(const std::string& tag);
 	bool isTagged(const std::string& tag) const;
 	bool tag(const std::string& tag);
+	
+	bool isParentOf(const Entity* const child);
+	bool addChild(Entity* const child);
+	bool removeChild(Entity* const child);
 
 	void update();
 	void draw();

@@ -6,6 +6,7 @@
 #include "GL\glew.h"
 #include "SDL\SDL.h"
 #include "SpriteBatch.h"
+#include "SceneManager.h"
 
 // Base class for all games.
 class Game {
@@ -15,6 +16,7 @@ private:
 
 	ContentManager m_content;
 	SpriteBatch m_spriteBatch;
+	SceneManager m_sceneManager;
 
 	std::string windowTitle;
 	SDL_Event e;
@@ -40,7 +42,8 @@ public:
 	Game(const int windowWidth = 1280, const int windowHeight = 720, const char* windowTitlte = "OpenGL");
 
 	ContentManager& content();
-	SpriteBatch spriteBatch();
+	SpriteBatch& spriteBatch();
+	SceneManager& sceneManager();
 	SDL_Window& window();
 
 	int getWindowWidth() const;

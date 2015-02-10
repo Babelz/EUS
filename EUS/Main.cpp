@@ -1,6 +1,6 @@
 #include "Entity.h"
 #include "TestCp.h"
-#include "Game.h"
+#include "EUS.h"
 
 void gameTests();
 void tagTests();
@@ -15,7 +15,7 @@ int main(int argc, char** argv) {
 }
 
 void gameTests() {
-	Game g;
+	EUS g;
 
 	g.run();
 }
@@ -33,6 +33,7 @@ void tagTests() {
 
 void componentTests() {
 	Entity e;
+
 	e.enable();
 
 	TestCp* c = new TestCp(e);

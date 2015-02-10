@@ -1,18 +1,16 @@
-﻿Build started 10.2.2015 15:47:27.
-     1>Project "C:\Users\ttv14snikos\Desktop\Gits\Saatana\EUS\EUS\EUS.vcxproj" on node 2 (Build target(s)).
+﻿Build started 10.2.2015 19:20:49.
+     1>Project "C:\Users\VoidBab\Gits\ogl\eus\EUS\EUS.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I./include /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D GLEW_STATIC /D _MBCS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /FR"Debug\\" /Gd /TP /analyze- /errorReport:prompt EntityManager.cpp SceneManager.cpp
-         EntityManager.cpp
-         Generating Code...
-         Skipping... (no relevant changes detected)
-         SceneManager.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I./include /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D GLEW_STATIC /D _MBCS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /FR"Debug\\" /Gd /TP /analyze- /errorReport:prompt EUS.cpp
+         EUS.cpp
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\ttv14snikos\Desktop\Gits\Saatana\EUS\Debug\EUS.exe" /INCREMENTAL /NOLOGO /LIBPATH:./lib glew32s.lib OPENGL32.lib SDL2main.lib SDL2.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\ttv14snikos\Desktop\Gits\Saatana\EUS\Debug\EUS.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\ttv14snikos\Desktop\Gits\Saatana\EUS\Debug\EUS.lib" /MACHINE:X86 Debug\Component.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\VoidBab\Gits\ogl\eus\Debug\EUS.exe" /INCREMENTAL /NOLOGO /LIBPATH:./lib glew32s.lib OPENGL32.lib SDL2main.lib SDL2.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\VoidBab\Gits\ogl\eus\Debug\EUS.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\VoidBab\Gits\ogl\eus\Debug\EUS.lib" /MACHINE:X86 Debug\Component.obj
          Debug\ComponentManager.obj
          Debug\Content.obj
          Debug\DrawableComponent.obj
          Debug\Entity.obj
          Debug\EntityManager.obj
+         Debug\EUS.obj
          Debug\Game.obj
          Debug\lodepng.obj
          Debug\Main.obj
@@ -23,11 +21,11 @@
          Debug\TagContainer.obj
          Debug\TestCp.obj
          Debug\VertexColorPositionTexture.obj
-         EUS.vcxproj -> C:\Users\ttv14snikos\Desktop\Gits\Saatana\EUS\Debug\EUS.exe
+         EUS.vcxproj -> C:\Users\VoidBab\Gits\ogl\eus\Debug\EUS.exe
        BscMake:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\bscmake.exe /nologo /o"C:\Users\ttv14snikos\Desktop\Gits\Saatana\EUS\Debug\EUS.bsc" /n Debug\Component.sbr Debug\ComponentManager.sbr Debug\Content.sbr Debug\DrawableComponent.sbr Debug\Entity.sbr Debug\EntityManager.sbr Debug\Game.sbr Debug\lodepng.sbr Debug\Main.sbr Debug\Resources.sbr Debug\SceneManager.sbr Debug\Sprite.sbr Debug\SpriteBatch.sbr Debug\TagContainer.sbr Debug\TestCp.sbr Debug\VertexColorPositionTexture.sbr
-     1>Done Building Project "C:\Users\ttv14snikos\Desktop\Gits\Saatana\EUS\EUS\EUS.vcxproj" (Build target(s)).
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\bscmake.exe /nologo /o"C:\Users\VoidBab\Gits\ogl\eus\Debug\EUS.bsc" /n Debug\Component.sbr Debug\ComponentManager.sbr Debug\Content.sbr Debug\DrawableComponent.sbr Debug\Entity.sbr Debug\EntityManager.sbr Debug\EUS.sbr Debug\Game.sbr Debug\lodepng.sbr Debug\Main.sbr Debug\Resources.sbr Debug\SceneManager.sbr Debug\Sprite.sbr Debug\SpriteBatch.sbr Debug\TagContainer.sbr Debug\TestCp.sbr Debug\VertexColorPositionTexture.sbr
+     1>Done Building Project "C:\Users\VoidBab\Gits\ogl\eus\EUS\EUS.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:02.34
+Time Elapsed 00:00:04.54

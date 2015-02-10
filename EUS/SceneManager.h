@@ -47,14 +47,12 @@ private:
 public:
 	SceneManager();
 
-	std::string& currentSceneName();
-
 	bool addScene(Scene* const scene);
 	bool removeScene(Scene* const scene);
 	bool freeScene(const std::string& name);
 
 	// Changes scene and returns current scenes name.
-	std::string& changeScene(const std::string& name);
+	const std::string& changeScene(const std::string& name);
 
 	void update();
 	void draw();

@@ -55,15 +55,14 @@ void SpriteBatch::createIndices() {
 		indices.push_back(i + 2);
 	}
 }
-void SpriteBatch::renderBatch(SpriteInfo& sprite) {
-	static const int COUNT = 1;
+void SpriteBatch::renderBatch(Texture* const texture, const size_t& first, const size_t& last) {
+	glBindTexture(GL_TEXTURE_2D, texture->getId());
 
-	GLuint location = glGetUniformLocation(shader->getProgram(), "perspective");
-	glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(perspective));
+	std::vector<VertexPositionColorTexture> vertices;
 
-	glBindTexture(GL_TEXTURE_2D, sprite.texture->getId());
-
-	for (int i = 0; i < COUNT; i++) {
+	for (size_t i = first; i < last; i++) {
+		SpriteInfo& sprite = spriteQueue[i];
+		
 		// Top left.
 		vertices.push_back(VertexPositionColorTexture(
 			sprite.position.x,
@@ -111,26 +110,67 @@ void SpriteBatch::renderBatch(SpriteInfo& sprite) {
 			sprite.color.w,
 			1.0f,
 			0.0f));
+		
+		// sizeof(unsigned short) != sizeof(unsigned int) you fucking moron, be more careful in the future..
+		//glBufferSubData(GL_ARRAY_BUFFER, sizeof(VertexPositionColorTexture) * 4 * i, sizeof(VertexPositionColorTexture) * 4, vertices.data());
+		
+		glBufferSubData(
+			GL_ARRAY_BUFFER,							
+			sizeof(VertexPositionColorTexture) * 4 * i,	// Offset 
+			sizeof(VertexPositionColorTexture) * 4,		// Size bytes
+			(void*)vertices.data());					// Data
+
+		glDrawElements(
+			GL_TRIANGLES,
+			INDICES_PER_SPRITE,
+			GL_UNSIGNED_SHORT,
+			(void*)(i * INDICES_PER_SPRITE * sizeof(unsigned short)));
+
+		vertices.clear();
 	}
+
+	glBindTexture(GL_TEXTURE_2D, 0);
+}
+
+void SpriteBatch::sortBatch() {
+	std::sort(spriteQueue.begin(), spriteQueue.begin() + spritesCount, [](SpriteInfo& a, SpriteInfo& b) {
+		return a.texture->getId() < b.texture->getId();
+	});
 }
 void SpriteBatch::flushBatch() {
-
-	auto asd = sizeof(VertexPositionColorTexture);
-
-	glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(VertexPositionColorTexture) * spritesCount * VERTICES_PER_SPRITE, nullptr, GL_DYNAMIC_DRAW);
+	sortBatch();
 
 	glActiveTexture(GL_TEXTURE0 + 0);
 
+	// Bind vbo and alloc some memory for it.
+	glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(VertexPositionColorTexture) * spritesCount * VERTICES_PER_SPRITE, nullptr, GL_DYNAMIC_DRAW);
+
 	shader->bind();
+	GLuint location = glGetUniformLocation(shader->getProgram(), "perspective");
+	glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(perspective));
+
+	Texture* batchTexture = spriteQueue[0].texture;
+	size_t first = 0;
+	size_t last = 0;
 
 	for (size_t i = 0; i < spritesCount; i++)	{
-		renderBatch(spriteQueue[i]);
+		Texture* texture = spriteQueue[i].texture;
+
+		// Flush whenever texture changes.
+		if (texture != batchTexture) {
+			// Flush from first to last.
+			renderBatch(batchTexture, first, last);
+			
+			// Next flush will start from this index.
+			first = i;
+		}
+		
+		batchTexture = texture;
+		last = i;
 	}
 
-	// sizeof(unsigned short) != sizeof(unsigned int) you fucking moron, be more careful in the future..
-	glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(VertexPositionColorTexture) * vertices.size(), vertices.data());
-	glDrawElements(GL_TRIANGLES, INDICES_PER_SPRITE * spritesCount, GL_UNSIGNED_SHORT, (void*)0);
+	renderBatch(batchTexture, first, last + 1);
 
 	shader->unbind();
 
@@ -142,27 +182,29 @@ void SpriteBatch::growSpriteQueue() {
 	for (size_t i = 0; i < INITIAL_BATCH_SIZE; i++){
 		spriteQueue.push_back(SpriteInfo());
 	}
+
+	batchSize = spriteQueue.size();
 }
 
+static ContentManager content("Content");
+
 void SpriteBatch::draw() {
-	ContentManager content("Content");
-	Texture* texture = content.load<Texture>("tuksu");
+	Texture* pidgin = content.load<Texture>("pidginz");
+	Texture* tuksu = content.load<Texture>("tuksu");
 
 	begin();
 	auto pos = pmath::Vec3f(100.0f, 100.0f, -0.5f);
 	auto clr = pmath::Vec4f(1.0f, 1.0f, 1.0f, 1.0f);
 
-	draw(texture, pos, clr);
-
 	for (size_t i = 0; i < 10; i++)
 	{
-		pos.x += 10.0f * i;
-		pos.y += 5.0f * i;
-		draw(texture, pos, clr);
+		for (size_t j = 0; j < 10; j++)
+		{
+			pmath::Vec3f p(tuksu->width * i, tuksu->height * j, 1.0f);
+			draw(tuksu, p, clr);
+		}
 	}
 	
-	content.unloadAll();
-
 	end();
 }
 
@@ -187,13 +229,11 @@ void SpriteBatch::draw(Texture* texture, pmath::Vec3f& position, pmath::Vec4f& c
 	spritesCount++;
 }
 void SpriteBatch::end() {
-	if (!isDrawing) {
+	if (!isDrawing || !spritesCount) {
 		return;
 	}
 
 	flushBatch();
-
-	vertices.clear();
 
 	spritesCount = 0;
 }

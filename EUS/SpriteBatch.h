@@ -4,6 +4,7 @@
 #include "Vector.hpp"
 #include "Content.h"
 #include "VertexColorPositionTexture.h"
+#include <algorithm>
 #include <cassert>
 #include <vector>
 #include <GLM.h>
@@ -43,14 +44,14 @@ private:
 	Effect* shader;
 
 	std::vector<unsigned short> indices;
-	std::vector<VertexPositionColorTexture> vertices;
 	std::vector<SpriteInfo> spriteQueue;
 	
 	void initializeShader();
 	void initializeBuffers();
 	void createIndices();
 
-	void renderBatch(SpriteInfo& sprite);
+	void sortBatch();
+	void renderBatch(Texture* const texture, const size_t& first, const size_t& last);
 	void flushBatch();
 
 	void growSpriteQueue();

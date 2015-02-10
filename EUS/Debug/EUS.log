@@ -1,4 +1,4 @@
-﻿Build started 10.2.2015 19:20:49.
+﻿Build started 10.2.2015 22:46:07.
      1>Project "C:\Users\VoidBab\Gits\ogl\eus\EUS\EUS.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I./include /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D GLEW_STATIC /D _MBCS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /FR"Debug\\" /Gd /TP /analyze- /errorReport:prompt EUS.cpp
@@ -28,4 +28,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:04.54
+Time Elapsed 00:00:04.72

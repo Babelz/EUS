@@ -57,6 +57,13 @@ void Sprite::setOriginY(float value) {
 	origin.y = value;
 }
 
+size_t Sprite::textureHeight() const {
+	return texture->height;
+}
+size_t Sprite::textureWidth() const {
+	return texture->width;
+}
+
 pmath::Vec4f Sprite::getColor() const {
 	return color;
 }

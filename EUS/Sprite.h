@@ -35,6 +35,9 @@ public:
 	void setOriginX(float value);
 	void setOriginY(float value);
 
+	size_t textureHeight() const;
+	size_t textureWidth() const;
+
 	pmath::Vec4f getColor() const;
 	void setColor(pmath::Vec4f& value);
 

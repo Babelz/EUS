@@ -51,10 +51,13 @@ private:
 
 	std::vector<unsigned short> indices;
 	std::vector<SpriteInfo> spriteQueue;
+	std::vector<VertexPositionColorTexture> vertices;
 	
 	void initializeShader();
 	void initializeBuffers();
 	void createIndices();
+
+	void generateVertices();
 
 	void sortBatch();
 	void renderBatch(Texture* const texture, const size_t& first, const size_t& last);

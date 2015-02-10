@@ -54,9 +54,19 @@ void SpriteBatch::createIndices() {
 void SpriteBatch::renderBatch(Texture* const texture, const size_t& first, const size_t& last) {
 	glBindTexture(GL_TEXTURE_2D, texture->getId());
 
-	std::vector<VertexPositionColorTexture> vertices;
+	glDrawElements(
+		GL_TRIANGLES,
+		INDICES_PER_SPRITE * last - first,
+		GL_UNSIGNED_SHORT,
+		(void*)(first * INDICES_PER_SPRITE * sizeof(unsigned short)));
 
-	for (size_t i = first; i < last; i++) {
+	glBindTexture(GL_TEXTURE_2D, 0);
+}
+
+void SpriteBatch::generateVertices() {
+	vertices.clear();
+
+	for (size_t i = 0; i < spritesCount; i++) {
 		SpriteInfo& sprite = spriteQueue[i];
 
 		// Top left.
@@ -70,7 +80,7 @@ void SpriteBatch::renderBatch(Texture* const texture, const size_t& first, const
 			sprite.color.w,
 			0.0f,
 			1.0f));
-		
+
 		// Top right.
 		vertices.push_back(VertexPositionColorTexture(
 			sprite.position.x + sprite.texture->width * sprite.xScale - sprite.origin.x,
@@ -82,7 +92,7 @@ void SpriteBatch::renderBatch(Texture* const texture, const size_t& first, const
 			sprite.color.w,
 			1.0f,
 			1.0f));
-		
+
 		// Bottom left.
 		vertices.push_back(VertexPositionColorTexture(
 			sprite.position.x - sprite.origin.x,
@@ -106,26 +116,7 @@ void SpriteBatch::renderBatch(Texture* const texture, const size_t& first, const
 			sprite.color.w,
 			1.0f,
 			0.0f));
-		
-		// sizeof(unsigned short) != sizeof(unsigned int) you fucking moron, be more careful in the future..
-		//glBufferSubData(GL_ARRAY_BUFFER, sizeof(VertexPositionColorTexture) * 4 * i, sizeof(VertexPositionColorTexture) * 4, vertices.data());
-		
-		glBufferSubData(
-			GL_ARRAY_BUFFER,							
-			sizeof(VertexPositionColorTexture) * 4 * i,	// Offset 
-			sizeof(VertexPositionColorTexture) * 4,		// Size bytes
-			(void*)vertices.data());					// Data
-
-		glDrawElements(
-			GL_TRIANGLES,
-			INDICES_PER_SPRITE,
-			GL_UNSIGNED_SHORT,
-			(void*)(i * INDICES_PER_SPRITE * sizeof(unsigned short)));
-
-		vertices.clear();
 	}
-
-	glBindTexture(GL_TEXTURE_2D, 0);
 }
 
 void SpriteBatch::sortBatch() {
@@ -135,14 +126,14 @@ void SpriteBatch::sortBatch() {
 }
 void SpriteBatch::flushBatch() {
 	sortBatch();
+	generateVertices();
 
 	glActiveTexture(GL_TEXTURE0 + 0);
-
-	// Bind vbo and alloc some memory for it.
 	glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(VertexPositionColorTexture) * spritesCount * VERTICES_PER_SPRITE, nullptr, GL_DYNAMIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(VertexPositionColorTexture) * spritesCount * VERTICES_PER_SPRITE, vertices.data(), GL_DYNAMIC_DRAW);
 
 	shader->bind();
+
 	GLuint location = glGetUniformLocation(shader->getProgram(), "perspective");
 	glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(perspective));
 
@@ -153,12 +144,12 @@ void SpriteBatch::flushBatch() {
 	for (size_t i = 0; i < spritesCount; i++)	{
 		Texture* texture = spriteQueue[i].texture;
 
-		// Flush whenever texture changes.
+		// Render whenever texture changes.
 		if (texture != batchTexture) {
 			// Flush from first to last.
 			renderBatch(batchTexture, first, last);
 			
-			// Next flush will start from this index.
+			// Next render will start from this index.
 			first = i;
 		}
 		
@@ -185,6 +176,8 @@ void SpriteBatch::growSpriteQueue() {
 
 #pragma region Public members
 void SpriteBatch::initialize() {
+	vertices.reserve(MAX_BATCH_SIZE * VERTICES_PER_SPRITE);
+
 	createIndices();
 	initializeShader();
 	initializeBuffers();

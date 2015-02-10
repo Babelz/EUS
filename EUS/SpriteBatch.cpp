@@ -77,7 +77,7 @@ void SpriteBatch::renderBatch(Texture* const texture, const size_t& first, const
 		
 		// Top right.
 		vertices.push_back(VertexPositionColorTexture(
-			sprite.position.x + sprite.texture->width,
+			sprite.position.x + sprite.texture->width * sprite.scale,
 			sprite.position.y,
 			sprite.position.z,
 			sprite.color.x,
@@ -90,7 +90,7 @@ void SpriteBatch::renderBatch(Texture* const texture, const size_t& first, const
 		// Bottom left.
 		vertices.push_back(VertexPositionColorTexture(
 			sprite.position.x,
-			sprite.position.y + sprite.texture->height,
+			sprite.position.y + sprite.texture->height * sprite.scale,
 			sprite.position.z,
 			sprite.color.x,
 			sprite.color.y,
@@ -101,8 +101,8 @@ void SpriteBatch::renderBatch(Texture* const texture, const size_t& first, const
 
 		// Bottom right.
 		vertices.push_back(VertexPositionColorTexture(
-			sprite.position.x + sprite.texture->width,
-			sprite.position.y + sprite.texture->height,
+			sprite.position.x + sprite.texture->width * sprite.scale,
+			sprite.position.y + sprite.texture->height * sprite.scale,
 			sprite.position.z,
 			sprite.color.x,
 			sprite.color.y,
@@ -201,7 +201,7 @@ void SpriteBatch::draw() {
 		for (size_t j = 0; j < 10; j++)
 		{
 			pmath::Vec3f p(tuksu->width * i, tuksu->height * j, 1.0f);
-			draw(tuksu, p, clr);
+			draw(tuksu, p, clr, 0.5f);
 		}
 	}
 	
@@ -215,18 +215,32 @@ void SpriteBatch::begin() {
 
 	isDrawing = true;
 }
-void SpriteBatch::draw(Texture* texture, pmath::Vec3f& position, pmath::Vec4f& color) {
+
+void SpriteBatch::draw(Texture* texture, pmath::Vec3f& position, pmath::Vec4f& color, float scale) {
 	if (spritesCount >= batchSize) {
 		growSpriteQueue();
 	}
-	
+
 	SpriteInfo& sprite = spriteQueue[spritesCount];
 
 	sprite.position = position;
 	sprite.texture = texture;
 	sprite.color = color;
+	sprite.scale = scale;
 
 	spritesCount++;
+}
+void SpriteBatch::draw(Texture* const texture, pmath::Vec3f& position, pmath::Vec4f& color) {
+	draw(texture, position, color, 1.0f);
+}
+void SpriteBatch::draw(Texture* const texture, pmath::Vec3f& position) {
+	draw(texture, position, pmath::Vec2f(1.0f, 1.0f, 1.0f, 1.0f));
+}
+void SpriteBatch::draw(Texture* const texture, float x, float y) {
+
+}
+void SpriteBatch::draw(Texture* const texture, pmath::Rectf& rect) {
+
 }
 void SpriteBatch::end() {
 	if (!isDrawing || !spritesCount) {

@@ -2,6 +2,7 @@
 #include "GL\glew.h"
 #include "Resources.h"
 #include "Vector.hpp"
+#include "Rectangle.hpp"
 #include "Content.h"
 #include "VertexColorPositionTexture.h"
 #include <algorithm>
@@ -14,11 +15,15 @@ struct SpriteInfo {
 	pmath::Vec4f color;
 	pmath::Vec2f uv;
 
+	float scale;
+
 	Texture* texture;
 };
 
 class SpriteBatch {
 private:
+	const pmath::Vec2f WHITE(1.0f, 1.0f, 1.0f, 1.0f);
+
 	// Max size in sprites.
 	const size_t MAX_BATCH_SIZE = 256;
 	// Initial size of the batch.
@@ -62,7 +67,13 @@ public:
 	void draw();
 
 	void begin();
-	void draw(Texture* texture, pmath::Vec3f& position, pmath::Vec4f& color);
+	
+	void draw(Texture* const texture, pmath::Rectf& rect);
+	void draw(Texture* const texture, pmath::Vec3f& position, pmath::Vec4f& color, float scale);
+	void draw(Texture* const texture, pmath::Vec3f& position, pmath::Vec4f& color);
+	void draw(Texture* const texture, pmath::Vec3f& position);
+	void draw(Texture* const texture, float x, float y);
+
 	void end();
 
 	~SpriteBatch();

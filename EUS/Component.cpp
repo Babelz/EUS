@@ -1,6 +1,6 @@
 #include "Component.h"
 
-Component::Component(Entity& owner, int updateOrder) : owner(owner), updateOrder(updateOrder) {
+Component::Component(Entity& owner, const int updateOrder) : owner(owner), updateOrder(updateOrder) {
 	destroyed = false;
 	enabled = false;
 	initialized = false;
@@ -15,18 +15,18 @@ void Component::onUpdate() { }
 
 void Component::onDestroyed() { }
 
-void Component::onEnabledChanged(bool oldState, bool newState) { }
+void Component::onEnabledChanged(const bool oldState, const bool newState) { }
 
 void Component::onInitialize() { }
 
-void Component::updateOrderChanged(int newOrder, int oldOrder) { }
+void Component::updateOrderChanged(const int newOrder, const int oldOrder) { }
 #pragma endregion
 
 #pragma region Public members
 int Component::getUpdateOrder() const {
 	return updateOrder;
 }
-void Component::changeUpdateOrder(int newOrder) {
+void Component::changeUpdateOrder(const int newOrder) {
 	if (newOrder != updateOrder) {
 		int oldOrder = updateOrder;
 

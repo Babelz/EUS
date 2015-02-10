@@ -23,19 +23,19 @@ protected:
 	virtual void onDestroyed();
 
 	// Called when enabled value changes.
-	virtual void onEnabledChanged(bool oldState, bool newState);
+	virtual void onEnabledChanged(const bool oldState, const bool newState);
 
 	// Called when update order changes.
-	virtual void updateOrderChanged(int newOrder, int oldOrder);
+	virtual void updateOrderChanged(const int newOrder, const int oldOrder);
 
 	// Called in first enable call.
 	virtual void onInitialize();
 public:
 	int getUpdateOrder() const;
 
-	Component(Entity& owner, int updateOrder = 0);
+	Component(Entity& owner, const int updateOrder = 0);
 
-	void changeUpdateOrder(int newOrder);
+	void changeUpdateOrder(const int newOrder);
 
 	void enable();
 	void disable();

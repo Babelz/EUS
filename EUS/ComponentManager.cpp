@@ -27,7 +27,7 @@ void ComponentManager::freeDestroyedComponents() {
 #pragma endregion
 
 #pragma region Public members
-bool ComponentManager::containsComponent(Component* const component) const {
+bool ComponentManager::containsComponent(const Component* const component) const {
 	return std::find(components.begin(), components.end(), component) != components.end();
 }
 bool ComponentManager::removeComponent(Component* const component) {
@@ -37,6 +37,8 @@ bool ComponentManager::removeComponent(Component* const component) {
 
 	if (remove) {
 		components.erase(std::remove(components.begin(), components.end(), component), components.end());
+		
+		// TODO: check component if drawable.
 	}
 
 	return remove;

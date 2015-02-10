@@ -28,7 +28,7 @@ void Entity::setHeight(float value) {
 pmath::Vec2f Entity::getSize() const {
 	return size;
 }
-void Entity::setSize(pmath::Vec2f& value) {
+void Entity::setSize(const pmath::Vec2f& value) {
 	size = pmath::Vec2f(value);
 }
 
@@ -48,7 +48,7 @@ void Entity::setY(float value) {
 pmath::Vec2f Entity::getPosition() const  {
 	return position;
 }
-void Entity::setPosition(pmath::Vec2f& value)  {
+void Entity::setPosition(const pmath::Vec2f& value)  {
 	position = pmath::Vec2f(value);
 }
 
@@ -103,7 +103,7 @@ bool Entity::removeComponent(Component* component) {
 	
 	return components.removeComponent(component);
 }
-bool Entity::containsComponent(Component* const component) const {
+bool Entity::containsComponent(const Component* const component) const {
 	if (destroyed) return false;
 
 	assert(component != nullptr);

@@ -10,11 +10,11 @@
 // Base class for all games.
 class Game {
 private:
-	SDL_Window* window;
 	SDL_GLContext context;
+	SDL_Window* m_window;
 
-	ContentManager content;
-	SpriteBatch* spriteBatch;
+	ContentManager m_content;
+	SpriteBatch m_spriteBatch;
 
 	std::string windowTitle;
 	SDL_Event e;
@@ -31,13 +31,17 @@ private:
 protected:
 	virtual void onExit();
 
-	virtual void onEvent(SDL_Event& e);
+	virtual void onEvent(const SDL_Event& e);
 
 	virtual void initialize();
 	virtual void update();
 	virtual void draw();
 public:
-	Game(int windowWidth = 1280, int windowHeight = 720);
+	Game(const int windowWidth = 1280, const int windowHeight = 720, const char* windowTitlte = "OpenGL");
+
+	ContentManager& content();
+	SpriteBatch spriteBatch();
+	SDL_Window& window();
 
 	int getWindowWidth() const;
 	int getWindowHeight() const;

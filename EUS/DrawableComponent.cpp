@@ -1,6 +1,6 @@
 #include "DrawableComponent.h"
 
-DrawableComponent::DrawableComponent(Entity& owner, int updateOrder, int drawOrder) 
+DrawableComponent::DrawableComponent(Entity& owner, const int updateOrder, const int drawOrder) 
 : Component(owner, updateOrder), drawOrder(drawOrder) {
 	visible = true;
 }
@@ -9,10 +9,10 @@ DrawableComponent::DrawableComponent(Entity& owner, int updateOrder, int drawOrd
 void DrawableComponent::onDraw() {
 }
 
-void DrawableComponent::onVisibleChanged(bool newVisibility, bool oldVisibility) {
+void DrawableComponent::onVisibleChanged(const bool newVisibility, const bool oldVisibility) {
 }
 
-void DrawableComponent::drawOrderChanged(int newOrder, int oldOrder) {
+void DrawableComponent::drawOrderChanged(const int newOrder, const int oldOrder) {
 }
 #pragma endregion 
 

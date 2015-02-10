@@ -27,19 +27,19 @@ public:
 
 	float getWidth() const;
 	float getHeight() const;
-	void setWidth(float value);
-	void setHeight(float value);
+	void setWidth(const float value);
+	void setHeight(const float value);
 
 	pmath::Vec2f getSize() const;
-	void setSize(pmath::Vec2f& value);
+	void setSize(const pmath::Vec2f& value);
 
 	float getX() const;
 	float getY() const;
-	void setX(float value);
-	void setY(float value);
+	void setX(const float value);
+	void setY(const float value);
 	
 	pmath::Vec2f getPosition() const;
-	void setPosition(pmath::Vec2f& value);
+	void setPosition(const pmath::Vec2f& value);
 
 	void show();
 	void hide();
@@ -54,7 +54,7 @@ public:
 
 	bool addComponent(Component* const component);
 	bool removeComponent(Component* const component);
-	bool containsComponent(Component* const component) const;
+	bool containsComponent(const Component* const component) const;
 
 	template<class T> T* const getComponent() const {
 		return components.getComponent<T>();

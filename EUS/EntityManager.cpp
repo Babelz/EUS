@@ -40,7 +40,7 @@ bool EntityManager::removeEntity(Entity* const entity) {
 	return remove;
 }
 
-bool EntityManager::containsEntity(Entity* const entity) const {
+bool EntityManager::containsEntity(const Entity* const entity) const {
 	return std::find(entities.begin(), entities.end(), entity) != entities.end();
 }
 
@@ -63,7 +63,7 @@ Entity* const EntityManager::findEntityWithTag(const std::string& tag) const {
 
 	return *result;
 }
-Entity* const EntityManager::findEntityWithID(int id) const {
+Entity* const EntityManager::findEntityWithID(const int id) const {
 	auto result = std::find_if(entities.begin(), entities.end(), [this, &id](Entity* e) {
 		return e->getID() == id;
 	});

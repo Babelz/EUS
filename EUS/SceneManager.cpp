@@ -18,7 +18,7 @@ void Scene::onResume() { }
 #pragma endregion
 
 #pragma region Public members
-std::string& Scene::getName() {
+const std::string& Scene::getName() {
 	return name;
 }
 

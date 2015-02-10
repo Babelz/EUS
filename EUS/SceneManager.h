@@ -7,7 +7,7 @@ class SceneManager;
 
 class Scene {
 private:
-	std::string name;
+	const std::string name;
 
 	bool activated;
 protected:
@@ -22,7 +22,7 @@ protected:
 public:
 	Scene(const std::string& name);
 
-	std::string& getName();
+	const std::string& getName();
 	void activate(SceneManager* const sceneManager);
 
 	void destroy();

@@ -1,33 +1,34 @@
 #pragma once
+#include <algorithm>
+#include <cassert>
+#include <vector>
+#include <GLM.h>
 #include "GL\glew.h"
 #include "Resources.h"
 #include "Vector.hpp"
 #include "Rectangle.hpp"
 #include "Content.h"
 #include "VertexColorPositionTexture.h"
-#include <algorithm>
-#include <cassert>
-#include <vector>
-#include <GLM.h>
 
 struct SpriteInfo {
 	pmath::Vec3f position;
 	pmath::Vec4f color;
 	pmath::Vec2f uv;
+	pmath::Vec2f origin;
 
-	float scale;
+	float rotation;
+	float xScale;
+	float yScale;
 
 	Texture* texture;
 };
 
 class SpriteBatch {
 private:
-	const pmath::Vec2f WHITE(1.0f, 1.0f, 1.0f, 1.0f);
-
 	// Max size in sprites.
-	const size_t MAX_BATCH_SIZE = 256;
+	const size_t MAX_BATCH_SIZE = 4096;
 	// Initial size of the batch.
-	const size_t INITIAL_BATCH_SIZE = 64;
+	const size_t INITIAL_BATCH_SIZE = 256;
 
 	const unsigned short INDICES_PER_SPRITE = 6;
 	const unsigned short VERTICES_PER_SPRITE = 4;
@@ -63,12 +64,12 @@ private:
 public:
 	SpriteBatch();
 
-	// TODO: for testing..
-	void draw();
+	void initialize();
 
 	void begin();
 	
 	void draw(Texture* const texture, pmath::Rectf& rect);
+	void draw(Texture* const texture, pmath::Vec3f& position, pmath::Vec2f& origin, pmath::Vec4f& color, float xScale, float yScale);
 	void draw(Texture* const texture, pmath::Vec3f& position, pmath::Vec4f& color, float scale);
 	void draw(Texture* const texture, pmath::Vec3f& position, pmath::Vec4f& color);
 	void draw(Texture* const texture, pmath::Vec3f& position);

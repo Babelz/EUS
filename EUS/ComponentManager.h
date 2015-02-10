@@ -7,16 +7,16 @@
 
 class ComponentManager {
 private:
-	std::list<Component*> components;
-	std::list<DrawableComponent*> drawableComponents;
+	std::list<Component* const> components;
+	std::list<DrawableComponent* const> drawableComponents;
 
-	std::list<Component*> destroyedComponents;
+	std::list<Component* const> destroyedComponents;
 
 	void freeDestroyedComponents();
 public:
 	ComponentManager();
 
-	bool containsComponent(Component* const component) const;
+	bool containsComponent(const Component* const component) const;
 	bool removeComponent(Component* const component);
 	bool addComponent(Component* const component);
 

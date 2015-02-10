@@ -1,9 +1,9 @@
 #include "Game.h"
 
-Game::Game(int windowWidth, int windowHeight) : windowWidth(windowWidth), 
-												windowHeight(windowHeight),
-												content(ContentManager("Content")) {
-	windowTitle = std::string("OpenGL");
+Game::Game(const int windowWidth, const int windowHeight, const char* windowTitle) : windowWidth(windowWidth), 
+																					 windowHeight(windowHeight),
+																					 m_content(ContentManager("Content")) {
+	this->windowTitle = std::string(windowTitle);
 }
 
 #pragma region Private members
@@ -25,21 +25,22 @@ void Game::internalInitialize() {
 	SDL_GL_SetAttribute(SDL_GL_ALPHA_SIZE, 8);
 
 	// Create window.
-	window = SDL_CreateWindow(windowTitle.c_str(), 
+	m_window = SDL_CreateWindow(windowTitle.c_str(), 
 							  SDL_WINDOWPOS_CENTERED, 
 							  SDL_WINDOWPOS_CENTERED,
 							  windowWidth, 
 							  windowHeight, 
 							  SDL_WINDOW_OPENGL);
-	assert(window != nullptr);
+	assert(m_window != nullptr);
 
 	// Create OpenGL context.
-	context = SDL_GL_CreateContext(window);
+	context = SDL_GL_CreateContext(m_window);
 	assert(context != nullptr);
 
 	// Init glew.
 	glewExperimental = GL_TRUE;
 	const GLenum glewResult = glewInit();
+
 	glGetError();
 
 	assert(glewResult == GLEW_OK);
@@ -52,8 +53,8 @@ void Game::internalInitialize() {
 	//glOrtho(0.0f, windowWidth, windowHeight, 0.0f, -10, 10);
 	
 	std::cout << "OpenGL context version: " << versionMajor << "." << versionMinor << std::endl;
-	
-	spriteBatch = new SpriteBatch();
+
+	m_spriteBatch.initialize();
 
 	running = true;
 }
@@ -71,17 +72,14 @@ void Game::internalDraw() {
 	
 	draw();
 
-	// TODO: tests
-	spriteBatch->draw();
-
-	SDL_GL_SwapWindow(window);
+	SDL_GL_SwapWindow(m_window);
 }
 #pragma endregion
 
 #pragma region Protected members
 void Game::onExit() { }
 
-void Game::onEvent(SDL_Event& sdl_Event) { }
+void Game::onEvent(const SDL_Event& e) { }
 
 void Game::initialize() { }
 void Game::update() { }
@@ -89,6 +87,16 @@ void Game::draw() { }
 #pragma endregion
 
 #pragma region Public members
+ContentManager& Game::content() {
+	return m_content;
+}
+SpriteBatch Game::spriteBatch() {
+	return m_spriteBatch;
+}
+SDL_Window& Game::window() {
+	return *m_window;
+}
+
 int Game::getWindowWidth() const {
 	return windowWidth;
 }
@@ -119,7 +127,7 @@ void Game::run() {
 	exit();
 
 	SDL_GL_DeleteContext(context);
-	SDL_DestroyWindow(window);
+	SDL_DestroyWindow(m_window);
 	SDL_Quit();
 }
 void Game::exit() {

@@ -11,13 +11,13 @@ private:
 protected:
 	virtual void onDraw();
 
-	virtual void onVisibleChanged(bool newVisibility, bool oldVisibility);
+	virtual void onVisibleChanged(const bool newVisibility, const bool oldVisibility);
 
-	virtual void drawOrderChanged(int newOrder, int oldOrder);
+	virtual void drawOrderChanged(const int newOrder, const int oldOrder);
 public:
 	int getDrawOrder() const;
 
-	DrawableComponent(Entity& owner, int updateOrder = 0, int drawOrder = 0);
+	DrawableComponent(Entity& owner, const int updateOrder = 0, const int drawOrder = 0);
 
 	void show();
 	void hide();

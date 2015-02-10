@@ -7,6 +7,8 @@ void tagTests();
 void componentTests();
 
 int main(int argc, char** argv) {
+	componentTests();
+	
 	gameTests();
 	
 	return 0;

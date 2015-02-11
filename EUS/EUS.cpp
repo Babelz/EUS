@@ -14,20 +14,20 @@ void EUS::onEvent(const SDL_Event& e) {
 
 void EUS::initialize() {
 	sprite.swapTexture(content().load<Texture>("pidginz"));
-	sprite.setScale(0.15f);
+	sprite.setScale(0.05f);
 }
-void EUS::update() {
+void EUS::update(float deltaTime) {
 
 }
 
 static float asd = 0.0f;
 
-void EUS::draw() {
+void EUS::draw(float deltaTime) {
 
-	asd += 0.42323f;
+	asd += 0.82323f;
 
-	pmath::Vec2f size(asd - sprite.textureWidth() * 0.15f,
-					  asd - sprite.textureHeight() * 0.15f);
+	pmath::Vec2f size(asd - sprite.textureWidth() * 0.05f * deltaTime,
+					  asd - sprite.textureHeight() * 0.05f * deltaTime);
 
 	spriteBatch().begin();
 

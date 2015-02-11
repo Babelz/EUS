@@ -21,6 +21,10 @@ private:
 	std::string windowTitle;
 	SDL_Event e;
 
+	float deltaTime;
+	float lastTime;
+	float currentTime;
+
 	bool running;
 	bool exitCalled;
 
@@ -36,8 +40,8 @@ protected:
 	virtual void onEvent(const SDL_Event& e);
 
 	virtual void initialize();
-	virtual void update();
-	virtual void draw();
+	virtual void update(float delta);
+	virtual void draw(float delta);
 public:
 	Game(const int windowWidth = 1280, const int windowHeight = 720, const char* windowTitlte = "OpenGL");
 

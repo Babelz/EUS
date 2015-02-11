@@ -128,7 +128,7 @@ void Game::run() {
 	initialize();
 
 	while (running) {
-		currentTime = (float)SDL_GetTicks();
+		currentTime = static_cast<float>(SDL_GetTicks());
 		deltaTime = (currentTime - lastTime) / 1000.0f;
 		lastTime = currentTime;
 

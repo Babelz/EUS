@@ -99,8 +99,8 @@
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="SpriteBatch.cpp" />
+    <ClCompile Include="SpriteRenderer.cpp" />
     <ClCompile Include="TagContainer.cpp" />
-    <ClCompile Include="TestCp.cpp" />
     <ClCompile Include="VertexColorPositionTexture.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -116,8 +116,8 @@
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="SpriteBatch.h" />
+    <ClInclude Include="SpriteRenderer.h" />
     <ClInclude Include="TagContainer.h" />
-    <ClInclude Include="TestCp.h" />
     <ClInclude Include="VertexColorPositionTexture.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

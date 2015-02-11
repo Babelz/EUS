@@ -12,9 +12,9 @@ protected:
 
 	virtual void onEvent(const SDL_Event& e);
 
-	virtual void initialize();
-	virtual void update(float deltaTime);
-	virtual void draw(float deltaTime);
+	void initialize();
+	void update(float deltaTime);
+	void draw(float deltaTime);
 public:
 	EUS();
 

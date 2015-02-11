@@ -1,14 +1,10 @@
-﻿Build started 11.2.2015 8:28:58.
-     1>Project "C:\Users\ttv14snikos\EUS\EUS\EUS.vcxproj" on node 2 (Build target(s)).
+﻿Build started 11.2.2015 12:08:49.
+     1>Project "C:\Users\ttv14snikos\Desktop\Gits\Saatana\EUS\EUS\EUS.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I./include /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D GLEW_STATIC /D _MBCS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /FR"Debug\\" /Gd /TP /analyze- /errorReport:prompt EUS.cpp Game.cpp Main.cpp
-         Game.cpp
-         EUS.cpp
-         Generating Code...
-         Skipping... (no relevant changes detected)
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I./include /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D GLEW_STATIC /D _MBCS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /FR"Debug\\" /Gd /TP /analyze- /errorReport:prompt Main.cpp
          Main.cpp
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\ttv14snikos\EUS\Debug\EUS.exe" /INCREMENTAL /NOLOGO /LIBPATH:./lib glew32s.lib OPENGL32.lib SDL2main.lib SDL2.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\ttv14snikos\EUS\Debug\EUS.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\ttv14snikos\EUS\Debug\EUS.lib" /MACHINE:X86 Debug\Component.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\ttv14snikos\Desktop\Gits\Saatana\EUS\Debug\EUS.exe" /INCREMENTAL /NOLOGO /LIBPATH:./lib glew32s.lib OPENGL32.lib SDL2main.lib SDL2.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\ttv14snikos\Desktop\Gits\Saatana\EUS\Debug\EUS.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\ttv14snikos\Desktop\Gits\Saatana\EUS\Debug\EUS.lib" /MACHINE:X86 Debug\Component.obj
          Debug\ComponentManager.obj
          Debug\Content.obj
          Debug\DrawableComponent.obj
@@ -22,14 +18,16 @@
          Debug\SceneManager.obj
          Debug\Sprite.obj
          Debug\SpriteBatch.obj
+         Debug\SpriteRenderer.obj
          Debug\TagContainer.obj
-         Debug\TestCp.obj
          Debug\VertexColorPositionTexture.obj
-         EUS.vcxproj -> C:\Users\ttv14snikos\EUS\Debug\EUS.exe
+     1>MSVCRTD.lib(cinitexe.obj) : warning LNK4098: defaultlib 'msvcrt.lib' conflicts with use of other libs; use /NODEFAULTLIB:library
+     1>glew32s.lib(glew.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'glew32s.lib(glew.obj)' or at 'C:\Users\ttv14snikos\Desktop\Gits\Saatana\EUS\Debug\vc120.pdb'; linking object as if no debug info
+         EUS.vcxproj -> C:\Users\ttv14snikos\Desktop\Gits\Saatana\EUS\Debug\EUS.exe
        BscMake:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\bscmake.exe /nologo /o"C:\Users\ttv14snikos\EUS\Debug\EUS.bsc" /n Debug\Component.sbr Debug\ComponentManager.sbr Debug\Content.sbr Debug\DrawableComponent.sbr Debug\Entity.sbr Debug\EntityManager.sbr Debug\EUS.sbr Debug\Game.sbr Debug\lodepng.sbr Debug\Main.sbr Debug\Resources.sbr Debug\SceneManager.sbr Debug\Sprite.sbr Debug\SpriteBatch.sbr Debug\TagContainer.sbr Debug\TestCp.sbr Debug\VertexColorPositionTexture.sbr
-     1>Done Building Project "C:\Users\ttv14snikos\EUS\EUS\EUS.vcxproj" (Build target(s)).
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\bscmake.exe /nologo /o"C:\Users\ttv14snikos\Desktop\Gits\Saatana\EUS\Debug\EUS.bsc" /n Debug\Component.sbr Debug\ComponentManager.sbr Debug\Content.sbr Debug\DrawableComponent.sbr Debug\Entity.sbr Debug\EntityManager.sbr Debug\EUS.sbr Debug\Game.sbr Debug\lodepng.sbr Debug\Main.sbr Debug\Resources.sbr Debug\SceneManager.sbr Debug\Sprite.sbr Debug\SpriteBatch.sbr Debug\SpriteRenderer.sbr Debug\TagContainer.sbr Debug\VertexColorPositionTexture.sbr
+     1>Done Building Project "C:\Users\ttv14snikos\Desktop\Gits\Saatana\EUS\EUS\EUS.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:02.92
+Time Elapsed 00:00:02.60

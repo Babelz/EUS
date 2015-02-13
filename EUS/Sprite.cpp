@@ -71,7 +71,7 @@ void Sprite::setColor(pmath::Vec4f& value){
 	color = value;
 }
 
-void Sprite::swapTexture(Texture* texture) {
+void Sprite::swapTexture(Texture* const texture) {
 	assert(texture != nullptr);
 
 	this->texture = texture;

@@ -13,7 +13,7 @@ private:
 
 	Texture* texture;
 public:
-	Sprite(Texture* texture);
+	Sprite(Texture* const texture);
 	Sprite();
 
 	float x() const;
@@ -41,7 +41,7 @@ public:
 	pmath::Vec4f getColor() const;
 	void setColor(pmath::Vec4f& value);
 
-	void swapTexture(Texture* texture);
+	void swapTexture(Texture* const texture);
 
 	void draw(SpriteBatch& spriteBatch);
 

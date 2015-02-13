@@ -210,6 +210,7 @@ void SpriteBatch::draw(Texture* const texture, pmath::Vec3f& position, pmath::Ve
 	sprite.origin = origin;
 	sprite.texture = texture;
 	sprite.color = color;
+
 	sprite.xScale = xScale;
 	sprite.yScale = yScale;
 

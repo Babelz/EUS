@@ -5,15 +5,15 @@
 
 class SpriteRenderer : public DrawableComponent {
 private:
-	Sprite& m_sprite;
+	Sprite& sprite;
 	Game& game;
 
 	bool follow;
 public:
 	SpriteRenderer(Game& game, Entity& owner, Sprite& sprite);
 
-	Sprite& sprite();
-	void changeSprite(Sprite& sprite);
+	Sprite& getSprite();
+	void setSprite(Sprite& sprite);
 
 	void beginFollowing();
 	void stopFollowing();

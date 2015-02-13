@@ -13,32 +13,20 @@ void EUS::onEvent(const SDL_Event& e) {
 }
 
 void EUS::initialize() {
-	sprite.swapTexture(content().load<Texture>("pidginz"));
-	sprite.setScale(0.05f);
+	texture = content().load<Texture>("tileset");
 }
 void EUS::update(float deltaTime) {
 
 }
 
-static float asd = 0.0f;
+static float pos = 0.0f;
 
 void EUS::draw(float deltaTime) {
-
-	asd += 0.82323f;
-
-	pmath::Vec2f size(asd - sprite.textureWidth() * 0.05f * deltaTime,
-					  asd - sprite.textureHeight() * 0.05f * deltaTime);
-
+	pos += 25.2323f * deltaTime;
+	
 	spriteBatch().begin();
 
-	for (int i = 0; i < 60; i++) {
-		for (int j = 0; j < 60; j++) {
-			sprite.setX(j * size.x);
-			sprite.setY(i * size.y);
-
-			sprite.draw(spriteBatch());
-		}
-	}
+	spriteBatch().draw(texture, pmath::Rectf(pos, 0, 64, 64), pmath::Rectf(100, 100, 256, 256), pmath::Vec4f(1.0f, 1.0f, 1.0f, 1.0f));
 
 	spriteBatch().end();
 }

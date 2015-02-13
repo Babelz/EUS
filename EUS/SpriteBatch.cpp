@@ -78,8 +78,8 @@ void SpriteBatch::generateVertices() {
 			sprite.color.y,
 			sprite.color.z,
 			sprite.color.w,
-			0.0f,
-			1.0f));
+			sprite.tLeftTexCoord.x,
+			sprite.tLeftTexCoord.y));
 
 		// Top right.
 		vertices.push_back(VertexPositionColorTexture(
@@ -90,8 +90,8 @@ void SpriteBatch::generateVertices() {
 			sprite.color.y,
 			sprite.color.z,
 			sprite.color.w,
-			1.0f,
-			1.0f));
+			sprite.tRightTexCoord.x,
+			sprite.tRightTexCoord.y));
 
 		// Bottom left.
 		vertices.push_back(VertexPositionColorTexture(
@@ -102,8 +102,8 @@ void SpriteBatch::generateVertices() {
 			sprite.color.y,
 			sprite.color.z,
 			sprite.color.w,
-			0.0f,
-			0.0f));
+			sprite.bLeftTexCoord.x,
+			sprite.bLeftTexCoord.y));
 
 		// Bottom right.
 		vertices.push_back(VertexPositionColorTexture(
@@ -114,8 +114,8 @@ void SpriteBatch::generateVertices() {
 			sprite.color.y,
 			sprite.color.z,
 			sprite.color.w,
-			1.0f,
-			0.0f));
+			sprite.bRightTexCoord.x,
+			sprite.bRightTexCoord.y));
 	}
 }
 
@@ -191,7 +191,15 @@ void SpriteBatch::begin() {
 	isDrawing = true;
 }
 
-void SpriteBatch::draw(Texture* texture, pmath::Vec3f& position, pmath::Vec2f& origin, pmath::Vec4f& color, float xScale, float yScale) {
+void SpriteBatch::draw(Texture* const texture, pmath::Rectf& rect) {
+	pmath::Vec3f position(rect.position.x, rect.position.y, 1.0f);
+
+	float xScale = rect.size.x / texture->width;
+	float yScale = rect.size.y / texture->height;
+
+	draw(texture, position, pmath::Vec2f(0.0f, 0.0f), pmath::Vec4f(1.0f, 1.0f, 1.0f, 1.0f), xScale, yScale);
+}
+void SpriteBatch::draw(Texture* const texture, pmath::Vec3f& position, pmath::Vec2f& origin, pmath::Vec4f& color, float xScale, float yScale) {
 	if (spritesCount >= batchSize) {
 		growSpriteQueue();
 	}
@@ -205,8 +213,50 @@ void SpriteBatch::draw(Texture* texture, pmath::Vec3f& position, pmath::Vec2f& o
 	sprite.xScale = xScale;
 	sprite.yScale = yScale;
 
+	sprite.tLeftTexCoord.x = 0.0f;
+	sprite.tLeftTexCoord.y = 1.0f;
+
+	sprite.tRightTexCoord.x = 1.0f;
+	sprite.tRightTexCoord.y = 1.0f;
+
+	sprite.bLeftTexCoord.x = 0.0f;
+	sprite.bLeftTexCoord.y = 0.0f;
+
+	sprite.bRightTexCoord.x = 1.0f;
+	sprite.bRightTexCoord.y = 0.0f;
+
 	spritesCount++;
 }
+
+void SpriteBatch::draw(Texture* const texture, pmath::Rectf& source, pmath::Vec3f& position, pmath::Vec4f color) {
+	pmath::Rectf destination(position.x, position.y, source.size.x, source.size.y);
+
+	draw(texture, source, destination, color);
+}
+void SpriteBatch::draw(Texture* const texture, pmath::Rectf& source, pmath::Rectf& destionation, pmath::Vec4f color) {
+	float xScale = destionation.size.x / texture->width;
+	float yScale = destionation.size.y / texture->height;
+
+	pmath::Vec3f position(destionation.position.x, destionation.position.y, 0.0f);
+
+	draw(texture, position, pmath::Vec2(1.0f), color, xScale, yScale);
+	
+	// Set tex coords for last sprite.
+	SpriteInfo& sprite = spriteQueue[spritesCount - 1];
+
+	sprite.tLeftTexCoord.x = source.getLeft() / texture->width;
+	sprite.tLeftTexCoord.y = source.getBottom() / texture->height;
+
+	sprite.tRightTexCoord.x = source.getRight() / texture->width;
+	sprite.tRightTexCoord.y = source.getBottom() / texture->height; 
+
+	sprite.bLeftTexCoord.x = source.getLeft() / texture->width;
+	sprite.bLeftTexCoord.y = source.getTop() / texture->height;
+
+	sprite.bRightTexCoord.x = source.getRight() / texture->width;
+	sprite.bRightTexCoord.y = source.getTop() / texture->height;
+}
+
 void SpriteBatch::draw(Texture* const texture, pmath::Vec3f& position, pmath::Vec4f& color, float scale) {
 	draw(texture, position, pmath::Vec2f(0.0f, 0.0f), color, scale, scale);
 }
@@ -214,20 +264,11 @@ void SpriteBatch::draw(Texture* const texture, pmath::Vec3f& position, pmath::Ve
 	draw(texture, position, color, 1.0f);
 }
 void SpriteBatch::draw(Texture* const texture, pmath::Vec3f& position) {
-	draw(texture, position, pmath::Vec4f(1.0f, 1.0f, 1.0f, 1.0f));
+	draw(texture, position, pmath::Vec4f(1.0f, 1.0f, 1.0f, 1.0f), 1.0f);
 }
 void SpriteBatch::draw(Texture* const texture, float x, float y) {
 	draw(texture, pmath::Vec3f(x, y, 1.0f), pmath::Vec4f(1.0f, 1.0f, 1.0f, 1.0f), 1.0f);
 }
-void SpriteBatch::draw(Texture* const texture, pmath::Rectf& rect) {
-	pmath::Vec3f position(rect.position.x, rect.position.y, 1.0f);
-
-	float xScale = rect.size.x / texture->width;
-	float yScale = rect.size.y / texture->height;
-
-	draw(texture, position, pmath::Vec2f(0.0f, 0.0f), pmath::Vec4f(1.0f, 1.0f, 1.0f, 1.0f), xScale, yScale);
-}
-
 void SpriteBatch::end() {
 	if (!isDrawing) {
 		throw std::logic_error("Begin must be called before end.");

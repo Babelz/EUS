@@ -2,16 +2,16 @@
 
 SpriteRenderer::SpriteRenderer(Game& game, Entity& owner, Sprite& sprite) : DrawableComponent(owner),
 																			game(game),
-																			m_sprite(sprite),
+																			sprite(sprite),
 																			follow(false) {
 }
 
 #pragma region Public members
-Sprite& SpriteRenderer::sprite() {
-	return m_sprite;
+Sprite& SpriteRenderer::getSprite() {
+	return sprite;
 }
-void SpriteRenderer::changeSprite(Sprite& sprite) {
-	m_sprite = sprite;
+void SpriteRenderer::setSprite(Sprite& sprite) {
+	sprite = sprite;
 }
 
 void SpriteRenderer::beginFollowing() {
@@ -23,12 +23,12 @@ void SpriteRenderer::stopFollowing() {
 
 void SpriteRenderer::update() {
 	if (follow) {
-		m_sprite.setX(getOwner().getX());
-		m_sprite.setY(getOwner().getY());
+		sprite.setX(getOwner().getX());
+		sprite.setY(getOwner().getY());
 	}
 }
 void SpriteRenderer::draw() {
-	m_sprite.draw(game.spriteBatch());
+	sprite.draw(game.spriteBatch());
 }
 #pragma endregion
 

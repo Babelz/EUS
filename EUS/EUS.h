@@ -6,7 +6,7 @@
 
 class EUS : public Game {
 private:
-	Sprite sprite;
+	Texture* texture;
 protected:
 	virtual void onExit();
 

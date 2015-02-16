@@ -3,6 +3,9 @@
 #include "Resources.h"
 #include "Rectangle.hpp"
 
+// TODO: change that data is loaded from a file.
+//       atm its hard coded.
+
 class NamedTileSheet {
 private:
 	size_t tileSize;
@@ -10,7 +13,9 @@ private:
 
 	std::map<std::string, pmath::Rectf> sources;
 protected:
-	virtual void createSources(std::map<std::string, pmath::Rectf>& sources) = 0;
+	void pushSource(const std::string& name, int x, int y);
+
+	virtual void createSources() = 0;
 public:
 	NamedTileSheet(Texture* const texture, const size_t tileSize);
 	

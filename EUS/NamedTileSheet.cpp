@@ -5,6 +5,12 @@ NamedTileSheet::NamedTileSheet(Texture* const texture, size_t tileSize) : textur
 																	      tileSize(tileSize) {
 }
 
+#pragma region Protected members
+void NamedTileSheet::pushSource(const std::string& name, int x, int y) {
+	sources.insert(std::pair<std::string, pmath::Rectf>(name, pmath::Rectf(x * tileSize, y * tileSize, tileSize, tileSize)));
+}
+#pragma endregion
+
 #pragma region Public members
 Texture* const NamedTileSheet::getTexture() const {
 	return texture;
@@ -23,7 +29,9 @@ bool NamedTileSheet::containsSourceWithName(const std::string& name) const {
 }
 
 void NamedTileSheet::initialize() {
-	createSources(sources);
+	createSources();
+
+	assert(sources.size() > 0);
 }
 #pragma endregion
 

@@ -57,6 +57,20 @@ void Sprite::setOriginY(float value) {
 	origin.y = value;
 }
 
+void Sprite::setSource(const pmath::Rectf& source) {
+	this->source = source;
+}
+bool Sprite::isUsingSource() const {
+	return usingSource;
+}
+
+void Sprite::useSource() {
+	usingSource = true;
+}
+void Sprite::disableSource() {
+	usingSource = false;
+}
+
 size_t Sprite::textureHeight() const {
 	return texture->height;
 }
@@ -79,6 +93,14 @@ void Sprite::swapTexture(Texture* const texture) {
 
 void Sprite::draw(SpriteBatch& spriteBatch) {
 	assert(texture != nullptr);
+
+	if (usingSource) {
+		pmath::Rectf dest(position.x, position.y, texture->width * scale.x, texture->height * scale.y);
+
+		spriteBatch.draw(texture, source, dest, color);
+
+		return;
+	}
 
 	spriteBatch.draw(texture, position, origin, color, scale.x, scale.y);
 }

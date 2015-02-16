@@ -1,23 +1,20 @@
 #include "EUS.h"
 #include "EntityBuilder.h"
 
-void bTests();
+void bTests(Game& g);
 
 int main(int argc, char** argv) {
-	int* i = nullptr;
-	int& gg = *i;
-
-	bTests();
-
 	EUS game;
+
+	bTests(game);
 
 	game.run();
 
 	return 0;
 }
 
-void bTests() {
+void bTests(Game& g) {
 	EntityBuilder b;
 
-	//b.createMap("Content\\test.txt");
+	b.borderMap(g);
 }

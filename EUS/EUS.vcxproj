@@ -85,6 +85,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BorderMappings.cpp" />
+    <ClCompile Include="BorderSheet.cpp" />
+    <ClCompile Include="BorderTileBuilder.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="ComponentManager.cpp" />
     <ClCompile Include="Content.cpp" />
@@ -96,7 +99,6 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="lodepng.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="MapBuilder.cpp" />
     <ClCompile Include="MapLoader.cpp" />
     <ClCompile Include="Resources.cpp" />
     <ClCompile Include="SceneManager.cpp" />
@@ -107,11 +109,16 @@
     <ClCompile Include="TagContainer.cpp" />
     <ClCompile Include="NamedTileSheet.cpp" />
     <ClCompile Include="TileInfo.cpp" />
+    <ClCompile Include="TileBuilder.cpp" />
     <ClCompile Include="VertexColorPositionTexture.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BorderMappings.h" />
+    <ClInclude Include="BorderSheet.h" />
+    <ClInclude Include="BorderTileBuilder.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="ComponentManager.h" />
+    <ClInclude Include="Components.h" />
     <ClInclude Include="Content.h" />
     <ClInclude Include="DrawableComponent.h" />
     <ClInclude Include="Entity.h" />
@@ -119,17 +126,18 @@
     <ClInclude Include="EntityManager.h" />
     <ClInclude Include="EUS.h" />
     <ClInclude Include="Game.h" />
-    <ClInclude Include="MapBuilder.h" />
     <ClInclude Include="MapLoader.h" />
     <ClInclude Include="Resources.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="SheetMapping.h" />
+    <ClInclude Include="Sheets.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="SpriteBatch.h" />
     <ClInclude Include="SpriteRenderer.h" />
     <ClInclude Include="TagContainer.h" />
     <ClInclude Include="NamedTileSheet.h" />
     <ClInclude Include="TileInfo.h" />
+    <ClInclude Include="TileBuilder.h" />
     <ClInclude Include="VertexColorPositionTexture.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -10,8 +10,10 @@ private:
 	pmath::Vec2f scale;
 	pmath::Vec2f origin;
 	pmath::Vec4f color;
+	pmath::Rectf source;
 
 	Texture* texture;
+	bool usingSource;
 public:
 	Sprite(Texture* const texture);
 	Sprite();
@@ -34,6 +36,12 @@ public:
 
 	void setOriginX(float value);
 	void setOriginY(float value);
+
+	void setSource(const pmath::Rectf& source);
+	bool isUsingSource() const;
+	
+	void useSource();
+	void disableSource();
 
 	size_t textureHeight() const;
 	size_t textureWidth() const;

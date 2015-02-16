@@ -3,29 +3,26 @@
 #include "Entity.h"
 #include "Resources.h"
 
-enum TileType
-{
+enum TileType {
 	Flats,
 	Hills,
 	Water
 };
 
 class TileInfo : public Component {
-private:
-	TileType type;
-	
+private:	
 	int movementCost;
 	int coverValue;
 
 	std::string name;	
+	TileType type;
 public:
 	TileInfo(Entity& owner, const std::string& name, const int movementCost, const int coverValue, const TileType type);
 
-	std::string& getName();
-	
 	int getMovementCost() const;
 	int getCoverValue() const;
-	
+
+	std::string& getName();
 	TileType getType();
 
 	~TileInfo();

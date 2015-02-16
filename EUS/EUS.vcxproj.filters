@@ -86,6 +86,12 @@
     <ClCompile Include="NamedTileSheet.cpp">
       <Filter>Source Files\Maps</Filter>
     </ClCompile>
+    <ClCompile Include="MapLoader.cpp">
+      <Filter>Source Files\Maps</Filter>
+    </ClCompile>
+    <ClCompile Include="MapBuilder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.h">
@@ -143,6 +149,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="TileInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MapLoader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MapBuilder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

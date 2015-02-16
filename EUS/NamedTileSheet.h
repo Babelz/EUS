@@ -9,19 +9,20 @@ private:
 	Texture* texture;
 
 	std::map<std::string, pmath::Rectf> sources;
-
-	std::string name;
 protected:
 	virtual void createSources(std::map<std::string, pmath::Rectf>& sources) = 0;
 public:
-	NamedTileSheet(const std::string& name, Texture* const texture, const size_t tileSize);
+	NamedTileSheet(Texture* const texture, const size_t tileSize);
 	
 	Texture* const getTexture() const;
 	size_t getTileSize() const;
 	std::string& getName();
 
 	void getSource(const std::string& name, pmath::Rectf& outRect) const;
-	
+	bool containsSourceWithName(const std::string& name) const;
+
+	void initialize();
+
 	~NamedTileSheet();
 };
 

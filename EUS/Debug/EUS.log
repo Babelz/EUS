@@ -1,35 +1,27 @@
-﻿Build started 13.2.2015 14:45:52.
-     1>Project "C:\Users\ttv14snikos\Desktop\gits\ogl\EUS\EUS\EUS.vcxproj" on node 2 (Build target(s)).
+﻿Build started 16.2.2015 11:45:51.
+     1>Project "C:\Users\ttv14snikos\Desktop\EUS\EUS\EUS\EUS.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I./include /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D GLEW_STATIC /D _MBCS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /FR"Debug\\" /Gd /TP /analyze- /errorReport:prompt NamedTileSheet.cpp
-         NamedTileSheet.cpp
-       Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\ttv14snikos\Desktop\gits\ogl\EUS\Debug\EUS.exe" /INCREMENTAL /NOLOGO /LIBPATH:./lib glew32s.lib OPENGL32.lib SDL2main.lib SDL2.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\ttv14snikos\Desktop\gits\ogl\EUS\Debug\EUS.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\ttv14snikos\Desktop\gits\ogl\EUS\Debug\EUS.lib" /MACHINE:X86 Debug\Component.obj
-         Debug\ComponentManager.obj
-         Debug\Content.obj
-         Debug\DrawableComponent.obj
-         Debug\Entity.obj
-         Debug\EntityBuilder.obj
-         Debug\EntityManager.obj
-         Debug\EUS.obj
-         Debug\Game.obj
-         Debug\lodepng.obj
-         Debug\Main.obj
-         Debug\Resources.obj
-         Debug\SceneManager.obj
-         Debug\SheetMapping.obj
-         Debug\Sprite.obj
-         Debug\SpriteBatch.obj
-         Debug\SpriteRenderer.obj
-         Debug\TagContainer.obj
-         Debug\NamedTileSheet.obj
-         Debug\TileInfo.obj
-         Debug\VertexColorPositionTexture.obj
-     1>MSVCRTD.lib(cinitexe.obj) : warning LNK4098: defaultlib 'msvcrt.lib' conflicts with use of other libs; use /NODEFAULTLIB:library
-     1>NamedTileSheet.obj : error LNK2019: unresolved external symbol "protected: virtual void __thiscall NamedTileSheet::createSources(class std::map<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class pmath::Rectangle<float>,struct std::less<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > >,class std::allocator<struct std::pair<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const ,class pmath::Rectangle<float> > > > &)" (?createSources@NamedTileSheet@@MAEXAAV?$map@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$Rectangle@M@pmath@@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$Rectangle@M@pmath@@@std@@@2@@std@@@Z) referenced in function "public: __thiscall NamedTileSheet::NamedTileSheet(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,class Texture * const,unsigned int)" (??0NamedTileSheet@@QAE@ABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAVTexture@@I@Z)
-     1>C:\Users\ttv14snikos\Desktop\gits\ogl\EUS\Debug\EUS.exe : fatal error LNK1120: 1 unresolved externals
-     1>Done Building Project "C:\Users\ttv14snikos\Desktop\gits\ogl\EUS\EUS\EUS.vcxproj" (Build target(s)) -- FAILED.
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I./include /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D GLEW_STATIC /D _MBCS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /FR"Debug\\" /Gd /TP /analyze- /errorReport:prompt EUS.cpp Entity.cpp EntityBuilder.cpp EntityManager.cpp Game.cpp Main.cpp MapLoader.cpp SceneManager.cpp SpriteRenderer.cpp TileInfo.cpp
+         SpriteRenderer.cpp
+         MapLoader.cpp
+         Main.cpp
+         EntityBuilder.cpp
+     1>c:\users\ttv14snikos\desktop\eus\eus\eus\entitybuilder.cpp(9): error C2511: 'Entity *EntityBuilder::borderMap(Game &,const std::string &) const' : overloaded member function not found in 'EntityBuilder'
+                 c:\users\ttv14snikos\desktop\eus\eus\eus\entitybuilder.h(5) : see declaration of 'EntityBuilder'
+     1>c:\users\ttv14snikos\desktop\eus\eus\eus\entitybuilder.cpp(20): error C2511: 'Entity *EntityBuilder::tile(Game &) const' : overloaded member function not found in 'EntityBuilder'
+                 c:\users\ttv14snikos\desktop\eus\eus\eus\entitybuilder.h(5) : see declaration of 'EntityBuilder'
+     1>c:\users\ttv14snikos\desktop\eus\eus\eus\entitybuilder.cpp(23): error C2664: 'SpriteRenderer::SpriteRenderer(const SpriteRenderer &)' : cannot convert argument 2 from 'Entity *' to 'Entity &'
+     1>c:\users\ttv14snikos\desktop\eus\eus\eus\entitybuilder.cpp(23): error C2512: 'SpriteRenderer' : no appropriate default constructor available
+         Generating Code...
+         Skipping... (no relevant changes detected)
+         TileInfo.cpp
+         SceneManager.cpp
+         Game.cpp
+         EntityManager.cpp
+         Entity.cpp
+         EUS.cpp
+     1>Done Building Project "C:\Users\ttv14snikos\Desktop\EUS\EUS\EUS\EUS.vcxproj" (Build target(s)) -- FAILED.
 
 Build FAILED.
 
-Time Elapsed 00:00:00.88
+Time Elapsed 00:00:02.78

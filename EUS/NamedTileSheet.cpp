@@ -1,10 +1,8 @@
 #include "NamedTileSheet.h"
 
 
-NamedTileSheet::NamedTileSheet(const std::string& name, Texture* const texture, size_t tileSize) : name(name),
-																								   texture(texture),
-																								   tileSize(tileSize) {
-	createSources(sources);
+NamedTileSheet::NamedTileSheet(Texture* const texture, size_t tileSize) : texture(texture),
+																	      tileSize(tileSize) {
 }
 
 #pragma region Public members
@@ -17,6 +15,15 @@ size_t NamedTileSheet::getTileSize() const {
 
 void NamedTileSheet::getSource(const std::string& name, pmath::Rectf& outRect) const {
 	outRect = sources.at(name);
+}
+bool NamedTileSheet::containsSourceWithName(const std::string& name) const {
+	auto iter = sources.find(name);
+
+	return iter != sources.end();
+}
+
+void NamedTileSheet::initialize() {
+	createSources(sources);
 }
 #pragma endregion
 

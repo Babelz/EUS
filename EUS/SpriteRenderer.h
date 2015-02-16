@@ -5,12 +5,13 @@
 
 class SpriteRenderer : public DrawableComponent {
 private:
-	Sprite& sprite;
+	Sprite* sprite;
 	Game& game;
 
 	bool follow;
 public:
 	SpriteRenderer(Game& game, Entity& owner, Sprite& sprite);
+	SpriteRenderer(Game& game, Entity& owner);
 
 	Sprite& getSprite();
 	void setSprite(Sprite& sprite);

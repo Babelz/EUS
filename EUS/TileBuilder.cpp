@@ -1,6 +1,6 @@
 #include "TileBuilder.h"
 
-TileBuilder::TileBuilder(const std::string& name, Game& game) : EntityBuilder(name, game) {
+TileBuilder::TileBuilder(Game& game) : EntityBuilder("", game) {
 	pushBuilder("plains", std::function<Entity*()>(std::bind(&TileBuilder::createPlains, this)));
 	pushBuilder("hills", std::function<Entity*()>(std::bind(&TileBuilder::createHills, this)));
 	pushBuilder("factory", std::function<Entity*()>(std::bind(&TileBuilder::createFactory, this)));

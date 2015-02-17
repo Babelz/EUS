@@ -1,8 +1,8 @@
 #include "SpriteRenderer.h"
 
-SpriteRenderer::SpriteRenderer(Game& game, Entity& owner, Sprite& sprite) : DrawableComponent(owner),
+SpriteRenderer::SpriteRenderer(Game& game, Entity& owner, Sprite* sprite) : DrawableComponent(owner),
 																			game(game),
-																			sprite(&sprite),
+																			sprite(sprite),
 																			follow(false) {
 }
 SpriteRenderer::SpriteRenderer(Game& game, Entity& owner) : DrawableComponent(owner),
@@ -12,22 +12,8 @@ SpriteRenderer::SpriteRenderer(Game& game, Entity& owner) : DrawableComponent(ow
 
 }
 
-#pragma region Public members
-Sprite& SpriteRenderer::getSprite() {
-	return *sprite;
-}
-void SpriteRenderer::setSprite(Sprite& sprite) {
-	sprite = sprite;
-}
-
-void SpriteRenderer::beginFollowing() {
-	follow = true;
-}
-void SpriteRenderer::stopFollowing() {
-	follow = false;
-}
-
-void SpriteRenderer::update() {
+#pragma region Protected members
+void SpriteRenderer::onUpdate() {
 	if (sprite == nullptr) return;
 
 	if (follow) {
@@ -35,10 +21,26 @@ void SpriteRenderer::update() {
 		sprite->setY(getOwner().getY());
 	}
 }
-void SpriteRenderer::draw() {
+void SpriteRenderer::onDraw() {
 	if (sprite == nullptr) return;
 
 	sprite->draw(game.spriteBatch());
+}
+#pragma endregion
+
+#pragma region Public members
+Sprite& SpriteRenderer::getSprite() {
+	return *sprite;
+}
+void SpriteRenderer::setSprite(Sprite* const sprite) {
+	this->sprite.reset(sprite);
+}
+
+void SpriteRenderer::beginFollowing() {
+	follow = true;
+}
+void SpriteRenderer::stopFollowing() {
+	follow = false;
 }
 #pragma endregion
 

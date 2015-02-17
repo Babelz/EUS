@@ -19,7 +19,7 @@ private:
 public:
 	SheetMapping();
 
-	std::string& getTileName(char ch);
+	std::string getTileName(char ch);
 
 	void load(const std::string& filename);
 

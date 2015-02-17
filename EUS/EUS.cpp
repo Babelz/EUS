@@ -1,6 +1,7 @@
 #include "EUS.h"
+#include "MapBuilder.h"
 
-EUS::EUS() {
+EUS::EUS() : Game() {
 }
 
 #pragma region Protected members
@@ -12,21 +13,28 @@ void EUS::onEvent(const SDL_Event& e) {
 
 }
 
-
-static float saatanat[1920 * 1200 * 8 * 8];
+static Entity* map;
 
 void EUS::initialize() {
 	texture = content().load<Texture>("tileset");
+	
+	MapBuilder b(*this);
+	map = b.buildMap("test", "bordersheet", 32);
 }
 
 void EUS::update(float deltaTime) {
+	map->update();
+	map->childsForEach([](Entity* const e) { e->update();  });
 }
 void EUS::draw(float deltaTime) {
-	spriteBatch().begin();
+	SpriteBatch& sb = spriteBatch();
+	
+	sb.begin();
 
-	spriteBatch().draw(texture, pmath::Rectf(0, 0, 1280, 720));
+	//sb.draw(texture, pmath::Rectf(0, 0, 1280, 720));
+	map->childsForEach([](Entity* const e) { e->draw();  });
 
-	spriteBatch().end();
+	sb.end();
 }
 
 #pragma endregion Protected members

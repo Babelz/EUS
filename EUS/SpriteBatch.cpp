@@ -51,7 +51,7 @@ void SpriteBatch::createIndices() {
 		indices.push_back(i + 2);
 	}
 }
-void SpriteBatch::renderBatch(Texture* const texture, const size_t& first, const size_t& last) {
+void SpriteBatch::renderBatch(Texture* const texture, const size_t first, const size_t last) {
 	glBindTexture(GL_TEXTURE_2D, texture->getId());
 
 	glDrawElements(

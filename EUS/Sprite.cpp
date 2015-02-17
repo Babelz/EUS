@@ -7,7 +7,7 @@ Sprite::Sprite(Texture* texture) : color(1.0f),
 }
 Sprite::Sprite() : color(1.0f),
 				   scale(1.0f),
-				   texture(texture) {
+				   texture(nullptr) {
 }
 
 #pragma region Public members
@@ -95,7 +95,8 @@ void Sprite::draw(SpriteBatch& spriteBatch) {
 	assert(texture != nullptr);
 
 	if (usingSource) {
-		pmath::Rectf dest(position.x, position.y, texture->width * scale.x, texture->height * scale.y);
+		// TODO: fix scaling with source rect.
+		pmath::Rectf dest(position.x, position.y, 32, 32 /*texture->width * scale.x, texture->height * scale.y*/);
 
 		spriteBatch.draw(texture, source, dest, color);
 

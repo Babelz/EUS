@@ -70,7 +70,7 @@ private:
 	void generateVertices();
 
 	void sortBatch();
-	void renderBatch(Texture* const texture, const size_t& first, const size_t& last);
+	void renderBatch(Texture* const texture, const size_t first, const size_t last);
 	void flushBatch();
 
 	void growSpriteQueue();

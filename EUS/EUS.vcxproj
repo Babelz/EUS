@@ -114,7 +114,6 @@
   <ItemGroup>
     <ClInclude Include="Component.h" />
     <ClInclude Include="ComponentManager.h" />
-    <ClInclude Include="Components.h" />
     <ClInclude Include="Content.h" />
     <ClInclude Include="DrawableComponent.h" />
     <ClInclude Include="Entity.h" />
@@ -127,7 +126,6 @@
     <ClInclude Include="Resources.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="SheetMapping.h" />
-    <ClInclude Include="Sheets.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="SpriteBatch.h" />
     <ClInclude Include="SpriteRenderer.h" />

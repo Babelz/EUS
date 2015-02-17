@@ -1,24 +1,15 @@
 #pragma once
+#include "StringHelper.h"
 #include <string>
 #include <vector>
 #include <fstream>
 #include <cassert>
 
-/*
-	Steps of creating a map
-
-	1) Create tilesheet
-	2) Create mappings for tiles
-	3) Create tile builder
-
-	4) Load tile data from file
-	5) Initialize tiles from it using
-	   mappings and tile builder
-*/
-
 class MapLoader {
 private:
-	std::vector<char> chars;
+	const std::string SCOPE_TOKEN = "-tiles";
+
+	std::vector<std::vector<char>> chars;
 
 	std::string sheetName;
 	std::string mapName;

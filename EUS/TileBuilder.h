@@ -29,7 +29,7 @@ private:
 
 	void pushBuilder(const std::string& tileName, std::function<Entity*()> builder);
 public:
-	TileBuilder(const std::string& name, Game& game);
+	TileBuilder(Game& game);
 
 	Entity* buildTile(const std::string& name) const;
 

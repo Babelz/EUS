@@ -7,8 +7,8 @@ NamedTileSheet::NamedTileSheet(Texture* const texture, size_t tileSize) : textur
 
 #pragma region Protected members
 void NamedTileSheet::pushSource(const std::string& name, int x, int y) {
-	sources.insert(std::pair<std::string, pmath::Rectf>(name, pmath::Rectf(static_cast<float>(x * tileSize), 
-																		   static_cast<float>(y * tileSize),
+	sources.insert(std::pair<std::string, pmath::Rectf>(name, pmath::Rectf(static_cast<float>(x), 
+																		   static_cast<float>(y),
 																		   static_cast<float>(tileSize),
 																		   static_cast<float>(tileSize))));
 }
@@ -22,8 +22,8 @@ size_t NamedTileSheet::getTileSize() const {
 	return tileSize;
 }
 
-void NamedTileSheet::getSource(const std::string& name, pmath::Rectf& outRect) const {
-	outRect = sources.at(name);
+pmath::Rectf NamedTileSheet::getSource(const std::string& name) const {
+	return sources.at(name);
 }
 bool NamedTileSheet::containsSourceWithName(const std::string& name) const {
 	auto iter = sources.find(name);
@@ -77,6 +77,8 @@ void NamedTileSheet::load(const std::string& filename) {
 
 		pushSource(name, x, y);
 	}
+
+	inStream.close();
 }
 #pragma endregion
 

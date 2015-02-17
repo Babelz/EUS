@@ -29,11 +29,11 @@ void Game::internalInitialize() {
 
 	// Create window.
 	m_window = SDL_CreateWindow(windowTitle.c_str(), 
-							  SDL_WINDOWPOS_CENTERED, 
-							  SDL_WINDOWPOS_CENTERED,
-							  windowWidth, 
-							  windowHeight, 
-							  SDL_WINDOW_OPENGL);
+								SDL_WINDOWPOS_CENTERED, 
+								SDL_WINDOWPOS_CENTERED,
+								windowWidth, 
+								windowHeight, 
+								SDL_WINDOW_OPENGL);
 	assert(m_window != nullptr);
 
 	// Create OpenGL context.
@@ -140,6 +140,7 @@ void Game::run() {
 
 	SDL_GL_DeleteContext(context);
 	SDL_DestroyWindow(m_window);
+
 	SDL_Quit();
 }
 void Game::exit() {

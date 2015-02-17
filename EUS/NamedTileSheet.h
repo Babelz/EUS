@@ -25,7 +25,7 @@ public:
 	size_t getTileSize() const;
 	std::string& getName();
 
-	void getSource(const std::string& name, pmath::Rectf& outRect) const;
+	pmath::Rectf getSource(const std::string& name) const;
 	bool containsSourceWithName(const std::string& name) const;
 
 	void load(const std::string& filename);

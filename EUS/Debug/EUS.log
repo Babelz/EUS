@@ -1,10 +1,13 @@
-﻿Build started 17.2.2015 15:31:08.
+﻿Build started 17.2.2015 18:28:30.
      1>Project "C:\Users\ttv14snikos\Desktop\gits\ogl\EUS\EUS\EUS.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I./include /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D GLEW_STATIC /D _MBCS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /FR"Debug\\" /Gd /TP /analyze- /errorReport:prompt NamedTileSheet.cpp
-         NamedTileSheet.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I./include /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D GLEW_STATIC /D _MBCS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /FR"Debug\\" /Gd /TP /analyze- /errorReport:prompt EUS.cpp MapBuilder.cpp Sprite.cpp
+         Sprite.cpp
+         MapBuilder.cpp
      1>c:\users\ttv14snikos\desktop\gits\ogl\eus\eus\stringhelper.h(17): warning C4227: anachronism used : qualifiers on reference are ignored
-     1>c:\users\ttv14snikos\desktop\gits\ogl\eus\eus\namedtilesheet.cpp(78): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+         EUS.cpp
+     1>c:\users\ttv14snikos\desktop\gits\ogl\eus\eus\stringhelper.h(17): warning C4227: anachronism used : qualifiers on reference are ignored
+         Generating Code...
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\ttv14snikos\Desktop\gits\ogl\EUS\Debug\EUS.exe" /INCREMENTAL /NOLOGO /LIBPATH:./lib glew32s.lib OPENGL32.lib SDL2main.lib SDL2.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\ttv14snikos\Desktop\gits\ogl\EUS\Debug\EUS.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\ttv14snikos\Desktop\gits\ogl\EUS\Debug\EUS.lib" /MACHINE:X86 Debug\Component.obj
          Debug\ComponentManager.obj
@@ -38,4 +41,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:03.65
+Time Elapsed 00:00:04.86

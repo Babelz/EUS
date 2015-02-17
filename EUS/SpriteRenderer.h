@@ -5,22 +5,22 @@
 
 class SpriteRenderer : public DrawableComponent {
 private:
-	Sprite* sprite;
+	std::shared_ptr<Sprite> sprite;
 	Game& game;
 
 	bool follow;
+protected:
+	void onUpdate();
+	void onDraw();
 public:
-	SpriteRenderer(Game& game, Entity& owner, Sprite& sprite);
+	SpriteRenderer(Game& game, Entity& owner, Sprite* const sprite);
 	SpriteRenderer(Game& game, Entity& owner);
 
 	Sprite& getSprite();
-	void setSprite(Sprite& sprite);
+	void setSprite(Sprite* const sprite);
 
 	void beginFollowing();
 	void stopFollowing();
-
-	void update();
-	void draw();
 
 	~SpriteRenderer();
 };

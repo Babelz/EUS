@@ -10,7 +10,7 @@ void SheetMapping::pushMapping(char ch, const std::string& name) {
 #pragma endregion
 
 #pragma region Public members
-std::string& SheetMapping::getTileName(char ch) {
+std::string SheetMapping::getTileName(char ch) {
 	return mappings.at(ch);
 }
 void SheetMapping::load(const std::string& filename) {

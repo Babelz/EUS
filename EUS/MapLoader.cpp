@@ -6,35 +6,52 @@ MapLoader::MapLoader() : mapWidth(0),
 
 #pragma region Public members
 void MapLoader::load(const std::string& filename) {
-	std::ifstream inFile(filename, std::ios::in);
+	std::ifstream inStream(filename, std::ios::in);
 
-	assert(inFile.is_open());
+	assert(inStream.is_open());
 
-	// Just read all chars. File should only contain tile data.
+	StringHelper strHelper;
 	std::string line;
+	
+	while (std::getline(inStream, line)) {
+		if (strHelper.contains(line, SCOPE_TOKEN)) {
+			line.clear();
 
-	while (std::getline(inFile, line))
+			break;
+		}
+	}
+	
+
+	while (std::getline(inStream, line))
 	{
+		if (strHelper.contains(line, SCOPE_TOKEN)) {
+			break;
+		}
+
 		if (line.empty()) {
 			continue;
 		}
 
-		mapHeight++;
+		chars.push_back(std::vector<char>());
+
+		strHelper.trim(line);
 
 		for (size_t i = 0; i < line.size(); i++) {
 			char ch = line[i];
 
 			assert(ch != ' ');
 			
-			chars.push_back(ch);
+			chars[mapHeight].push_back(ch);
 		}
 
 		if (mapWidth < line.size()) {
 			mapWidth = line.size();
 		}
+
+		mapHeight++;
 	}
 
-	inFile.close();
+	inStream.close();
 }
 std::string& MapLoader::getSheetName() {
 	return sheetName;
@@ -50,8 +67,10 @@ size_t MapLoader::getMapWidth() const {
 	return mapWidth;
 }
 
+// i = row
+// j = column
 char MapLoader::charAt(const size_t i, const size_t j) {
-	return chars[i * j];
+	return chars[i][j];
 }
 #pragma endregion
 

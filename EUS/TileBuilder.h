@@ -1,4 +1,5 @@
 #pragma once
+#include "EntityBuilder.h"
 #include "Entity.h"
 #include "TileInfo.h"
 #include <string>
@@ -13,25 +14,24 @@ struct TileBuilderData {
 	}
 };
 
-class TileBuilder {
+class TileBuilder : public EntityBuilder {
 private:
-	std::list<TileBuilderData> tileDatas;
-protected:
-	Entity* createEntity() const;
+	std::list<TileBuilderData> tileBuilders;
 
+	Entity* internalCreateTile(const std::string& name, const int movementCost, const int coverValue, const TileType type) const;
+
+	Entity* createPlains() const;
+	Entity* createHills() const;
+	Entity* createEntity() const;
 	Entity* createFactory() const;
 	Entity* createSea() const;
 	Entity* createCity() const;
 
 	void pushBuilder(const std::string& tileName, std::function<Entity*()> builder);
-
-	virtual void createBuilders() = 0;
 public:
-	TileBuilder();
+	TileBuilder(const std::string& name, Game& game);
 
 	Entity* buildTile(const std::string& name) const;
-
-	void initialize();
 
 	~TileBuilder();
 };

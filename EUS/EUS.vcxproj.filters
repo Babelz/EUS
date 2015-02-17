@@ -21,6 +21,9 @@
     <Filter Include="Source Files\Maps">
       <UniqueIdentifier>{476da326-370f-410e-9935-437ddb858131}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Entities\Builders">
+      <UniqueIdentifier>{fce180bc-2977-4f29-b8e9-e1e8df875b02}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -83,23 +86,20 @@
     <ClCompile Include="Content.cpp">
       <Filter>Source Files\Maps</Filter>
     </ClCompile>
-    <ClCompile Include="BorderMappings.cpp">
-      <Filter>Source Files\Maps</Filter>
-    </ClCompile>
-    <ClCompile Include="BorderSheet.cpp">
-      <Filter>Source Files\Maps</Filter>
-    </ClCompile>
     <ClCompile Include="TileInfo.cpp">
       <Filter>Source Files\Maps</Filter>
     </ClCompile>
     <ClCompile Include="TileBuilder.cpp">
-      <Filter>Source Files\Maps</Filter>
-    </ClCompile>
-    <ClCompile Include="BorderTileBuilder.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Entities\Builders</Filter>
     </ClCompile>
     <ClCompile Include="EntityBuilder.cpp">
-      <Filter>Source Files\Entities</Filter>
+      <Filter>Source Files\Entities\Builders</Filter>
+    </ClCompile>
+    <ClCompile Include="MapBuilder.cpp">
+      <Filter>Source Files\Entities\Builders</Filter>
+    </ClCompile>
+    <ClCompile Include="StringHelper.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -163,13 +163,7 @@
     <ClInclude Include="MapLoader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="BorderMappings.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Sheets.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BorderSheet.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Components.h">
@@ -178,7 +172,10 @@
     <ClInclude Include="TileBuilder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="BorderTileBuilder.h">
+    <ClInclude Include="MapBuilder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StringHelper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -22,7 +22,7 @@ public:
 	int getMovementCost() const;
 	int getCoverValue() const;
 
-	std::string& getName();
+	const std::string& getName() const;
 	TileType getType();
 
 	~TileInfo();

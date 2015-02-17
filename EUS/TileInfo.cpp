@@ -12,7 +12,7 @@ TileInfo::TileInfo(Entity& owner,
 }
 
 #pragma region Public members
-std::string& TileInfo::getName() {
+const std::string& TileInfo::getName() const {
 	return name;
 }
 

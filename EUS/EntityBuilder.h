@@ -1,17 +1,16 @@
 #pragma once
-#include "TileBuilder.h"
-#include "Components.h"
-#include "MapLoader.h"
-#include "Sheets.h"
+#include "Game.h"
 
 class EntityBuilder {
 private:
-	void buildMap(Entity* const entity, TileBuilder& tileBuilder, SheetMapping& mappings, NamedTileSheet& sheet, MapLoader& data) const;
+	std::string m_name;
+	Game& m_game;
+protected:
+	Game& game() const;
 public:
-	EntityBuilder();
-	
-	Entity* borderMap(Game& game) const;
-	Entity* tile(Game& game) const;
+	EntityBuilder(const std::string& name, Game& game);
+
+	const std::string& name() const;
 
 	~EntityBuilder();
 };

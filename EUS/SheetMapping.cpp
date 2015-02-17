@@ -13,10 +13,42 @@ void SheetMapping::pushMapping(char ch, const std::string& name) {
 std::string& SheetMapping::getTileName(char ch) {
 	return mappings.at(ch);
 }
-void SheetMapping::initialize() {
-	createMappings();
+void SheetMapping::load(const std::string& filename) {
+	if (mappings.size() > 0) {
+		mappings.clear();
+	}
 
-	assert(mappings.size() > 0);
+	std::ifstream inStream(filename);
+	std::string line;
+
+	StringHelper strHelper;
+
+	assert(inStream.is_open());
+
+	// Skip to mappings.
+	while (std::getline(inStream, line)) { 
+		if (strHelper.contains(line, SCOPE_TOKEN)) {
+			line.clear();
+
+			break;
+		}
+	}
+
+	// Read mappings.
+	while (std::getline(inStream, line)) {
+		if (strHelper.contains(line, SCOPE_TOKEN)) {
+			break;
+		}
+
+		std::vector<std::string> tokens;
+		strHelper.split(line, std::string(" "), tokens, true);
+
+		assert(tokens.size() == 2);
+
+		pushMapping(tokens[0][0], tokens[1]);
+	}
+
+	inStream.close();
 }
 #pragma endregion
 

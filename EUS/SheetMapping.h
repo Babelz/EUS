@@ -1,7 +1,9 @@
 #pragma once
-#include "NamedTileSheet.h"
-#include <algorithm>	
+#include "StringHelper.h"
+#include <cassert>
+#include <algorithm>
 #include <string>
+#include <fstream>
 #include <map>
 
 // TODO: change that data is loaded from a file.
@@ -9,16 +11,17 @@
 
 class SheetMapping {
 private:
-	std::map<char, std::string> mappings;
-protected:
-	void pushMapping(char ch, const std::string& name);
+	const std::string SCOPE_TOKEN = "-mappings";
 
-	virtual void createMappings() = 0;
+	std::map<char, std::string> mappings;
+
+	void pushMapping(char ch, const std::string& name);
 public:
 	SheetMapping();
 
 	std::string& getTileName(char ch);
-	void initialize();
+
+	void load(const std::string& filename);
 
 	~SheetMapping();
 };

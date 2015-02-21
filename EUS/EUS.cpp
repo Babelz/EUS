@@ -1,6 +1,7 @@
 #include "EUS.h"
+#include "MapBuilder.h"
 
-EUS::EUS() {
+EUS::EUS() : Game() {
 }
 
 #pragma region Protected members
@@ -12,35 +13,31 @@ void EUS::onEvent(const SDL_Event& e) {
 
 }
 
+static Entity* map;
+static Model* model;
+
 void EUS::initialize() {
-	sprite.swapTexture(content().load<Texture>("pidginz"));
-	sprite.setScale(0.15f);
+	texture = content().load<Texture>("tileset");
+	
+	MapBuilder b(*this);
+	map = b.buildMap("test", "bordersheet", 32);
+	
+	model = content().load<Model>("box");
 }
-void EUS::update() {
 
+void EUS::update(float deltaTime) {
+	map->update();
+	map->childsForEach([](Entity* const e) { e->update();  });
 }
+void EUS::draw(float deltaTime) {
+	SpriteBatch& sb = spriteBatch();
+	
+	sb.begin();
 
-static float asd = 0.0f;
+	//sb.draw(texture, pmath::Rectf(0, 0, 1280, 720));
+	map->childsForEach([](Entity* const e) { e->draw();  });
 
-void EUS::draw() {
-
-	asd += 0.42323f;
-
-	pmath::Vec2f size(asd - sprite.textureWidth() * 0.15f,
-					  asd - sprite.textureHeight() * 0.15f);
-
-	spriteBatch().begin();
-
-	for (int i = 0; i < 60; i++) {
-		for (int j = 0; j < 60; j++) {
-			sprite.setX(j * size.x);
-			sprite.setY(i * size.y);
-
-			sprite.draw(spriteBatch());
-		}
-	}
-
-	spriteBatch().end();
+	sb.end();
 }
 
 #pragma endregion Protected members

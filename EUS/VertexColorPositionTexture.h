@@ -6,6 +6,6 @@ struct VertexPositionColorTexture {
 	pmath::Vec4f color;
 	pmath::Vec2f uv;
 
-	VertexPositionColorTexture(float x, float y, float z, float r, float g, float b, float a, float u, float v);
+	VertexPositionColorTexture(const float x, const float y, const float z, const float r, const float g, const float b, const float a, const float u, const float v);
 	VertexPositionColorTexture();
 };

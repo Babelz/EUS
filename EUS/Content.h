@@ -21,6 +21,7 @@ public:
 
 		std::string path = root + "\\" + asset;
 		T* resource = new T();
+
 		if (!resource->readFromFile(path)) {
 			// things went south
 			throw std::runtime_error("Can't open file " + path + "!");

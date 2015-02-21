@@ -25,6 +25,7 @@ bool Texture::readFromFile(const std::string& path) {
 		std::fprintf(stderr, "Error loading texture file %s\n", lodepng_error_text(error));
 		return false;
 	}
+
 	// create new name for texture
 	glGenTextures(1, &id);
 	// bind it so we can modify it
@@ -121,5 +122,102 @@ GLuint Effect::getProgram() const {
 
 Effect::~Effect() {
 	glDeleteProgram(program);
+}
+#pragma endregion
+
+#pragma region Model class
+Model::Model() : Resource() {
+}
+
+bool Model::readFromFile(const std::string& path) {
+	std::ifstream inStream(path + ".obj");
+
+	assert(inStream.is_open());
+
+	int meshCount = -1;
+
+	StringHelper strHelper;
+	std::string line;
+	ModelMesh mesh;
+
+	while (std::getline(inStream, line)) {
+		// Skip empty lines and comments.
+		if (line.empty()) {
+			continue;
+		}
+		else if (line[0] == COMMENT) {
+			continue;
+		}
+
+		// Split line into tokens.
+		std::vector<std::string> tokens;
+		strHelper.split(line, SPLIT, tokens, true);
+
+		const std::string& first = tokens[0];
+
+		// Get material lib.
+		if (first == MTLLIB) {
+			materialLib = tokens[1];
+		}
+		else if (first == VERTICE) {
+			assert(meshCount >= 0);
+
+			ModelMesh& mesh = meshes[meshCount];
+
+			// Parse all vertices.
+			for (size_t i = 1; i < tokens.size(); i++) {
+				std::stringstream ss(tokens[i]);
+
+				float f = 0.0f;
+				ss >> f;
+
+				mesh.vertices.push_back(f);
+			}
+		}
+		// Get model name.
+		else if (first == MTNAME) {
+			assert(meshCount >= 0);
+			
+			ModelMesh& mesh = meshes[meshCount];
+			mesh.materialName = tokens[1];
+		}
+		// Get smoothing group.
+		else if (first == SMOOTHGRP) {
+			assert(meshCount >= 0);
+
+			ModelMesh& mesh = meshes[meshCount];
+			mesh.smoothingGroup = tokens[1];
+		}
+		// Parse indices.
+		else if (first == FACING) {
+			assert(meshCount >= 0);
+
+			ModelMesh& mesh = meshes[meshCount];
+
+			for (size_t i = 1; i < tokens.size(); i++) {
+				std::stringstream ss(tokens[i]);
+
+				unsigned int j = 0;
+				ss >> j;
+
+				mesh.indices.push_back(j);
+			}
+		}
+		// New object token. Push new model mesh to meshes 
+		// and start reading data to it.
+		else if (first == OBJECTNAME) {
+			meshCount++;
+
+			meshes.push_back(ModelMesh());
+
+			ModelMesh& mesh = meshes[meshCount];
+			mesh.name = tokens[1];
+		}
+	}
+
+	return true;
+}
+
+Model::~Model() {
 }
 #pragma endregion

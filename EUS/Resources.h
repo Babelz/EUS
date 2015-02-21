@@ -1,6 +1,8 @@
 #ifndef RESOURCES_H
 #define RESOURCES_H
 
+#include "StringHelper.h"
+#include "Vector.hpp"
 #include <iostream>
 #include <fstream>
 #include <cassert>
@@ -47,6 +49,54 @@ public:
 	GLuint getProgram() const;
 
 	~Effect();
+};
+
+struct ModelMesh {
+public:
+	std::string name;
+
+	std::string smoothingGroup;
+	std::string materialName;
+
+	std::vector<float> vertices;
+	std::vector<unsigned short> indices;
+
+	ModelMesh() {
+	}
+
+	~ModelMesh() {
+	}
+};
+
+class Model : public Resource {
+private:
+	// Material lib token.
+	const std::string MTLLIB = "mtllib";
+	// Vertice token.
+	const std::string VERTICE = "v";
+	
+	// Material name token.
+	const std::string MTNAME = "usemtl";
+	// Smoothing grouping token.
+	const std::string SMOOTHGRP = "s";
+	// Facing token.
+	const std::string FACING = "f";
+	// Object name.
+	const std::string OBJECTNAME = "o";
+
+	// Comment tag, just skip them.
+	const char COMMENT = '#';
+	// Token used to split lines into tokens.
+	const std::string SPLIT = " ";
+
+	std::vector<ModelMesh> meshes;
+	std::string materialLib;
+public:
+	Model();
+
+	bool readFromFile(const std::string& path);
+
+	~Model();
 };
 
 #endif

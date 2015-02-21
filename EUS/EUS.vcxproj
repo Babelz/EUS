@@ -90,17 +90,25 @@
     <ClCompile Include="Content.cpp" />
     <ClCompile Include="DrawableComponent.cpp" />
     <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="EntityBuilder.cpp" />
     <ClCompile Include="EntityManager.cpp" />
     <ClCompile Include="EUS.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="lodepng.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="MapBuilder.cpp" />
+    <ClCompile Include="MapLoader.cpp" />
     <ClCompile Include="Resources.cpp" />
     <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="SheetMapping.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="SpriteBatch.cpp" />
+    <ClCompile Include="SpriteRenderer.cpp" />
+    <ClCompile Include="StringHelper.cpp" />
     <ClCompile Include="TagContainer.cpp" />
-    <ClCompile Include="TestCp.cpp" />
+    <ClCompile Include="NamedTileSheet.cpp" />
+    <ClCompile Include="TileInfo.cpp" />
+    <ClCompile Include="TileBuilder.cpp" />
     <ClCompile Include="VertexColorPositionTexture.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -109,15 +117,23 @@
     <ClInclude Include="Content.h" />
     <ClInclude Include="DrawableComponent.h" />
     <ClInclude Include="Entity.h" />
+    <ClInclude Include="EntityBuilder.h" />
     <ClInclude Include="EntityManager.h" />
     <ClInclude Include="EUS.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="MapBuilder.h" />
+    <ClInclude Include="MapLoader.h" />
     <ClInclude Include="Resources.h" />
     <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="SheetMapping.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="SpriteBatch.h" />
+    <ClInclude Include="SpriteRenderer.h" />
+    <ClInclude Include="StringHelper.h" />
     <ClInclude Include="TagContainer.h" />
-    <ClInclude Include="TestCp.h" />
+    <ClInclude Include="NamedTileSheet.h" />
+    <ClInclude Include="TileInfo.h" />
+    <ClInclude Include="TileBuilder.h" />
     <ClInclude Include="VertexColorPositionTexture.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

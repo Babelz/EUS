@@ -18,6 +18,12 @@
     <Filter Include="Source Files\Graphics">
       <UniqueIdentifier>{0fc542e7-5fa4-4c8a-8843-d467a955a31a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Maps">
+      <UniqueIdentifier>{476da326-370f-410e-9935-437ddb858131}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Entities\Builders">
+      <UniqueIdentifier>{fce180bc-2977-4f29-b8e9-e1e8df875b02}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -35,9 +41,6 @@
     <ClCompile Include="ComponentManager.cpp">
       <Filter>Source Files\Entities</Filter>
     </ClCompile>
-    <ClCompile Include="TestCp.cpp">
-      <Filter>Source Files\Components</Filter>
-    </ClCompile>
     <ClCompile Include="DrawableComponent.cpp">
       <Filter>Source Files\Entities</Filter>
     </ClCompile>
@@ -48,9 +51,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Resources.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Content.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SpriteBatch.cpp">
@@ -71,6 +71,36 @@
     <ClCompile Include="EUS.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SpriteRenderer.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="SheetMapping.cpp">
+      <Filter>Source Files\Maps</Filter>
+    </ClCompile>
+    <ClCompile Include="NamedTileSheet.cpp">
+      <Filter>Source Files\Maps</Filter>
+    </ClCompile>
+    <ClCompile Include="MapLoader.cpp">
+      <Filter>Source Files\Maps</Filter>
+    </ClCompile>
+    <ClCompile Include="Content.cpp">
+      <Filter>Source Files\Maps</Filter>
+    </ClCompile>
+    <ClCompile Include="TileInfo.cpp">
+      <Filter>Source Files\Maps</Filter>
+    </ClCompile>
+    <ClCompile Include="TileBuilder.cpp">
+      <Filter>Source Files\Entities\Builders</Filter>
+    </ClCompile>
+    <ClCompile Include="EntityBuilder.cpp">
+      <Filter>Source Files\Entities\Builders</Filter>
+    </ClCompile>
+    <ClCompile Include="MapBuilder.cpp">
+      <Filter>Source Files\Entities\Builders</Filter>
+    </ClCompile>
+    <ClCompile Include="StringHelper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.h">
@@ -83,9 +113,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ComponentManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TestCp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DrawableComponent.h">
@@ -116,6 +143,33 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="EUS.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteRenderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityBuilder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="NamedTileSheet.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SheetMapping.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TileInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MapLoader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TileBuilder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MapBuilder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StringHelper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

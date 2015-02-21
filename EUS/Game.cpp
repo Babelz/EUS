@@ -2,7 +2,10 @@
 
 Game::Game(const int windowWidth, const int windowHeight, const char* windowTitle) : windowWidth(windowWidth), 
 																					 windowHeight(windowHeight),
-																					 m_content(ContentManager("Content")) {
+																					 m_content(ContentManager("Content")),
+																					 deltaTime(0.0f),
+																					 currentTime(0.0f),
+																					 lastTime(0.0f) {
 	this->windowTitle = std::string(windowTitle);
 }
 
@@ -26,11 +29,11 @@ void Game::internalInitialize() {
 
 	// Create window.
 	m_window = SDL_CreateWindow(windowTitle.c_str(), 
-							  SDL_WINDOWPOS_CENTERED, 
-							  SDL_WINDOWPOS_CENTERED,
-							  windowWidth, 
-							  windowHeight, 
-							  SDL_WINDOW_OPENGL);
+								SDL_WINDOWPOS_CENTERED, 
+								SDL_WINDOWPOS_CENTERED,
+								windowWidth, 
+								windowHeight, 
+								SDL_WINDOW_OPENGL);
 	assert(m_window != nullptr);
 
 	// Create OpenGL context.
@@ -65,14 +68,14 @@ void Game::internalUpdate() {
 		onEvent(e);
 	}
 
-	update();
+	update(deltaTime);
 
 	SDL_Delay(16);
 }
 void Game::internalDraw() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	
-	draw();
+	draw(deltaTime);
 
 	SDL_GL_SwapWindow(m_window);
 }
@@ -84,8 +87,8 @@ void Game::onExit() { }
 void Game::onEvent(const SDL_Event& e) { }
 
 void Game::initialize() { }
-void Game::update() { }
-void Game::draw() { }
+void Game::update(float deltaTime) { }
+void Game::draw(float deltaTime) { }
 #pragma endregion
 
 #pragma region Public members
@@ -120,11 +123,15 @@ void Game::run() {
 	if (running) {
 		return;
 	}
-
+	
 	internalInitialize();
 	initialize();
 
 	while (running) {
+		currentTime = static_cast<float>(SDL_GetTicks());
+		deltaTime = (currentTime - lastTime) / 1000.0f;
+		lastTime = currentTime;
+
 		internalUpdate();
 		internalDraw();
 	}
@@ -133,6 +140,7 @@ void Game::run() {
 
 	SDL_GL_DeleteContext(context);
 	SDL_DestroyWindow(m_window);
+
 	SDL_Quit();
 }
 void Game::exit() {

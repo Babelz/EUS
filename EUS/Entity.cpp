@@ -162,6 +162,11 @@ bool Entity::removeChild(Entity* const child) {
 	return remove;
 }
 
+
+void Entity::childsForEach(std::function<void(Entity* const)> action) const {
+	std::for_each(childs.begin(), childs.end(), action);
+}
+
 // Update all components that are enabled if entity is in enabled
 // state, and is not destroyed.
 void Entity::update() {
@@ -170,6 +175,8 @@ void Entity::update() {
 	}
 
 	components.update();
+
+	// TODO: remove destroyed childs.
 }
 
 // Draw all components that are visible if entity is in enabled

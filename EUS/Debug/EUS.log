@@ -1,14 +1,51 @@
-﻿Build started 11.2.2015 13:02:05.
+﻿Build started 22.2.2015 0:47:46.
      1>Project "C:\Users\VoidBab\Gits\ogl\eus\EUS\EUS.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I./include /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D GLEW_STATIC /D _MBCS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /FR"Debug\\" /Gd /TP /analyze- /errorReport:prompt EUS.cpp Main.cpp
-         Main.cpp
-     1>c:\users\voidbab\gits\ogl\eus\eus\main.cpp(9): error C2530: 'ref' : references must be initialized
-     1>c:\users\voidbab\gits\ogl\eus\eus\main.cpp(14): error C2582: 'operator =' function is unavailable in 'Entity'
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I./include /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D GLEW_STATIC /D _MBCS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /FR"Debug\\" /Gd /TP /analyze- /errorReport:prompt Component.cpp ComponentManager.cpp DrawableComponent.cpp EUS.cpp EntityManager.cpp MapBuilder.cpp SpriteRenderer.cpp TagContainer.cpp lodepng.cpp
+         SpriteRenderer.cpp
+         Generating Code...
+         Compiling...
+         MapBuilder.cpp
          EUS.cpp
          Generating Code...
-     1>Done Building Project "C:\Users\VoidBab\Gits\ogl\eus\EUS\EUS.vcxproj" (Build target(s)) -- FAILED.
+         Skipping... (no relevant changes detected)
+         lodepng.cpp
+         TagContainer.cpp
+         EntityManager.cpp
+         DrawableComponent.cpp
+         ComponentManager.cpp
+         Component.cpp
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\VoidBab\Gits\ogl\eus\Debug\EUS.exe" /INCREMENTAL /NOLOGO /LIBPATH:./lib glew32s.lib OPENGL32.lib SDL2main.lib SDL2.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\VoidBab\Gits\ogl\eus\Debug\EUS.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\VoidBab\Gits\ogl\eus\Debug\EUS.lib" /MACHINE:X86 Debug\Component.obj
+         Debug\ComponentManager.obj
+         Debug\Content.obj
+         Debug\DrawableComponent.obj
+         Debug\Entity.obj
+         Debug\EntityBuilder.obj
+         Debug\EntityManager.obj
+         Debug\EUS.obj
+         Debug\Game.obj
+         Debug\lodepng.obj
+         Debug\Main.obj
+         Debug\MapBuilder.obj
+         Debug\MapLoader.obj
+         Debug\Resources.obj
+         Debug\SceneManager.obj
+         Debug\SheetMapping.obj
+         Debug\Sprite.obj
+         Debug\SpriteBatch.obj
+         Debug\SpriteRenderer.obj
+         Debug\StringHelper.obj
+         Debug\TagContainer.obj
+         Debug\NamedTileSheet.obj
+         Debug\TileInfo.obj
+         Debug\TileBuilder.obj
+         Debug\VertexColorPositionTexture.obj
+         EUS.vcxproj -> C:\Users\VoidBab\Gits\ogl\eus\Debug\EUS.exe
+       BscMake:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\bscmake.exe /nologo /o"C:\Users\VoidBab\Gits\ogl\eus\Debug\EUS.bsc" /n Debug\Component.sbr Debug\ComponentManager.sbr Debug\Content.sbr Debug\DrawableComponent.sbr Debug\Entity.sbr Debug\EntityBuilder.sbr Debug\EntityManager.sbr Debug\EUS.sbr Debug\Game.sbr Debug\lodepng.sbr Debug\Main.sbr Debug\MapBuilder.sbr Debug\MapLoader.sbr Debug\Resources.sbr Debug\SceneManager.sbr Debug\SheetMapping.sbr Debug\Sprite.sbr Debug\SpriteBatch.sbr Debug\SpriteRenderer.sbr Debug\StringHelper.sbr Debug\TagContainer.sbr Debug\NamedTileSheet.sbr Debug\TileInfo.sbr Debug\TileBuilder.sbr Debug\VertexColorPositionTexture.sbr
+     1>Done Building Project "C:\Users\VoidBab\Gits\ogl\eus\EUS\EUS.vcxproj" (Build target(s)).
 
-Build FAILED.
+Build succeeded.
 
-Time Elapsed 00:00:03.06
+Time Elapsed 00:00:07.30

@@ -22,7 +22,7 @@ protected:
 public:
 	Scene(const std::string& name);
 
-	const std::string& getName();
+	const std::string& getName() const;
 	void activate(SceneManager* const sceneManager);
 
 	void destroy();

@@ -7,7 +7,7 @@ Sprite::Sprite(Texture* texture) : color(1.0f),
 }
 Sprite::Sprite() : color(1.0f),
 				   scale(1.0f),
-				   texture(texture) {
+				   texture(nullptr) {
 }
 
 #pragma region Public members
@@ -57,6 +57,20 @@ void Sprite::setOriginY(float value) {
 	origin.y = value;
 }
 
+void Sprite::setSource(const pmath::Rectf& source) {
+	this->source = source;
+}
+bool Sprite::isUsingSource() const {
+	return usingSource;
+}
+
+void Sprite::useSource() {
+	usingSource = true;
+}
+void Sprite::disableSource() {
+	usingSource = false;
+}
+
 size_t Sprite::textureHeight() const {
 	return texture->height;
 }
@@ -71,7 +85,7 @@ void Sprite::setColor(pmath::Vec4f& value){
 	color = value;
 }
 
-void Sprite::swapTexture(Texture* texture) {
+void Sprite::swapTexture(Texture* const texture) {
 	assert(texture != nullptr);
 
 	this->texture = texture;
@@ -79,6 +93,15 @@ void Sprite::swapTexture(Texture* texture) {
 
 void Sprite::draw(SpriteBatch& spriteBatch) {
 	assert(texture != nullptr);
+
+	if (usingSource) {
+		// TODO: fix scaling with source rect.
+		pmath::Rectf dest(position.x, position.y, 32, 32 /*texture->width * scale.x, texture->height * scale.y*/);
+
+		spriteBatch.draw(texture, source, dest, color);
+
+		return;
+	}
 
 	spriteBatch.draw(texture, position, origin, color, scale.x, scale.y);
 }

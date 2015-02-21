@@ -6,15 +6,15 @@
 
 class EUS : public Game {
 private:
-	Sprite sprite;
+	Texture* texture;
 protected:
 	virtual void onExit();
 
 	virtual void onEvent(const SDL_Event& e);
 
-	virtual void initialize();
-	virtual void update();
-	virtual void draw();
+	void initialize();
+	void update(float deltaTime);
+	void draw(float deltaTime);
 public:
 	EUS();
 

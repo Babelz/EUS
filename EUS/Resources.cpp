@@ -129,6 +129,7 @@ Effect::~Effect() {
 Model::Model() : Resource() {
 }
 
+#pragma region Public members
 bool Model::readFromFile(const std::string& path) {
 	std::ifstream inStream(path + ".obj");
 
@@ -137,8 +138,8 @@ bool Model::readFromFile(const std::string& path) {
 	int meshCount = -1;
 
 	StringHelper strHelper;
+	std::stringstream ss;
 	std::string line;
-	ModelMesh mesh;
 
 	while (std::getline(inStream, line)) {
 		// Skip empty lines and comments.
@@ -154,53 +155,62 @@ bool Model::readFromFile(const std::string& path) {
 		strHelper.split(line, SPLIT, tokens, true);
 
 		const std::string& first = tokens[0];
+		ModelMesh* const mesh = meshCount >= 0 ? &meshes[meshCount] : nullptr;
 
 		// Get material lib.
 		if (first == MTLLIB) {
 			materialLib = tokens[1];
 		}
-		else if (first == VERTICE) {
-			assert(meshCount >= 0);
-
-			ModelMesh& mesh = meshes[meshCount];
-
-			// Parse all vertices.
-			for (size_t i = 1; i < tokens.size(); i++) {
-				std::stringstream ss(tokens[i]);
-
-				float f = 0.0f;
-				ss >> f;
-
-				mesh.vertices.push_back(f);
-			}
-		}
 		// Get model name.
 		else if (first == MTNAME) {
-			assert(meshCount >= 0);
-			
-			ModelMesh& mesh = meshes[meshCount];
-			mesh.materialName = tokens[1];
+			mesh->materialName = tokens[1];
 		}
 		// Get smoothing group.
 		else if (first == SMOOTHGRP) {
-			assert(meshCount >= 0);
-
-			ModelMesh& mesh = meshes[meshCount];
-			mesh.smoothingGroup = tokens[1];
+			mesh->smoothingGroup = tokens[1];
 		}
 		// Parse indices.
 		else if (first == FACING) {
-			assert(meshCount >= 0);
-
-			ModelMesh& mesh = meshes[meshCount];
-
 			for (size_t i = 1; i < tokens.size(); i++) {
-				std::stringstream ss(tokens[i]);
+				ss.str(tokens[i]);
 
 				unsigned int j = 0;
 				ss >> j;
 
-				mesh.indices.push_back(j);
+				mesh->indices.push_back(j);
+			}
+		}
+		// Parse texture vertices.
+		else if (first == TEXTURE_VERTICES) {
+			for (size_t i = 1; i < tokens.size(); i++) {
+				ss.str(tokens[i]);
+
+				float f = 0.0f;
+				ss >> f;
+
+				mesh->textureVertices.push_back(f);
+			}
+		}
+		else if (first == VERTEX_NORMALS) {
+			// Parse normals.
+			for (size_t i = 1; i < tokens.size(); i++) {
+				ss.str(tokens[i]);
+
+				float f = 0.0f;
+				ss >> f;
+
+				mesh->textureVertices.push_back(f);
+			}
+		}
+		else if (first == VERTICE) {
+			// Parse all vertices.
+			for (size_t i = 1; i < tokens.size(); i++) {
+				ss.str(tokens[i]);
+
+				float f = 0.0f;
+				ss >> f;
+
+				mesh->vertices.push_back(f);
 			}
 		}
 		// New object token. Push new model mesh to meshes 
@@ -210,13 +220,17 @@ bool Model::readFromFile(const std::string& path) {
 
 			meshes.push_back(ModelMesh());
 
-			ModelMesh& mesh = meshes[meshCount];
-			mesh.name = tokens[1];
+			meshes[meshCount].name = tokens[1];
 		}
 	}
 
 	return true;
 }
+
+bool Model::empty() const {
+	return meshes.size() != 0;
+}
+#pragma endregion
 
 Model::~Model() {
 }

@@ -59,6 +59,9 @@ public:
 	std::string materialName;
 
 	std::vector<float> vertices;
+	std::vector<float> textureVertices;
+	std::vector<float> vertexNormals;
+
 	std::vector<unsigned short> indices;
 
 	ModelMesh() {
@@ -74,6 +77,10 @@ private:
 	const std::string MTLLIB = "mtllib";
 	// Vertice token.
 	const std::string VERTICE = "v";
+	// Texture vertices.
+	const std::string TEXTURE_VERTICES = "vt";
+	// Vertex normals.
+	const std::string VERTEX_NORMALS = "vn";
 	
 	// Material name token.
 	const std::string MTNAME = "usemtl";
@@ -96,7 +103,13 @@ public:
 
 	bool readFromFile(const std::string& path);
 
+	bool empty() const;
+
 	~Model();
+
+	Model operator = (const Model& model) {
+		return model;
+	}
 };
 
 #endif

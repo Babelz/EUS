@@ -2,8 +2,7 @@
 #include "Component.h"
 
 // Base class for components that can draw.
-class DrawableComponent : public Component
-{
+class DrawableComponent : public Component {
 private:
 	int drawOrder;
 

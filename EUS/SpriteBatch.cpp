@@ -285,4 +285,10 @@ void SpriteBatch::end() {
 #pragma endregion
 
 SpriteBatch::~SpriteBatch() {
+	glDeleteBuffers(1, &vertexArray);
+	glDeleteBuffers(1, &vertexBuffer);
+	glDeleteBuffers(1, &indexBuffer);
+
+	GLuint error = glGetError();
+	assert(error == 0);
 }

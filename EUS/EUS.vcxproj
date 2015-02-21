@@ -98,6 +98,7 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MapBuilder.cpp" />
     <ClCompile Include="MapLoader.cpp" />
+    <ClCompile Include="ModelRenderer.cpp" />
     <ClCompile Include="Resources.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="SheetMapping.cpp" />
@@ -109,6 +110,7 @@
     <ClCompile Include="NamedTileSheet.cpp" />
     <ClCompile Include="TileInfo.cpp" />
     <ClCompile Include="TileBuilder.cpp" />
+    <ClCompile Include="Transform.cpp" />
     <ClCompile Include="VertexColorPositionTexture.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -123,6 +125,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="MapBuilder.h" />
     <ClInclude Include="MapLoader.h" />
+    <ClInclude Include="ModelRenderer.h" />
     <ClInclude Include="Resources.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="SheetMapping.h" />
@@ -134,6 +137,7 @@
     <ClInclude Include="NamedTileSheet.h" />
     <ClInclude Include="TileInfo.h" />
     <ClInclude Include="TileBuilder.h" />
+    <ClInclude Include="Transform.h" />
     <ClInclude Include="VertexColorPositionTexture.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

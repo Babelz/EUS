@@ -2,6 +2,11 @@
 #include <string>
 #include <vector>
 
+enum StringSplitOptions {
+	REMOVE_EMPTY,
+	NONE
+};
+
 class StringHelper {
 public:
 	StringHelper();
@@ -14,7 +19,7 @@ public:
 
 	void trim(std::string& line) const;
 
-	void split(const std::string& line, const std::string& token, std::vector<std::string>& results, const bool trimResults = false);
+	void split(const std::string& line, const std::string& token, std::vector<std::string>& results, const bool trimResults = false, StringSplitOptions options = StringSplitOptions::REMOVE_EMPTY);
 
 	~StringHelper();
 };

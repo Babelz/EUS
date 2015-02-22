@@ -44,34 +44,19 @@ void ModelRenderer::initializeBuffers() {
 #pragma region Protected members
 void ModelRenderer::onDraw() {
 	if (model != nullptr && !model->isEmpty()) {
-		const std::vector<ModelMesh> meshes = model->getMeshes();
-
-		std::vector<float> vertices;
-		std::vector<unsigned short> indices;
-
-		std::for_each(meshes.begin(), meshes.end(), [this, &vertices, &indices](ModelMesh mesh) {
-			for (size_t i = 0; i < mesh.vertices.size(); i++) {
-				vertices.push_back(mesh.vertices[i]);
-			}
-
-			for (size_t i = 0; i < mesh.indices.size(); i++) {
-				indices.push_back(mesh.indices[i]);
-			}
-		});
-
 		glBindVertexArray(vertexArray);
 		glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
-		glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(float), vertices.data(), GL_DYNAMIC_DRAW);
+		glBufferData(GL_ARRAY_BUFFER, model->getVertices().size() * sizeof(float), model->getVertices().data(), GL_DYNAMIC_DRAW);
 
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBuffer);
-		glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(unsigned short), indices.data(), GL_DYNAMIC_DRAW);
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, model->getIndices().size() * sizeof(unsigned short), model->getIndices().data(), GL_DYNAMIC_DRAW);
 
 		GLuint error = glGetError();
 		assert(error == 0);
 
 		shader->bind();
 
-		glDrawArrays(GL_TRIANGLES, 0, vertices.size());
+		glDrawArrays(GL_TRIANGLES, 0, model->getVertices().size());
 		/*glDrawElements(
 			GL_TRIANGLES,
 			0,

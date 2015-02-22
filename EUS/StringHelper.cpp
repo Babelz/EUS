@@ -9,7 +9,7 @@ bool StringHelper::contains(const std::string& line, const std::string& pattern)
 }
 
 void StringHelper::trimStart(std::string& line) const {
-	if (line[0] != ' ') return;
+	if (line.empty() || line[0] != ' ') return;
 
 	size_t i = 0;
 
@@ -23,7 +23,7 @@ void StringHelper::trimStart(std::string& line) const {
 }
 
 void StringHelper::trimEnd(std::string& line) const {
-	if (line[line.size() - 1] != ' ') return;
+	if (line.empty() || line[line.size() - 1] != ' ') return;
 
 	int i = static_cast<int>(line.size());
 
@@ -41,7 +41,7 @@ void StringHelper::trim(std::string& line) const {
 	trimEnd(line);
 }
 
-void StringHelper::split(const std::string& line, const std::string& token, std::vector<std::string>& results, const bool trimResults) {
+void StringHelper::split(const std::string& line, const std::string& token, std::vector<std::string>& results, const bool trimResults, StringSplitOptions options) {
 	size_t start = 0;
 	size_t end = line.find(token);
 
@@ -52,16 +52,24 @@ void StringHelper::split(const std::string& line, const std::string& token, std:
 			trim(sub);
 		}
 
-		results.push_back(sub);
-
 		start = end + token.size();
 		end = line.find(token, start);
+		
+		if (sub.empty() && options == StringSplitOptions::REMOVE_EMPTY) {
+			continue;
+		}
+
+		results.push_back(sub);
 	}
 
 	std::string sub = line.substr(start, end - start);
 
 	if (trimResults) {
 		trim(sub);
+	}
+	
+	if (sub.empty() && options == StringSplitOptions::REMOVE_EMPTY) {
+		return;
 	}
 
 	results.push_back(sub);

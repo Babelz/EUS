@@ -51,9 +51,32 @@ public:
 	~Effect();
 };
 
-struct ModelMesh {
-public:
-	std::string name;
+class Model : public Resource {
+private:
+
+	#pragma region Tokens
+	// Material lib token.
+	static const std::string MATERIAL_LIB;
+	// Vertice token.
+	static const std::string VERTICE;
+	// Texture vertices.
+	static const std::string TEXTURE_VERTICE;
+	// Vertex normals.
+	static const std::string VERTICE_NORMAL;
+	
+	// Material name token.
+	static const std::string MATERIAL_NAME;
+	// Smoothing grouping token.
+	static const std::string SMOOTH_GROUPING;
+	// Facing token.
+	static const std::string FACING;
+
+	// Comment tag, just skip them.
+	static const char COMMENT;
+	// Token used to split lines into tokens.
+	static const std::string ATRRIB_SPLIT;
+	static const std::string FACING_SPLIT;
+	#pragma endregion
 
 	std::string smoothingGroup;
 	std::string materialName;
@@ -64,39 +87,6 @@ public:
 
 	std::vector<unsigned short> indices;
 
-	ModelMesh() {
-	}
-
-	~ModelMesh() {
-	}
-};
-
-class Model : public Resource {
-private:
-	// Material lib token.
-	const std::string MTLLIB = "mtllib";
-	// Vertice token.
-	const std::string VERTICE = "v";
-	// Texture vertices.
-	const std::string TEXTURE_VERTICES = "vt";
-	// Vertex normals.
-	const std::string VERTEX_NORMALS = "vn";
-	
-	// Material name token.
-	const std::string MTNAME = "usemtl";
-	// Smoothing grouping token.
-	const std::string SMOOTHGRP = "s";
-	// Facing token.
-	const std::string FACING = "f";
-	// Object name.
-	const std::string OBJECTNAME = "o";
-
-	// Comment tag, just skip them.
-	const char COMMENT = '#';
-	// Token used to split lines into tokens.
-	const std::string SPLIT = " ";
-
-	std::vector<ModelMesh> meshes;
 	std::string materialLib;
 public:
 	Model();
@@ -105,7 +95,10 @@ public:
 
 	bool isEmpty() const;
 
-	const std::vector<ModelMesh>& getMeshes() const;
+	const std::vector<float>& getVertices() const;
+	const std::vector<float>& getTextureVertices() const;
+	const std::vector<float>& getVertexNormals() const;
+	const std::vector<unsigned short>& getIndices() const;
 
 	~Model();
 };

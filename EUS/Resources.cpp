@@ -172,6 +172,7 @@ bool Model::readFromFile(const std::string& path) {
 		// Parse indices.
 		else if (first == FACING) {
 			for (size_t i = 1; i < tokens.size(); i++) {
+				ss.clear();
 				ss.str(tokens[i]);
 
 				unsigned int j = 0;
@@ -183,6 +184,7 @@ bool Model::readFromFile(const std::string& path) {
 		// Parse texture vertices.
 		else if (first == TEXTURE_VERTICES) {
 			for (size_t i = 1; i < tokens.size(); i++) {
+				ss.clear();
 				ss.str(tokens[i]);
 
 				float f = 0.0f;
@@ -194,6 +196,7 @@ bool Model::readFromFile(const std::string& path) {
 		else if (first == VERTEX_NORMALS) {
 			// Parse normals.
 			for (size_t i = 1; i < tokens.size(); i++) {
+				ss.clear();
 				ss.str(tokens[i]);
 
 				float f = 0.0f;
@@ -205,6 +208,7 @@ bool Model::readFromFile(const std::string& path) {
 		else if (first == VERTICE) {
 			// Parse all vertices.
 			for (size_t i = 1; i < tokens.size(); i++) {
+				ss.clear();
 				ss.str(tokens[i]);
 
 				float f = 0.0f;
@@ -227,8 +231,12 @@ bool Model::readFromFile(const std::string& path) {
 	return true;
 }
 
-bool Model::empty() const {
-	return meshes.size() != 0;
+bool Model::isEmpty() const {
+	return meshes.size() == 0;
+}
+
+const std::vector<ModelMesh>& Model::getMeshes() const {
+	return meshes;
 }
 #pragma endregion
 

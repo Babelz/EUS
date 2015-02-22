@@ -13,11 +13,11 @@ void EUS::onEvent(const SDL_Event& e) {
 
 }
 
+#include "ModelRenderer.h"
+
 static Entity* map;
 static Model* model;
-static ModelRenderer* r;
-
-#include "ModelRenderer.h"
+static ModelRenderer* renderer;
 
 void EUS::initialize() {
 	texture = content().load<Texture>("tileset");
@@ -28,9 +28,9 @@ void EUS::initialize() {
 	model = content().load<Model>("box");
 
 	Entity* e = new Entity();
-	r = new ModelRenderer(*e);
-	r->setModel(model);
-	r->enable();
+	renderer = new ModelRenderer(*this, *e);
+	renderer->setModel(model);
+	renderer->enable();
 }
 
 void EUS::update(float deltaTime) {
@@ -38,7 +38,7 @@ void EUS::update(float deltaTime) {
 	map->childsForEach([](Entity* const e) { e->update();  });
 }
 void EUS::draw(float deltaTime) {
-	r->draw();
+	renderer->draw();
 
 	/*sb.begin();
 

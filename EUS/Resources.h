@@ -103,13 +103,11 @@ public:
 
 	bool readFromFile(const std::string& path);
 
-	bool empty() const;
+	bool isEmpty() const;
+
+	const std::vector<ModelMesh>& getMeshes() const;
 
 	~Model();
-
-	Model operator = (const Model& model) {
-		return model;
-	}
 };
 
 #endif

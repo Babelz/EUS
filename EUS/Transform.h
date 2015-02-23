@@ -28,6 +28,8 @@ public:
 
 	Matrix4 getTransform() const;
 
+	void setScale(const float value);
+
 	~Transform();
 };
 

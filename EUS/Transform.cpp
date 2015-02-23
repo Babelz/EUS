@@ -7,6 +7,9 @@ Transform::Transform() : transform(1.0f),
 
 #pragma region Public members
 void Transform::setPosition(const Vector3& position) {
+	this->position = position;
+
+	transform = glm::translate(Vector3(position.x, -position.y, position.z));
 }
 void Transform::setX(const float x) {
 	setPosition(Vector3(x, position.y, position.z));
@@ -44,6 +47,10 @@ void Transform::translate(const Vector3& vector) {
 
 Matrix4 Transform::getTransform() const {
 	return transform * rotation * scale;
+}
+
+void Transform::setScale(const float value) {
+	scale = Matrix4(value);
 }
 #pragma endregion
 

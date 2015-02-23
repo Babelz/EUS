@@ -12,44 +12,9 @@ Entity::Entity() : id(idCounter++),
 int Entity::getID() const {
 	return id;
 }
-float Entity::getWidth() const {
-	return size.x;
-}
-float Entity::getHeight() const {
-	return size.y;
-}
-void Entity::setWidth(float value) {
-	size.x = value;
-}
-void Entity::setHeight(float value) {
-	size.y = value;
-}
 
-pmath::Vec2f Entity::getSize() const {
-	return size;
-}
-void Entity::setSize(const pmath::Vec2f& value) {
-	size = pmath::Vec2f(value);
-}
-
-float Entity::getX() const {
-	return position.x;
-}
-float Entity::getY() const {
-	return position.y;
-}
-void Entity::setX(float value) {
-	position.x = value;
-}
-void Entity::setY(float value) {
-	position.y = value;
-}
-
-pmath::Vec2f Entity::getPosition() const  {
-	return position;
-}
-void Entity::setPosition(const pmath::Vec2f& value)  {
-	position = pmath::Vec2f(value);
+Transform& Entity::getTransform() {
+	return transform;
 }
 
 void Entity::show() {

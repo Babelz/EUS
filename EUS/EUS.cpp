@@ -28,8 +28,7 @@ void EUS::initialize() {
 	model = content().load<Model>("box");
 
 	Entity* e = new Entity();
-	renderer = new ModelRenderer(*this, *e);
-	renderer->setModel(model);
+	renderer = new ModelRenderer(*this, *e, model);
 	renderer->enable();
 }
 
@@ -39,7 +38,6 @@ void EUS::update(float deltaTime) {
 }
 void EUS::draw(float deltaTime) {
 	renderer->draw();
-
 	/*sb.begin();
 
 	//sb.draw(texture, pmath::Rectf(0, 0, 1280, 720));

@@ -17,8 +17,8 @@ void SpriteRenderer::onUpdate() {
 	if (sprite == nullptr) return;
 
 	if (follow) {
-		sprite->setX(getOwner().getX());
-		sprite->setY(getOwner().getY());
+		sprite->setX(getOwner().getTransform().getPosition().x);
+		sprite->setY(getOwner().getTransform().getPosition().x);
 	}
 }
 void SpriteRenderer::onDraw() {

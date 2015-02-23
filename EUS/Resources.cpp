@@ -166,6 +166,14 @@ bool Model::readFromFile(const std::string& path) {
 	std::stringstream ss;
 	std::string line;
 
+	std::vector<float> uvVertices;
+	std::vector<float> vertexNormals;
+	std::vector<float> tmpVertices;
+
+	std::vector<unsigned short> vertexIndices;
+	std::vector<unsigned short> uvIndicies;
+	std::vector<unsigned short> normalIndicies;
+
 	while (std::getline(inStream, line)) {
 		// Skip empty lines and comments.
 		if (line.empty()) {
@@ -195,19 +203,42 @@ bool Model::readFromFile(const std::string& path) {
 		}
 		// Parse indices.
 		else if (first == FACING) {
+			std::vector<unsigned int> values;
+
+			// Split tokens.
 			for (size_t i = 1; i < tokens.size(); i++) {
-				std::vector<std::string> values;
-				strHelper.split(tokens[i], FACING_SPLIT, values, true);
+				std::vector<std::string> buffer;
+				strHelper.split(tokens[i], FACING_SPLIT, buffer, true);
 
-				for (size_t j = 0; j < values.size(); j++) {
+				for (size_t j = 0; j < buffer.size(); j++) {
 					ss.clear();
-					ss.str(values[j]);
+					ss.str(buffer[j]);
 
-					unsigned int k = 0;
-					ss >> k;
+					unsigned short index = 0;
+					ss >> index;
 
-					indices.push_back(k);
+					values.push_back(index);
 				}
+			}
+
+			values.reserve(0);
+
+			int offset = values.size() > 6 ? 3 : 2;
+			
+			for (size_t i = 0; i < values.size(); i += offset){
+				// No UV.
+				if (offset == 2) {
+					uvIndicies.push_back(0);
+					vertexIndices.push_back(values[i]);
+					normalIndicies.push_back(values[i + 1]);
+					
+					continue;
+				}
+
+				// Has UV.
+				vertexIndices.push_back(values[i]);
+				uvIndicies.push_back(values[i + 1]);
+				normalIndicies.push_back(values[i + 2]);
 			}
 		}
 		// Parse texture vertices.
@@ -219,7 +250,7 @@ bool Model::readFromFile(const std::string& path) {
 				float f = 0.0f;
 				ss >> f;
 
-				textureVertices.push_back(f);
+				uvVertices.push_back(f);
 			}
 		}
 		else if (first == VERTICE_NORMAL) {
@@ -235,7 +266,6 @@ bool Model::readFromFile(const std::string& path) {
 			}
 		}
 		else if (first == VERTICE) {
-			// Parse all vertices.
 			for (size_t i = 1; i < tokens.size(); i++) {
 				ss.clear();
 				ss.str(tokens[i]);
@@ -243,8 +273,48 @@ bool Model::readFromFile(const std::string& path) {
 				float f = 0.0f;
 				ss >> f;
 
-				vertices.push_back(f);
+				tmpVertices.push_back(f);
 			}
+		}
+	}
+
+	tmpVertices.reserve(0);
+	uvVertices.reserve(0);
+	vertexNormals.reserve(0);
+
+	// | Position (3) | Texture coords (2) | Normal (3) |
+
+	for (size_t i = 0; i < vertexIndices.size(); i++) {
+		unsigned short vertexIndex = vertexIndices[i] * 3;
+		// Push vertex position (x, y, z)
+		vertices.push_back(tmpVertices[vertexIndex - 1]);
+		vertices.push_back(tmpVertices[vertexIndex - 2]);
+		vertices.push_back(tmpVertices[vertexIndex - 3]);
+		
+		unsigned short uvIndex = uvIndicies[i] * 2;
+		
+		// No texture coords. 
+		if (uvIndex == 0) {
+			for (size_t i = 0; i < 2; i++) {
+				vertices.push_back(0.0f);
+			}
+		}  else {
+			// Push texture coordinates.
+			vertices.push_back(uvVertices[uvIndex - 1]);
+			vertices.push_back(uvVertices[uvIndex - 2]);
+		}
+
+		unsigned short normalIndex = normalIndicies[i] * 3;
+		// Push normal data.
+		if (normalIndicies.size() == 0) {
+			for (size_t i = 0; i < 3; i++) {
+				vertices.push_back(0.0f);
+			}
+		}
+		else {
+			vertices.push_back(vertexNormals[normalIndex - 1]);
+			vertices.push_back(vertexNormals[normalIndex - 2]);
+			vertices.push_back(vertexNormals[normalIndex - 3]);
 		}
 	}
 
@@ -257,15 +327,6 @@ bool Model::isEmpty() const {
 
 const std::vector<float>& Model::getVertices() const {
 	return vertices;
-}
-const std::vector<float>& Model::getTextureVertices() const {
-	return textureVertices;
-}
-const std::vector<float>& Model::getVertexNormals() const {
-	return vertexNormals;
-}
-const std::vector<unsigned short>& Model::getIndices() const {
-	return indices;
 }
 #pragma endregion
 

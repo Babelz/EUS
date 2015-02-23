@@ -4,6 +4,7 @@
 #include "Component.h"
 #include "Vector.hpp"
 #include "Vector2.hpp"
+#include "Transform.h"
 
 class Entity {
 private:
@@ -13,6 +14,7 @@ private:
 	
 	TagContainer tags;
 	ComponentManager components;
+	Transform transform;
 
 	bool visible;
 	bool enabled;
@@ -29,21 +31,7 @@ public:
 
 	int getID() const;
 
-	float getWidth() const;
-	float getHeight() const;
-	void setWidth(const float value);
-	void setHeight(const float value);
-
-	pmath::Vec2f getSize() const;
-	void setSize(const pmath::Vec2f& value);
-
-	float getX() const;
-	float getY() const;
-	void setX(const float value);
-	void setY(const float value);
-	
-	pmath::Vec2f getPosition() const;
-	void setPosition(const pmath::Vec2f& value);
+	Transform& getTransform();
 
 	void show();
 	void hide();

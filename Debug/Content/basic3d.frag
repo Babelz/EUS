@@ -1,7 +1,12 @@
 #version 330
 
-out vec4 outColour;
+in vec2 texCoords;
+in vec3 normals;
+
+uniform sampler2D tex;
 
 void main() {
-	outColour = vec4(1, 1, 1, 1);
+	vec4 diffuse = texture2D(tex, vec2(texCoords.x, -texCoords.y));
+	float a = diffuse.x;
+	gl_FragColor = diffuse;
 }

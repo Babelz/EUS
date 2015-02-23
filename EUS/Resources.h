@@ -82,10 +82,6 @@ private:
 	std::string materialName;
 
 	std::vector<float> vertices;
-	std::vector<float> textureVertices;
-	std::vector<float> vertexNormals;
-
-	std::vector<unsigned short> indices;
 
 	std::string materialLib;
 public:
@@ -96,9 +92,6 @@ public:
 	bool isEmpty() const;
 
 	const std::vector<float>& getVertices() const;
-	const std::vector<float>& getTextureVertices() const;
-	const std::vector<float>& getVertexNormals() const;
-	const std::vector<unsigned short>& getIndices() const;
 
 	~Model();
 };

@@ -26,7 +26,7 @@ void Game::internalInitialize() {
 	SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 8);
 	SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 8);
 	SDL_GL_SetAttribute(SDL_GL_ALPHA_SIZE, 8);
-
+	
 	// Create window.
 	m_window = SDL_CreateWindow(windowTitle.c_str(), 
 								SDL_WINDOWPOS_CENTERED, 
@@ -43,7 +43,6 @@ void Game::internalInitialize() {
 	// Init glew.
 	glewExperimental = GL_TRUE;
 	const GLenum glewResult = glewInit();
-
 	glGetError();
 
 	assert(glewResult == GLEW_OK);
@@ -53,8 +52,8 @@ void Game::internalInitialize() {
 	glGetIntegerv(GL_MAJOR_VERSION, &versionMajor);
 	glGetIntegerv(GL_MINOR_VERSION, &versionMinor);
 
-	//glOrtho(0.0f, windowWidth, windowHeight, 0.0f, -10, 10);
-	
+	glEnable(GL_DEPTH_TEST);
+
 	std::cout << "OpenGL context version: " << versionMajor << "." << versionMinor << std::endl;
 
 	m_spriteBatch.initialize();

@@ -8,7 +8,7 @@ private:
 
 	bool visible;
 protected:
-	virtual void onDraw();
+	virtual void onDraw(const float deltaTime);
 
 	virtual void onVisibleChanged(const bool newVisibility, const bool oldVisibility);
 
@@ -16,13 +16,13 @@ protected:
 public:
 	int getDrawOrder() const;
 
-	DrawableComponent(Entity& owner, const int updateOrder = 0, const int drawOrder = 0);
+	DrawableComponent(Game& game, Entity& owner, const int updateOrder = 0, const int drawOrder = 0);
 
 	void show();
 	void hide();
 	bool isVisible() const;
 
-	void draw();
+	void draw(const float deltaTime);
 
 	virtual ~DrawableComponent();
 };

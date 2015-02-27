@@ -6,12 +6,11 @@
 class SpriteRenderer : public DrawableComponent {
 private:
 	Sprite* sprite;
-	Game& game;
-
+	
 	bool follow;
 protected:
-	void onUpdate();
-	void onDraw();
+	void onUpdate(const float deltaTime);
+	void onDraw(const float deltaTime);
 public:
 	SpriteRenderer(Game& game, Entity& owner, Sprite* const sprite);
 	SpriteRenderer(Game& game, Entity& owner);

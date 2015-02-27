@@ -18,19 +18,19 @@ void EUS::initialize() {
 	map = b.buildMap("test", "bordersheet", 32);
 }
 
-void EUS::update(float deltaTime) {
-	map->update();
+void EUS::update(const float deltaTime) {
+	map->update(deltaTime);
 }
 
-void EUS::draw(float deltaTime) {
+void EUS::draw(const float deltaTime) {
 	spriteBatch().begin();
 
 	std::list<Entity* const> entities = map->getChilds();
 	
-	std::for_each(entities.begin(), entities.end(), [](Entity* const e) {
+	std::for_each(entities.begin(), entities.end(), [deltaTime](Entity* const e) {
 		Entity* entity = const_cast<Entity*>(e);
 
-		entity->draw();
+		entity->draw(deltaTime);
 	});
 
 	spriteBatch().end();

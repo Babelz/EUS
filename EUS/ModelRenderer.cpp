@@ -2,7 +2,7 @@
 
 static Texture* texture;
 
-ModelRenderer::ModelRenderer(Game& game, Entity& owner, Model* const model, const int updateOrder, const int drawOrder) : DrawableComponent(owner, updateOrder, drawOrder),
+ModelRenderer::ModelRenderer(Game& game, Entity& owner, Model* const model, const int updateOrder, const int drawOrder) : DrawableComponent(game, owner, updateOrder, drawOrder),
 																														  model(model),
 																														  vertexArray(0),
 																														  vertexBuffer(0) {

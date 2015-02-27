@@ -27,8 +27,8 @@ public:
 
 	void destroy();
 
-	virtual void draw();
-	virtual void update();
+	virtual void draw(const float deltaTime);
+	virtual void update(const float deltaTime);
 
 	virtual ~Scene();
 };
@@ -54,8 +54,8 @@ public:
 	// Changes scene and returns current scenes name.
 	const std::string& changeScene(const std::string& name);
 
-	void update();
-	void draw();
+	void update(const float deltaTime);
+	void draw(const float deltaTime);
 
 	~SceneManager();
 };

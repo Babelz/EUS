@@ -28,8 +28,8 @@ public:
 	Entity* const findEntityWithTag(const std::string& tag) const;
 	Entity* const findEntityWithID(const int id) const;
 
-	void update();
-	void draw();
+	void update(const float deltaTime);
+	void draw(const float deltaTime);
 
 	~EntityManager();
 };

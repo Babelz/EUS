@@ -1,17 +1,22 @@
 #include "Component.h"
 
-Component::Component(Entity& owner, const int updateOrder) : owner(owner), updateOrder(updateOrder) {
+Component::Component(Game& game, Entity& owner, const int updateOrder) : game(game),
+																		 owner(owner), 
+																		 updateOrder(updateOrder) {
 	destroyed = false;
 	enabled = false;
 	initialized = false;
 }
 
 #pragma region Protected members
+Game& Component::getGame() const {
+	return game;
+}
 Entity& Component::getOwner() const {
 	return owner;
 }
 
-void Component::onUpdate() { }
+void Component::onUpdate(const float deltaTime) { }
 
 void Component::onDestroyed() { }
 
@@ -82,12 +87,12 @@ bool Component::isDestroyed() const {
 	return destroyed;
 }
 
-void Component::update() {
+void Component::update(const float deltaTime) {
 	if (!enabled || destroyed) {
 		return;
 	}
 
-	onUpdate();
+	onUpdate(deltaTime);
 }
 #pragma endregion
 

@@ -35,8 +35,8 @@ void Scene::activate(SceneManager* const sceneManager) {
 	}
 }
 
-void Scene::draw() { }
-void Scene::update() { }
+void Scene::draw(const float deltaTime) { }
+void Scene::update(const float deltaTime) { }
 #pragma endregion
 
 Scene::~Scene() {
@@ -124,19 +124,19 @@ const std::string& SceneManager::changeScene(const std::string& name) {
 	return empty;
 }
 
-void SceneManager::update() {
+void SceneManager::update(const float deltaTime) {
 	if (activeScene == nullptr) {
 		return;
 	}
 
-	activeScene->update();
+	activeScene->update(deltaTime);
 }
-void SceneManager::draw() {
+void SceneManager::draw(const float deltaTime) {
 	if (activeScene == nullptr) {
 		return;
 	}
 
-	activeScene->draw();
+	activeScene->draw(deltaTime);
 }
 #pragma endregion
 

@@ -1,6 +1,7 @@
 #include "TileInfo.h"
 
-TileInfo::TileInfo(Entity& owner,
+TileInfo::TileInfo(Game& game,
+				   Entity& owner,
 				   const std::string& name, 
 				   const int movementCost,  
 				   const int coverValue, 
@@ -8,7 +9,7 @@ TileInfo::TileInfo(Entity& owner,
 										  movementCost(movementCost),
 										  coverValue(coverValue),
 										  type(type),
-										  Component(owner) {
+										  Component(game, owner) {
 }
 
 #pragma region Public members

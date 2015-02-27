@@ -1,19 +1,17 @@
 #include "SpriteRenderer.h"
 
-SpriteRenderer::SpriteRenderer(Game& game, Entity& owner, Sprite* sprite) : DrawableComponent(owner),
-																			game(game),
+SpriteRenderer::SpriteRenderer(Game& game, Entity& owner, Sprite* sprite) : DrawableComponent(game, owner),
 																			sprite(sprite),
 																			follow(false) {
 }
-SpriteRenderer::SpriteRenderer(Game& game, Entity& owner) : DrawableComponent(owner),
-															game(game),
+SpriteRenderer::SpriteRenderer(Game& game, Entity& owner) : DrawableComponent(game, owner),
 															sprite(nullptr),
 															follow(false) {
 
 }
 
 #pragma region Protected members
-void SpriteRenderer::onUpdate() {
+void SpriteRenderer::onUpdate(const float deltaTime) {
 	if (sprite == nullptr) return;
 
 	if (follow) {
@@ -21,10 +19,10 @@ void SpriteRenderer::onUpdate() {
 		sprite->setY(getOwner().getTransform().getPosition().x);
 	}
 }
-void SpriteRenderer::onDraw() {
+void SpriteRenderer::onDraw(const float deltaTime) {
 	if (sprite == nullptr) return;
 
-	sprite->draw(game.spriteBatch());
+	sprite->draw(getGame().spriteBatch());
 }
 #pragma endregion
 

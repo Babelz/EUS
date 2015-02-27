@@ -94,10 +94,10 @@ void ComponentManager::freeComponents() {
 	destroyedComponents.clear();
 }
 
-void ComponentManager::update() {
+void ComponentManager::update(const float deltaTime) {
 	freeDestroyedComponents();
 	
-	std::for_each(components.begin(), components.end(), [this](Component* c) {
+	std::for_each(components.begin(), components.end(), [this, deltaTime](Component* c) {
 		// Component was destroyed in last frame, some other
 		// component destroyed it or it was destroyed during 
 		// draw call.
@@ -107,12 +107,12 @@ void ComponentManager::update() {
 			return;
 		}
 
-		c->update();
+		c->update(deltaTime);
 	});
 }
-void ComponentManager::draw() {
-	std::for_each(drawableComponents.begin(), drawableComponents.end(), [this](DrawableComponent* c) {
-		c->draw();
+void ComponentManager::draw(const float deltaTime) {
+	std::for_each(drawableComponents.begin(), drawableComponents.end(), [this, deltaTime](DrawableComponent* c) {
+		c->draw(deltaTime);
 	});
 }
 #pragma endregion 

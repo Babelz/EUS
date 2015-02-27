@@ -40,8 +40,8 @@ protected:
 	virtual void onEvent(const SDL_Event& e);
 
 	virtual void initialize();
-	virtual void update(float delta);
-	virtual void draw(float delta);
+	virtual void update(const float delta);
+	virtual void draw(const float delta);
 public:
 	Game(const int windowWidth = 1280, const int windowHeight = 720, const char* windowTitlte = "OpenGL");
 

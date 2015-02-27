@@ -24,6 +24,9 @@
     <Filter Include="Source Files\Entities\Builders">
       <UniqueIdentifier>{fce180bc-2977-4f29-b8e9-e1e8df875b02}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Components\AI">
+      <UniqueIdentifier>{5abdc124-863d-4336-afb7-5d8933567aba}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -110,6 +113,9 @@
     <ClCompile Include="Require.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerController.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.h">
@@ -188,6 +194,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Require.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

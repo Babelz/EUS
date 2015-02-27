@@ -71,22 +71,22 @@ Entity* const EntityManager::findEntityWithID(const int id) const {
 	return *result;
 }
 
-void EntityManager::update() {
+void EntityManager::update(const float deltaTime) {
 	freeEntities();
 	
-	std::for_each(entities.begin(), entities.end(), [this](Entity* e) {
+	std::for_each(entities.begin(), entities.end(), [this, deltaTime](Entity* e) {
 		if (e->isDestroyed()) {
 			destroyedEntities.push_back(e);
 
 			return;
 		}
 
-		e->update();
+		e->update(deltaTime);
 	});
 }
-void EntityManager::draw() {
-	std::for_each(entities.begin(), entities.end(), [](Entity* e) {
-		e->draw();
+void EntityManager::draw(const float deltaTime) {
+	std::for_each(entities.begin(), entities.end(), [deltaTime](Entity* e) {
+		e->draw(deltaTime);
 	});
 }
 #pragma endregion

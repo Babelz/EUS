@@ -56,7 +56,7 @@ TileBuilder::TileBuilder(Game& game) : EntityBuilder("", game) {
 Entity* TileBuilder::internalCreateTile(const std::string& name, const int movementCost, const int coverValue, const TileType type) const {
 	Entity* tile = new Entity();
 
-	TileInfo* tileInfo = new TileInfo(*tile, name, movementCost, coverValue, type);
+	TileInfo* tileInfo = new TileInfo(game(), *tile, name, movementCost, coverValue, type);
 	tile->addComponent(tileInfo);
 	tileInfo->enable();
 

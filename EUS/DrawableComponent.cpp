@@ -1,12 +1,12 @@
 #include "DrawableComponent.h"
 
-DrawableComponent::DrawableComponent(Entity& owner, const int updateOrder, const int drawOrder) 
-: Component(owner, updateOrder), drawOrder(drawOrder) {
+DrawableComponent::DrawableComponent(Game& game, Entity& owner, const int updateOrder, const int drawOrder) : Component(game, owner, updateOrder), 
+																											  drawOrder(drawOrder) {
 	visible = true;
 }
 
 #pragma region Protected members
-void DrawableComponent::onDraw() {
+void DrawableComponent::onDraw(const float deltaTime) {
 }
 
 void DrawableComponent::onVisibleChanged(const bool newVisibility, const bool oldVisibility) {
@@ -42,12 +42,12 @@ bool DrawableComponent::isVisible() const {
 	return visible;
 }
 
-void DrawableComponent::draw() {
+void DrawableComponent::draw(const float deltaTime) {
 	if (!visible || isDestroyed()) {
 		return;
 	}
 
-	onDraw();
+	onDraw(deltaTime);
 }
 #pragma endregion 
 

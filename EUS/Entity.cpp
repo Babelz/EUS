@@ -129,12 +129,12 @@ bool Entity::removeChild(Entity* const child) {
 
 // Update all components that are enabled if entity is in enabled
 // state, and is not destroyed.
-void Entity::update() {
+void Entity::update(const float deltaTime) {
 	if (!enabled || destroyed) {
 		return;
 	}
 
-	components.update();
+	components.update(deltaTime);
 
 	if (childs.size() > 0) return;
 
@@ -147,12 +147,12 @@ void Entity::update() {
 
 // Draw all components that are visible if entity is in enabled
 // state, and is not destroyed.
-void Entity::draw() {
+void Entity::draw(const float deltaTime) {
 	if (!visible || destroyed) {
 		return;
 	}
 
-	components.draw();
+	components.draw(deltaTime);
 }
 
 std::list<Entity* const> Entity::getChilds() const {

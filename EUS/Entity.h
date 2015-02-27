@@ -65,8 +65,8 @@ public:
 	bool addChild(Entity* const child);
 	bool removeChild(Entity* const child);
 
-	void update();
-	void draw();
+	void update(const float deltaTime);
+	void draw(const float deltaTime);
 
 	std::list<Entity* const> getChilds() const;
 

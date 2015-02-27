@@ -23,8 +23,8 @@ public:
 
 	void freeComponents();
 
-	void update();
-	void draw();
+	void update(const float deltaTime);
+	void draw(const float deltaTime);
 
 	template<class T> T* const getComponent() const {
 		T* foundComponent = nullptr;

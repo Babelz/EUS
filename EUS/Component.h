@@ -1,11 +1,13 @@
 #pragma once
 #include <cassert>
 
+class Game;
 class Entity;
 
 // Base class for all components.
 class Component {
 private:
+	Game& game;
 	Entity& owner;
 
 	int updateOrder;
@@ -14,10 +16,11 @@ private:
 	bool enabled;
 	bool initialized;
 protected:
+	Game& getGame() const;
 	Entity& getOwner() const;
 
 	// Called every update if component is enabled.
-	virtual void onUpdate();
+	virtual void onUpdate(const float deltaTime);
 
 	// Called when component gets destroyed.
 	virtual void onDestroyed();
@@ -33,7 +36,7 @@ protected:
 public:
 	int getUpdateOrder() const;
 
-	Component(Entity& owner, const int updateOrder = 0);
+	Component(Game& game, Entity& owner, const int updateOrder = 0);
 
 	void changeUpdateOrder(const int newOrder);
 
@@ -44,7 +47,7 @@ public:
 	void destroy();
 	bool isDestroyed() const;
 
-	void update();
+	void update(const float deltaTime);
 
 	virtual ~Component();
 };

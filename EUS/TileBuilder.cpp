@@ -1,6 +1,7 @@
 #include "TileBuilder.h"
 
 TileBuilder::TileBuilder(Game& game) : EntityBuilder("", game) {
+	
 	// p stands for player. Add p1, p2, p3 etc if needed.
 	pushBuilder("pFactory", std::function<Entity*()>(std::bind(&TileBuilder::createPlayerFactory, this)));
 	pushBuilder("pCity", std::function<Entity*()>(std::bind(&TileBuilder::createPlayerCity, this)));
@@ -8,6 +9,7 @@ TileBuilder::TileBuilder(Game& game) : EntityBuilder("", game) {
 	// cpu...
 	pushBuilder("cpu1Factory", std::function<Entity*()>(std::bind(&TileBuilder::createCPU1Factory, this)));
 	pushBuilder("cpu1City", std::function<Entity*()>(std::bind(&TileBuilder::createCPU1City, this)));
+	pushBuilder("cpu1HQ", std::function<Entity*()>(std::bind(&TileBuilder::createCPU1HQ, this)));
 
 	// n stands for neutral.
 	pushBuilder("nFactory", std::function<Entity*()>(std::bind(&TileBuilder::createNeutralFactory, this)));
@@ -20,22 +22,28 @@ TileBuilder::TileBuilder(Game& game) : EntityBuilder("", game) {
 	// TODO: fix.
 	// OH GOD PLEASE FIX THIS BS.
 	// Shittiest gode EU, make these from array or smthng.
-	pushBuilder("rCoast", std::function<Entity*()>(std::bind(&TileBuilder::createCoast, this)));
-	pushBuilder("lCoast", std::function<Entity*()>(std::bind(&TileBuilder::createCoast, this)));
-	pushBuilder("tfCoast", std::function<Entity*()>(std::bind(&TileBuilder::createCoast, this)));
-	pushBuilder("bfCoast", std::function<Entity*()>(std::bind(&TileBuilder::createCoast, this)));
-	pushBuilder("brcCoast", std::function<Entity*()>(std::bind(&TileBuilder::createCoast, this)));
-	pushBuilder("blcCoast", std::function<Entity*()>(std::bind(&TileBuilder::createCoast, this)));
-	pushBuilder("tlcCoast", std::function<Entity*()>(std::bind(&TileBuilder::createCoast, this)));
-	pushBuilder("trcCoast", std::function<Entity*()>(std::bind(&TileBuilder::createCoast, this)));
+	
+	static const std::string coasts [] = {
+		"bfCoast", "tfCoast", "rCoast",
+		"lCoast", "brcCoast", "blcCoast",
+		"trcCoast", "tlcCoast"
+	};
 
-	pushBuilder("leftPartTop", std::function<Entity*()>(std::bind(&TileBuilder::createCoast, this)));
-	pushBuilder("rightPartTop", std::function<Entity*()>(std::bind(&TileBuilder::createCoast, this)));
-	pushBuilder("leftPartBottom", std::function<Entity*()>(std::bind(&TileBuilder::createCoast, this)));
-	pushBuilder("rightPartBottom", std::function<Entity*()>(std::bind(&TileBuilder::createCoast, this)));
+	static const std::string corners [] = {
+		"rightPartTop", "leftPartTop", "leftPartBottom",
+		"rightPartBottom"
+	};
+
+	for (size_t i = 0; i < sizeof(coasts) / sizeof(std::string); i++) {
+		pushBuilder(coasts[i], std::function<Entity*()>(std::bind(&TileBuilder::createCoast, this)));
+	}
+
+	for (size_t i = 0; i < sizeof(corners) / sizeof(std::string); i++) {
+		pushBuilder(corners[i], std::function<Entity*()>(std::bind(&TileBuilder::createCoast, this)));
+	}
 
 	// TODO: fix, not a HQ tile.
-	pushBuilder("playerHQ", std::function<Entity*()>(std::bind(&TileBuilder::createCoast, this)));
+	pushBuilder("playerHQ", std::function<Entity*()>(std::bind(&TileBuilder::createPlayerHQ, this)));
 
 	//pushBuilder("trcCoast", std::function<Entity*()>(std::bind(&TileBuilder::createCoast, this)));
 
@@ -68,6 +76,12 @@ Entity* TileBuilder::createPlayerCity() const {
 
 	return tile;
 }
+Entity* TileBuilder::createPlayerHQ() const {
+	Entity* tile = internalCreateTile("playerHQ", 0, 5, TileType::Urban);
+	tile->tag("p");
+
+	return tile;
+}
 
 // Methods for creating tiles that CPU1 "owns".
 Entity* TileBuilder::createCPU1Factory() const {
@@ -78,6 +92,12 @@ Entity* TileBuilder::createCPU1Factory() const {
 }
 Entity* TileBuilder::createCPU1City() const {
 	Entity* tile = internalCreateTile("cpu1City", 0, 4, TileType::Urban);
+	tile->tag("cpu1");
+
+	return tile;
+}
+Entity* TileBuilder::createCPU1HQ() const {
+	Entity* tile = internalCreateTile("cpu1HQ", 0, 4, TileType::Urban);
 	tile->tag("cpu1");
 
 	return tile;
@@ -106,7 +126,6 @@ Entity* TileBuilder::createCoast() const {
 Entity* TileBuilder::createWoods() const {
 	return internalCreateTile("woods", 3, 4, TileType::Woods);
 }
-
 
 Entity* TileBuilder::createPlains() const {
 	return internalCreateTile("plains", 0, 0, TileType::Pains);

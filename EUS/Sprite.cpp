@@ -95,9 +95,9 @@ void Sprite::draw(SpriteBatch& spriteBatch) {
 
 	if (usingSource) {
 		pmath::Rectf destination(position.x,
-			position.y, 32, 32);
-								 //source.size.x * scale.x, 
-								 //source.size.y * scale.y);
+								 position.y, 
+								 source.size.x * scale.x, 
+								 source.size.y * scale.y);
 
 		spriteBatch.draw(texture, source, destination, color);
 

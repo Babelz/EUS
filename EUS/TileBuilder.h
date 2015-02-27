@@ -23,10 +23,12 @@ private:
 	// Methods for creating tiles that player "owns".
 	Entity* createPlayerFactory() const;
 	Entity* createPlayerCity() const;
-	
+	Entity* createPlayerHQ() const;
+
 	// Methods for creating tiles that CPU1 "owns".
 	Entity* createCPU1Factory() const;
 	Entity* createCPU1City() const;
+	Entity* createCPU1HQ() const;
 
 	// Methods for creating tiles that are neutral.
 	Entity* createNeutralFactory() const;

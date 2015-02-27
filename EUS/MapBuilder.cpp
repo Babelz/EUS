@@ -29,15 +29,19 @@ Entity* MapBuilder::buildMap(const std::string& name, const std::string& sheetNa
 			std::string name = mappings.getTileName(ch);
 			pmath::Rectf source = sheet.getSource(name);
 
+			float h, w; h = w = 64.0f;
+
 			Entity* tile = builder.buildTile(name);
-			tile->getTransform().setX(source.size.x * j);
-			tile->getTransform().setY(source.size.y * i);
+			tile->getTransform().setX(w * j);
+			tile->getTransform().setY(h * i);
 
 			SpriteRenderer* renderer = new SpriteRenderer(game(), *tile);
 			renderer->setSprite(new Sprite());
 			renderer->getSprite().swapTexture(texture);
 			renderer->getSprite().setSource(source);
 			renderer->getSprite().useSource();
+			// TODO: debug scale.
+			renderer->getSprite().setScale(2.0f);
 			renderer->getSprite().setX(tile->getTransform().getPosition().x);
 			renderer->getSprite().setY(tile->getTransform().getPosition().y);
 

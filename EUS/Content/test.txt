@@ -20,6 +20,9 @@ o rightPartTop
 i leftPartBottom
 j rightPartBottom
 Q playerHQ
+h cpu1HQ
+g cpu1Factory
+b cpu1City
 -mappings
 
 
@@ -43,16 +46,19 @@ leftPartTop 224 32
 leftPartBottom 0 64
 rightPartBottom 32 64
 playerHQ 64 64
+cpu1HQ 64 64
+cpu1Factory 32 0
+cpu1City 64 0
 -sources
 
 -tiles
 WWWWWWWWWWWWWWWW
 Wo----pWo-----pW
-WLPPPPRWLPPPPPRW
-WLPPPPr-tPPPPPRW
-WL$$$PPPPPPPPPRW
-WLTPPPPPPPPPPPRW
-WLTPPPc_ePPPPPRW
+WLPPPPRWLPPgghRW
+WLPPPPr-tPPPbgRW
+WL$$$PPPPPPPbgRW
+WLTPPPPPPPPPbPRW
+WLTPPPc_ePPPbPRW
 WLQTT$RWLPPPPPRW
 Wj____iWj_____iW
 WWWWWWWWWWWWWWWW

@@ -1,9 +1,11 @@
-﻿Build started 27.2.2015 11:09:02.
+﻿Build started 27.2.2015 11:43:20.
      1>Project "C:\Users\ttv14snikos\Desktop\gits\ogl\EUS2\EUS\EUS\EUS.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I./include /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D GLEW_STATIC /D _MBCS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /FR"Debug\\" /Gd /TP /analyze- /errorReport:prompt TileBuilder.cpp
-         TileBuilder.cpp
-     1>c:\users\ttv14snikos\desktop\gits\ogl\eus2\eus\eus\tilebuilder.cpp(49): warning C4316: 'Entity' : object allocated on the heap may not be aligned 16
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I./include /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D GLEW_STATIC /D _MBCS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /FR"Debug\\" /Gd /TP /analyze- /errorReport:prompt MapBuilder.cpp Sprite.cpp
+         Sprite.cpp
+         MapBuilder.cpp
+     1>c:\users\ttv14snikos\desktop\gits\ogl\eus2\eus\eus\mapbuilder.cpp(23): warning C4316: 'Entity' : object allocated on the heap may not be aligned 16
+         Generating Code...
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\ttv14snikos\Desktop\gits\ogl\EUS2\EUS\Debug\EUS.exe" /INCREMENTAL /NOLOGO /LIBPATH:./lib glew32s.lib OPENGL32.lib SDL2main.lib SDL2.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\ttv14snikos\Desktop\gits\ogl\EUS2\EUS\Debug\EUS.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\ttv14snikos\Desktop\gits\ogl\EUS2\EUS\Debug\EUS.lib" /MACHINE:X86 Debug\Component.obj
          Debug\ComponentManager.obj
@@ -40,4 +42,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:03.30
+Time Elapsed 00:00:03.82

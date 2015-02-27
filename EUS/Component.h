@@ -3,7 +3,7 @@
 
 class Entity;
 
-// Base class for components that can update.
+// Base class for all components.
 class Component {
 private:
 	Entity& owner;

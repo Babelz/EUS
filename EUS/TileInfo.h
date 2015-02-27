@@ -6,7 +6,8 @@
 enum TileType {
 	Flats,
 	Hills,
-	Water
+	Water,
+	Urban
 };
 
 class TileInfo : public Component {

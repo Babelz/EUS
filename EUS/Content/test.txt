@@ -1,16 +1,22 @@
 -mappings
 # plains
-$ factory
-T city
+$ pFactory
+T pCity
 ^ hills
 -mappings
 
 
 -sources
 plains 0 0
-factory 32 0
-city 64 0
+pFactory 32 0
+pCity 64 0
 hills 96 0
+water 128 0
+woods 160 0
+bfCoast 192 0	
+bfCoast 224 0
+rCoast 0 32
+lCoast 32 32
 -sources
 
 

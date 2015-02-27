@@ -19,14 +19,24 @@ private:
 	std::list<TileBuilderData> tileBuilders;
 
 	Entity* internalCreateTile(const std::string& name, const int movementCost, const int coverValue, const TileType type) const;
+	
+	// Methods for creating tiles that player "owns".
+	Entity* createPlayerFactory() const;
+	Entity* createPlayerCity() const;
+	
+	// Methods for creating tiles that CPU1 "owns".
+	Entity* createCPU1Factory() const;
+	Entity* createCPU1City() const;
+
+	// Methods for creating tiles that are neutral.
+	Entity* createNeutralFactory() const;
+	Entity* createNeutralCity() const;
 
 	Entity* createPlains() const;
 	Entity* createHills() const;
 	Entity* createEntity() const;
-	Entity* createFactory() const;
 	Entity* createSea() const;
-	Entity* createCity() const;
-
+	
 	void pushBuilder(const std::string& tileName, std::function<Entity*()> builder);
 public:
 	TileBuilder(Game& game);

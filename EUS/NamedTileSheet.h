@@ -2,11 +2,9 @@
 #include "StringHelper.h"
 #include "Resources.h"
 #include "Rectangle.hpp"
+#include "Require.h"
 #include <fstream>	
 #include <map>
-
-// TODO: change that data is loaded from a file.
-//       atm its hard coded.
 
 class NamedTileSheet {
 private:

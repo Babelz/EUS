@@ -234,6 +234,9 @@ void SpriteBatch::draw(Texture* const texture, pmath::Rectf& source, pmath::Vec3
 
 	draw(texture, source, destination, color);
 }
+
+static float f = 0.0f;
+
 void SpriteBatch::draw(Texture* const texture, pmath::Rectf& source, pmath::Rectf& destionation, pmath::Vec4f color) {
 	float xScale = destionation.size.x / texture->width;
 	float yScale = destionation.size.y / texture->height;
@@ -246,16 +249,18 @@ void SpriteBatch::draw(Texture* const texture, pmath::Rectf& source, pmath::Rect
 	SpriteInfo& sprite = spriteQueue[spritesCount - 1];
 
 	sprite.tLeftTexCoord.x = source.getLeft() / texture->width;
-	sprite.tLeftTexCoord.y = source.getBottom() / texture->height;
+	sprite.tLeftTexCoord.y = source.getTop() / source.size.y;
 
 	sprite.tRightTexCoord.x = source.getRight() / texture->width;
-	sprite.tRightTexCoord.y = source.getBottom() / texture->height; 
+	sprite.tRightTexCoord.y = source.getTop() / source.size.y;
 
 	sprite.bLeftTexCoord.x = source.getLeft() / texture->width;
-	sprite.bLeftTexCoord.y = source.getTop() / texture->height;
+	sprite.bLeftTexCoord.y = -(source.size.y / texture->height);
 
 	sprite.bRightTexCoord.x = source.getRight() / texture->width;
-	sprite.bRightTexCoord.y = source.getTop() / texture->height;
+	sprite.bRightTexCoord.y = -(source.size.y / texture->height);
+
+	std::cout << f << std::endl;
 }
 
 void SpriteBatch::draw(Texture* const texture, pmath::Vec3f& position, pmath::Vec4f& color, float scale) {

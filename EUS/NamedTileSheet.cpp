@@ -23,6 +23,8 @@ size_t NamedTileSheet::getTileSize() const {
 }
 
 pmath::Rectf NamedTileSheet::getSource(const std::string& name) const {
+	require(containsSourceWithName(name), "NamedTileSheet, getSource: source with name '" + name + "' does not exist");
+
 	return sources.at(name);
 }
 bool NamedTileSheet::containsSourceWithName(const std::string& name) const {
@@ -41,7 +43,7 @@ void NamedTileSheet::load(const std::string& filename) {
 
 	StringHelper strHelper;
 
-	assert(inStream.is_open());
+	require(inStream.is_open(), "NamedTileSheet: could not open file " + filename);
 
 	// Skip to sources.
 	while (std::getline(inStream, line)) {
@@ -61,7 +63,7 @@ void NamedTileSheet::load(const std::string& filename) {
 		std::vector<std::string> tokens;
 		strHelper.split(line, std::string(" "), tokens, true);
 
-		assert(tokens.size() == 3);
+		require(tokens.size() == 3, "NamedTileSheet: too many or few tokens");
 
 		std::string name = tokens[0];
 		std::stringstream stream;

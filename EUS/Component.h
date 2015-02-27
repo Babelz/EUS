@@ -4,6 +4,10 @@
 class Game;
 class Entity;
 
+// TODO: could have ANOTHER base class for components(?), 
+//	     since some components only work as data wrappers
+//		 and dont really need update method.
+
 // Base class for all components.
 class Component {
 private:

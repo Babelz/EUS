@@ -27,6 +27,9 @@
     <Filter Include="Source Files\Components\AI">
       <UniqueIdentifier>{5abdc124-863d-4336-afb7-5d8933567aba}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Scenes">
+      <UniqueIdentifier>{00723425-fae7-4eaa-ad70-cd68a6531435}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -64,9 +67,6 @@
     </ClCompile>
     <ClCompile Include="VertexColorPositionTexture.cpp">
       <Filter>Source Files\Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneManager.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Sprite.cpp">
       <Filter>Source Files</Filter>
@@ -115,6 +115,15 @@
     </ClCompile>
     <ClCompile Include="PlayerController.cpp">
       <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="TileEngine.cpp">
+      <Filter>Source Files\Maps</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="GameplayScene.cpp">
+      <Filter>Source Files\Scenes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -197,6 +206,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PlayerController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TileEngine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameplayScene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

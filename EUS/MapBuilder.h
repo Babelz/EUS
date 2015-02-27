@@ -5,6 +5,7 @@
 #include "SheetMapping.h"
 #include "TileBuilder.h"
 #include "MapLoader.h"
+#include "TileEngine.h"
 
 class MapBuilder : public EntityBuilder {
 public:

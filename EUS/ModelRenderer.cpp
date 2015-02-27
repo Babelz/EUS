@@ -7,6 +7,8 @@ ModelRenderer::ModelRenderer(Game& game, Entity& owner, Model* const model, cons
 																														  vertexArray(0),
 																														  vertexBuffer(0) {
 	shader = game.content().load<Effect>("basic3d");
+
+	// TODO: model renderer needs materials.
 	texture = game.content().load<Texture>("tuksu");
 
 	require(model != nullptr, "ModelRenderer: model cant be null");
@@ -43,11 +45,7 @@ void ModelRenderer::onInitialize() {
 	initializeBuffers();
 }
 
-static float r = 0.0f;
-
 void ModelRenderer::onDraw() {
-	r += 0.005f;
-
 	glBindVertexArray(vertexArray);
 	glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
 	

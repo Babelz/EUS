@@ -2,7 +2,9 @@
 
 #pragma region Scene class
 
-Scene::Scene(const std::string& name) : name(name), activated(false) {
+Scene::Scene(const std::string& name) : name(name), 
+									    activated(false),
+										destroyed(false) {
 }
 
 #pragma region Protected members
@@ -13,6 +15,7 @@ EntityManager& Scene::getEntities() {
 	return entities;
 }
 
+void Scene::onDestroy() { }
 void Scene::onActivate() { }
 void Scene::onResume() { }
 #pragma endregion
@@ -22,10 +25,11 @@ const std::string& Scene::getName() const {
 	return name;
 }
 
-void Scene::activate(SceneManager* const sceneManager) {
+void Scene::activate(Game& game, SceneManager* const sceneManager) {
 	// First call, allow user to initialize the scene.
 	if (!activated) {
-		activate(sceneManager);
+		this->sceneManager = sceneManager;
+		this->game = &game;
 
 		onActivate();
 
@@ -34,6 +38,16 @@ void Scene::activate(SceneManager* const sceneManager) {
 		onResume();
 	}
 }
+
+void Scene::destroy() {
+	if (!destroyed) {
+		onDestroy();
+	}
+}
+const bool Scene::isDestroyed() const {
+	return !destroyed;
+}
+
 
 void Scene::draw(const float deltaTime) { }
 void Scene::update(const float deltaTime) { }

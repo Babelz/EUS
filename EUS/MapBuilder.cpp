@@ -21,6 +21,12 @@ Entity* MapBuilder::buildMap(const std::string& name, const std::string& sheetNa
 	loader.load(path);
 
 	Entity* map = new Entity();
+	TileEngine* engine = new TileEngine(game(), *map, 
+		loader.getMapWidth(), 
+		loader.getMapHeight(), 
+		64, 64);
+	
+	map->addComponent(engine);
 
 	for (size_t i = 0; i < loader.getMapHeight(); i++) {
 		for (size_t j = 0; j < loader.getMapWidth(); j++) {

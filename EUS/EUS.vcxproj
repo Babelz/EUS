@@ -94,9 +94,11 @@
     <ClCompile Include="EntityManager.cpp" />
     <ClCompile Include="EUS.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameplayScene.cpp" />
     <ClCompile Include="lodepng.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MapBuilder.cpp" />
+    <ClCompile Include="TileEngine.cpp" />
     <ClCompile Include="MapLoader.cpp" />
     <ClCompile Include="ModelRenderer.cpp" />
     <ClCompile Include="PlayerController.cpp" />
@@ -125,7 +127,9 @@
     <ClInclude Include="EntityManager.h" />
     <ClInclude Include="EUS.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="GameplayScene.h" />
     <ClInclude Include="MapBuilder.h" />
+    <ClInclude Include="TileEngine.h" />
     <ClInclude Include="MapLoader.h" />
     <ClInclude Include="ModelRenderer.h" />
     <ClInclude Include="PlayerController.h" />

@@ -7,25 +7,33 @@ class SceneManager;
 
 class Scene {
 private:
+	SceneManager* sceneManager;
+	EntityManager entities;
+	Game* game;
+
 	const std::string name;
 
 	bool activated;
+	bool destroyed;
 protected:
-	SceneManager* sceneManager;
-	EntityManager entities;
-
 	SceneManager& getSceneManager() const;
 	EntityManager& getEntities();
+	Game& getGame();
 
-	void onActivate();
-	void onResume();
+	// Called at destroy.
+	virtual void onDestroy();
+	// Called at first activate call.
+	virtual void onActivate();
+	// Called when the scene resumes.
+	virtual void onResume();
 public:
 	Scene(const std::string& name);
 
 	const std::string& getName() const;
-	void activate(SceneManager* const sceneManager);
+	void activate(Game& game, SceneManager* const sceneManager);
 
 	void destroy();
+	const bool isDestroyed() const;
 
 	virtual void draw(const float deltaTime);
 	virtual void update(const float deltaTime);

@@ -21,9 +21,6 @@ private:
 	bool enabled;
 	bool destroyed;
 
-	pmath::Vec2f position;
-	pmath::Vec2f size;
-
 	std::list<Entity* const> childs;
 
 	void freeChilds();

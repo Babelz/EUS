@@ -16,7 +16,7 @@ private:
 	bool activated;
 	bool destroyed;
 protected:
-	SceneManager& getSceneManager() const;
+	SceneManager& getSceneManager();
 	EntityManager& getEntities();
 	Game& getGame();
 
@@ -43,6 +43,8 @@ public:
 
 class SceneManager {
 private:
+	Game& game;
+
 	std::string empty;
 
 	std::list<Scene* const> scenes;
@@ -53,7 +55,7 @@ private:
 	bool containsSceneWithName(const std::string& name) const;
 	Scene* const findSceneWithName(const std::string& name) const;
 public:
-	SceneManager();
+	SceneManager(Game& game);
 
 	bool addScene(Scene* const scene);
 	bool removeScene(Scene* const scene);

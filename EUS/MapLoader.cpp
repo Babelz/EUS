@@ -53,17 +53,17 @@ void MapLoader::load(const std::string& filename) {
 
 	inStream.close();
 }
-std::string& MapLoader::getSheetName() {
+const std::string& MapLoader::getSheetName() const  {
 	return sheetName;
 }
-std::string& MapLoader::getMapName() {
+const std::string& MapLoader::getMapName() const  {
 	return mapName;
 }
 
-size_t MapLoader::getMapHeight() const {
+const size_t MapLoader::getMapHeight() const {
 	return mapHeight;
 }
-size_t MapLoader::getMapWidth() const {
+const size_t MapLoader::getMapWidth() const {
 	return mapWidth;
 }
 

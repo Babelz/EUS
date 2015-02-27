@@ -11,7 +11,7 @@ class MapBuilder : public EntityBuilder {
 public:
 	MapBuilder(Game& game);
 
-	Entity* buildMap(const std::string& name, const std::string& sheetName, size_t tileSize) const;
+	Entity* buildMap(const std::string& name, const std::string& sheetName, size_t tileSize, std::vector<Entity*>& outTiles) const;
 
 	~MapBuilder();
 };

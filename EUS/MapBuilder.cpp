@@ -4,7 +4,7 @@ MapBuilder::MapBuilder(Game& game) : EntityBuilder("", game) {
 }
 
 #pragma region Public members
-Entity* MapBuilder::buildMap(const std::string& name, const std::string& sheetName, size_t tileSize) const {
+Entity* MapBuilder::buildMap(const std::string& name, const std::string& sheetName, size_t tileSize, std::vector<Entity*>& outTiles) const {
 	std::string path = "Content\\" + name + ".txt";
 
 	Texture* texture = game().content().load<Texture>(sheetName);
@@ -14,7 +14,7 @@ Entity* MapBuilder::buildMap(const std::string& name, const std::string& sheetNa
 	SheetMapping mappings;
 	mappings.load(path);
 
-	NamedTileSheet sheet(texture, tileSize);
+	NamedTileSheet sheet(texture, 32);
 	sheet.load(path);
 
 	MapLoader loader;
@@ -24,7 +24,7 @@ Entity* MapBuilder::buildMap(const std::string& name, const std::string& sheetNa
 	TileEngine* engine = new TileEngine(game(), *map, 
 		loader.getMapWidth(), 
 		loader.getMapHeight(), 
-		64, 64);
+		tileSize);
 	
 	map->addComponent(engine);
 
@@ -35,11 +35,9 @@ Entity* MapBuilder::buildMap(const std::string& name, const std::string& sheetNa
 			std::string name = mappings.getTileName(ch);
 			pmath::Rectf source = sheet.getSource(name);
 
-			float h, w; h = w = 64.0f;
-
 			Entity* tile = builder.buildTile(name);
-			tile->getTransform().setX(w * j);
-			tile->getTransform().setY(h * i);
+			tile->getTransform().setX(tileSize * j);
+			tile->getTransform().setY(tileSize * i);
 
 			SpriteRenderer* renderer = new SpriteRenderer(game(), *tile);
 			renderer->setSprite(new Sprite());
@@ -55,8 +53,15 @@ Entity* MapBuilder::buildMap(const std::string& name, const std::string& sheetNa
 			renderer->enable();
 
 			map->addChild(tile);
+
+			outTiles.push_back(tile);
 		}
 	}
+
+	MapGrid* grid = new MapGrid(game(), *map, *engine);
+	grid->enable();
+
+	map->addComponent(grid);
 
 	return map;
 }

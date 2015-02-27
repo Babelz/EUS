@@ -1,15 +1,15 @@
 #pragma once
 #include "SceneManager.h"
+#include "MapBuilder.h"
 
 class GameplayScene : public Scene {
 protected:
 	void onActivate();
 public:
-	GameplayScene(const std::string& name);
+	GameplayScene();
 
 	void update(const float deltaTime);
 	void draw(const float deltaTime);
 
 	~GameplayScene();
 };
-

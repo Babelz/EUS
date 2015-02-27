@@ -8,11 +8,14 @@ Scene::Scene(const std::string& name) : name(name),
 }
 
 #pragma region Protected members
-SceneManager& Scene::getSceneManager() const  {
+SceneManager& Scene::getSceneManager() {
 	return *sceneManager;
 }
 EntityManager& Scene::getEntities() {
 	return entities;
+}
+Game& Scene::getGame() {
+	return *game;
 }
 
 void Scene::onDestroy() { }
@@ -60,7 +63,8 @@ Scene::~Scene() {
 
 #pragma region Scene manager class
 
-SceneManager::SceneManager() : activeScene(nullptr) {
+SceneManager::SceneManager(Game& game) : game(game),
+										 activeScene(nullptr) {
 }
 
 #pragma region Private members
@@ -73,11 +77,13 @@ bool SceneManager::containsSceneWithName(const std::string& name) const {
 	return result != nullptr;
 }
 Scene* const SceneManager::findSceneWithName(const std::string& name) const {
+	if (scenes.size() == 0) return false;
+
 	auto result = std::find_if(scenes.begin(), scenes.end(), [&, name](Scene* s) {
 		return s->getName() == name;
 	});
 
-	return *result;
+	return result._Ptr->_Myval;
 }
 #pragma endregion
 
@@ -131,6 +137,8 @@ const std::string& SceneManager::changeScene(const std::string& name) {
 	if (scene != nullptr) {
 		Scene* last = activeScene;
 		activeScene = scene;
+
+		activeScene->activate(game, this);
 
 		return activeScene->getName();
 	}

@@ -5,7 +5,8 @@ Game::Game(const int windowWidth, const int windowHeight, const char* windowTitl
 																					 m_content(ContentManager("Content")),
 																					 deltaTime(0.0f),
 																					 currentTime(0.0f),
-																					 lastTime(0.0f) {
+																					 lastTime(0.0f),
+																					 m_sceneManager(*this) {
 	this->windowTitle = std::string(windowTitle);
 }
 

@@ -6,11 +6,10 @@ private:
 	int m_mapWidth;
 	int m_mapHeight;
 	
-	int m_tileWidth;
-	int m_tileHeight;
+	int m_tileSize;
 public:
 	TileEngine(Game& game, Entity& owner, const int mapWidth, const int mapHeight,
-										  const int tileWidth, const int tileHeight);
+										  const int tileSize);
 
 	const int mapWidthInTiles() const;
 	const int mapHeightInTiles() const;
@@ -18,8 +17,7 @@ public:
 	const int mapWidthInPixels() const;
 	const int mapHeightInPixels() const;
 
-	const int tileWidth() const;
-	const int tileHeight() const;
+	const int tileSize() const;
 
 	~TileEngine();
 };

@@ -125,6 +125,9 @@
     <ClCompile Include="GameplayScene.cpp">
       <Filter>Source Files\Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="MapGrid.cpp">
+      <Filter>Source Files\Maps</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.h">
@@ -212,6 +215,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GameplayScene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MapGrid.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

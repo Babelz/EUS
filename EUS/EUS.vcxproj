@@ -98,6 +98,7 @@
     <ClCompile Include="lodepng.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MapBuilder.cpp" />
+    <ClCompile Include="MapGrid.cpp" />
     <ClCompile Include="TileEngine.cpp" />
     <ClCompile Include="MapLoader.cpp" />
     <ClCompile Include="ModelRenderer.cpp" />
@@ -129,6 +130,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameplayScene.h" />
     <ClInclude Include="MapBuilder.h" />
+    <ClInclude Include="MapGrid.h" />
     <ClInclude Include="TileEngine.h" />
     <ClInclude Include="MapLoader.h" />
     <ClInclude Include="ModelRenderer.h" />

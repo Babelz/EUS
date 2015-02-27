@@ -9,7 +9,7 @@ ModelRenderer::ModelRenderer(Game& game, Entity& owner, Model* const model, cons
 	shader = game.content().load<Effect>("basic3d");
 	texture = game.content().load<Texture>("tuksu");
 
-	assert(model != nullptr);
+	require(model != nullptr, "ModelRenderer: model cant be null");
 }
 
 #pragma region Private members
@@ -70,8 +70,6 @@ void ModelRenderer::onDraw() {
 	glBindVertexArray(0);
 	glBindTexture(GL_TEXTURE_2D, 0);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
-
-	assert(glGetError() == 0);
 }
 #pragma endregion
 

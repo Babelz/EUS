@@ -23,7 +23,7 @@ void SheetMapping::load(const std::string& filename) {
 
 	StringHelper strHelper;
 
-	assert(inStream.is_open());
+	require(inStream.is_open(), "SheetMapping: could not open file " + filename);
 
 	// Skip to mappings.
 	while (std::getline(inStream, line)) { 
@@ -43,7 +43,7 @@ void SheetMapping::load(const std::string& filename) {
 		std::vector<std::string> tokens;
 		strHelper.split(line, std::string(" "), tokens, true);
 
-		assert(tokens.size() == 2);
+		require(tokens.size() == 2, "SheetMapping: too few or many tokens");
 
 		pushMapping(tokens[0][0], tokens[1]);
 	}

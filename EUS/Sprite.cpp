@@ -3,7 +3,6 @@
 Sprite::Sprite(Texture* texture) : color(1.0f),
 								   scale(1.0f), 
 								   texture(texture) {
-	assert(texture != nullptr);
 }
 Sprite::Sprite() : color(1.0f),
 				   scale(1.0f),
@@ -86,19 +85,21 @@ void Sprite::setColor(pmath::Vec4f& value){
 }
 
 void Sprite::swapTexture(Texture* const texture) {
-	assert(texture != nullptr);
+	require(texture != nullptr, "Sprite: texture cant be null");
 
 	this->texture = texture;
 }
 
 void Sprite::draw(SpriteBatch& spriteBatch) {
-	assert(texture != nullptr);
+	require(texture != nullptr, "Sprite: texture cant be null");
 
 	if (usingSource) {
-		// TODO: fix scaling with source rect.
-		pmath::Rectf dest(position.x, position.y, 32, 32 /*texture->width * scale.x, texture->height * scale.y*/);
+		pmath::Rectf destination(position.x, 
+								 position.y, 
+								 source.size.x * scale.x, 
+								 source.size.y * scale.y);
 
-		spriteBatch.draw(texture, source, dest, color);
+		spriteBatch.draw(texture, source, destination, color);
 
 		return;
 	}

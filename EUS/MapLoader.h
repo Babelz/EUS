@@ -1,9 +1,9 @@
 #pragma once
 #include "StringHelper.h"
+#include "Require.h"
 #include <string>
 #include <vector>
 #include <fstream>
-#include <cassert>
 
 class MapLoader {
 private:

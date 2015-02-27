@@ -1,5 +1,6 @@
 #pragma once
 #include "DrawableComponent.h"
+#include "Require.h"
 #include <vector>
 #include <algorithm>
 #include <functional>

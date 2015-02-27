@@ -8,7 +8,7 @@ MapLoader::MapLoader() : mapWidth(0),
 void MapLoader::load(const std::string& filename) {
 	std::ifstream inStream(filename, std::ios::in);
 
-	assert(inStream.is_open());
+	require(inStream.is_open(), "MapLoader: could not open file " + filename);
 
 	StringHelper strHelper;
 	std::string line;
@@ -39,7 +39,7 @@ void MapLoader::load(const std::string& filename) {
 		for (size_t i = 0; i < line.size(); i++) {
 			char ch = line[i];
 
-			assert(ch != ' ');
+			require(ch != ' ', "MapLoader: illegal character");
 			
 			chars[mapHeight].push_back(ch);
 		}

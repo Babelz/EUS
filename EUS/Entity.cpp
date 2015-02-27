@@ -63,21 +63,21 @@ bool Entity::isDestroyed() const {
 bool Entity::addComponent(Component* component) {
 	if (destroyed) return false;
 
-	assert(component != nullptr);
+	require(component != nullptr, "Entity, addComponent: component cant be null.");
 
 	return components.addComponent(component);
 }
 bool Entity::removeComponent(Component* component) {
 	if (destroyed) return false;
 
-	assert(component != nullptr);
+	require(component != nullptr, "Entity, removeComponent: component cant be null.");
 	
 	return components.removeComponent(component);
 }
 bool Entity::containsComponent(const Component* const component) const {
 	if (destroyed) return false;
 
-	assert(component != nullptr);
+	require(component != nullptr, "Entity, containsComponent: component cant be null.");
 
 	return components.containsComponent(component);
 }
@@ -100,7 +100,7 @@ bool Entity::tag(const std::string& tag) {
 }
 
 bool Entity::isParentOf(const Entity* const child) {
-	assert(child != nullptr);
+	require(child != nullptr, "Entity, isParentOf: child cant be null.");
 	
 	return std::find(childs.begin(), childs.end(), child) != childs.end();
 }

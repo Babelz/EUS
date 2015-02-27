@@ -1,13 +1,10 @@
 #pragma once
 #include "StringHelper.h"
-#include <cassert>
+#include "Require.h"
 #include <algorithm>
 #include <string>
 #include <fstream>
 #include <map>
-
-// TODO: change that data is loaded from a file.
-//       atm its hard coded.
 
 class SheetMapping {
 private:

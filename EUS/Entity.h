@@ -1,4 +1,5 @@
 #pragma once
+#include "Require.h"
 #include "TagContainer.h"
 #include "ComponentManager.h"
 #include "Component.h"

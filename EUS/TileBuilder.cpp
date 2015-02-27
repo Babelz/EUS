@@ -18,11 +18,26 @@ TileBuilder::TileBuilder(Game& game) : EntityBuilder("", game) {
 	pushBuilder("vBridge", std::function<Entity*()>(std::bind(&TileBuilder::createBridge, this)));
 
 	// TODO: fix.
-	// Coast can have 4 different names.
+	// OH GOD PLEASE FIX THIS BS.
+	// Shittiest gode EU, make these from array or smthng.
 	pushBuilder("rCoast", std::function<Entity*()>(std::bind(&TileBuilder::createCoast, this)));
 	pushBuilder("lCoast", std::function<Entity*()>(std::bind(&TileBuilder::createCoast, this)));
 	pushBuilder("tfCoast", std::function<Entity*()>(std::bind(&TileBuilder::createCoast, this)));
 	pushBuilder("bfCoast", std::function<Entity*()>(std::bind(&TileBuilder::createCoast, this)));
+	pushBuilder("brcCoast", std::function<Entity*()>(std::bind(&TileBuilder::createCoast, this)));
+	pushBuilder("blcCoast", std::function<Entity*()>(std::bind(&TileBuilder::createCoast, this)));
+	pushBuilder("tlcCoast", std::function<Entity*()>(std::bind(&TileBuilder::createCoast, this)));
+	pushBuilder("trcCoast", std::function<Entity*()>(std::bind(&TileBuilder::createCoast, this)));
+
+	pushBuilder("leftPartTop", std::function<Entity*()>(std::bind(&TileBuilder::createCoast, this)));
+	pushBuilder("rightPartTop", std::function<Entity*()>(std::bind(&TileBuilder::createCoast, this)));
+	pushBuilder("leftPartBottom", std::function<Entity*()>(std::bind(&TileBuilder::createCoast, this)));
+	pushBuilder("rightPartBottom", std::function<Entity*()>(std::bind(&TileBuilder::createCoast, this)));
+
+	// TODO: fix, not a HQ tile.
+	pushBuilder("playerHQ", std::function<Entity*()>(std::bind(&TileBuilder::createCoast, this)));
+
+	//pushBuilder("trcCoast", std::function<Entity*()>(std::bind(&TileBuilder::createCoast, this)));
 
 	pushBuilder("plains", std::function<Entity*()>(std::bind(&TileBuilder::createPlains, this)));
 	pushBuilder("hills", std::function<Entity*()>(std::bind(&TileBuilder::createHills, this)));

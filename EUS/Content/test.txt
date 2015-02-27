@@ -6,11 +6,20 @@ T pCity
 W sea
 R rCoast
 L lCoast
+c blcCoast
+e brcCoast
+r trcCoast
+t tlcCoast
 - tfCoast
 _ bfCoast
 F woods
 + hBridge
 ? vBridge
+p leftPartTop
+o rightPartTop
+i leftPartBottom
+j rightPartBottom
+Q playerHQ
 -mappings
 
 
@@ -25,20 +34,26 @@ bfCoast 192 0
 tfCoast 224 0
 rCoast 0 32
 lCoast 32 32
-cCoast 64 32
-hBridge 96 32
-vBridge 128 32 
+brcCoast 64 32
+blcCoast 128 32
+trcCoast 160 32
+tlcCoast 96 32
+rightPartTop 192 32
+leftPartTop 224 32
+leftPartBottom 0 64
+rightPartBottom 32 64
+playerHQ 64 64
 -sources
 
 -tiles
 WWWWWWWWWWWWWWWW
-WW----WWW-----WW
-WLPFPPRWLPPPPPRW
-WLPFPPP-PPPPPPRW
-WLPFPPPPPPPPPPRW
-WLPFPPPPPPPPPPRW
-WLPFPPP_PPPPPPRW
-WLPFPPRWLTPPPPRW
-WW____WWW_____WW
+Wo----pWo-----pW
+WLPPPPRWLPPPPPRW
+WLPPPPr-tPPPPPRW
+WL$$$PPPPPPPPPRW
+WLTPPPPPPPPPPPRW
+WLTPPPc_ePPPPPRW
+WLQTT$RWLPPPPPRW
+Wj____iWj_____iW
 WWWWWWWWWWWWWWWW
 -tiles

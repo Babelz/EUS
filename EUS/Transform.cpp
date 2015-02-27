@@ -9,7 +9,7 @@ Transform::Transform() : transform(1.0f),
 void Transform::setPosition(const Vector3& position) {
 	this->position = position;
 
-	transform = glm::translate(Vector3(position.x, -position.y, position.z));
+	transform = glm::translate(position);
 }
 void Transform::setX(const float x) {
 	setPosition(Vector3(x, position.y, position.z));

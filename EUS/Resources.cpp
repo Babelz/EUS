@@ -282,11 +282,11 @@ bool Model::readFromFile(const std::string& path) {
 	uvVertices.reserve(0);
 	vertexNormals.reserve(0);
 
-	// | Position (3) | Texture coords (2) | Normal (3) |
+	// | Position (3) | Texture coords (2) | Normals (3) |
 
 	for (size_t i = 0; i < vertexIndices.size(); i++) {
 		unsigned short vertexIndex = vertexIndices[i] * 3;
-		// Push vertex position (x, y, z)
+		
 		vertices.push_back(tmpVertices[vertexIndex - 1]);
 		vertices.push_back(tmpVertices[vertexIndex - 2]);
 		vertices.push_back(tmpVertices[vertexIndex - 3]);
@@ -305,7 +305,7 @@ bool Model::readFromFile(const std::string& path) {
 		}
 
 		unsigned short normalIndex = normalIndicies[i] * 3;
-		// Push normal data.
+		// Push normals data.
 		if (normalIndicies.size() == 0) {
 			for (size_t i = 0; i < 3; i++) {
 				vertices.push_back(0.0f);

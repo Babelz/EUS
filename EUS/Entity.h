@@ -65,10 +65,10 @@ public:
 	bool addChild(Entity* const child);
 	bool removeChild(Entity* const child);
 
-	void childsForEach(std::function<void(Entity* const)> action) const;
-
 	void update();
 	void draw();
+
+	std::list<Entity* const> getChilds() const;
 
 	~Entity();
 };

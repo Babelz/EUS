@@ -127,11 +127,6 @@ bool Entity::removeChild(Entity* const child) {
 	return remove;
 }
 
-
-void Entity::childsForEach(std::function<void(Entity* const)> action) const {
-	std::for_each(childs.begin(), childs.end(), action);
-}
-
 // Update all components that are enabled if entity is in enabled
 // state, and is not destroyed.
 void Entity::update() {
@@ -141,7 +136,13 @@ void Entity::update() {
 
 	components.update();
 
-	// TODO: remove destroyed childs.
+	if (childs.size() > 0) return;
+
+	std::for_each(childs.begin(), childs.end(), [this](Entity* const e) {
+		if (e->isDestroyed()) {
+			childs.remove(e);
+		}
+	});
 }
 
 // Draw all components that are visible if entity is in enabled
@@ -152,6 +153,10 @@ void Entity::draw() {
 	}
 
 	components.draw();
+}
+
+std::list<Entity* const> Entity::getChilds() const {
+	return childs;
 }
 #pragma endregion
 

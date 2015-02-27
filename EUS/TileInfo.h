@@ -4,10 +4,13 @@
 #include "Resources.h"
 
 enum TileType {
-	Flats,
+	Pains,
 	Hills,
 	Water,
-	Urban
+	Urban,
+	Bridge,
+	Coast,
+	Woods
 };
 
 class TileInfo : public Component {

@@ -32,6 +32,10 @@ private:
 	Entity* createNeutralFactory() const;
 	Entity* createNeutralCity() const;
 
+	Entity* createBridge() const;
+	Entity* createCoast() const;
+	Entity* createWoods() const;
+
 	Entity* createPlains() const;
 	Entity* createHills() const;
 	Entity* createEntity() const;

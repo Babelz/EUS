@@ -259,7 +259,6 @@ void SpriteBatch::draw(Texture* const texture, pmath::Rectf& source, pmath::Rect
 
 	sprite.bRightTexCoord.x = source.getRight() / texture->width;
 	sprite.bRightTexCoord.y = -(source.size.y + source.position.y) / texture->height;
-
 }
 
 void SpriteBatch::draw(Texture* const texture, pmath::Vec3f& position, pmath::Vec4f& color, float scale) {

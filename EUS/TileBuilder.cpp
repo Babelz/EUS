@@ -5,12 +5,24 @@ TileBuilder::TileBuilder(Game& game) : EntityBuilder("", game) {
 	pushBuilder("pFactory", std::function<Entity*()>(std::bind(&TileBuilder::createPlayerFactory, this)));
 	pushBuilder("pCity", std::function<Entity*()>(std::bind(&TileBuilder::createPlayerCity, this)));
 	
+	// cpu...
 	pushBuilder("cpu1Factory", std::function<Entity*()>(std::bind(&TileBuilder::createCPU1Factory, this)));
 	pushBuilder("cpu1City", std::function<Entity*()>(std::bind(&TileBuilder::createCPU1City, this)));
 
 	// n stands for neutral.
 	pushBuilder("nFactory", std::function<Entity*()>(std::bind(&TileBuilder::createNeutralFactory, this)));
 	pushBuilder("nCity", std::function<Entity*()>(std::bind(&TileBuilder::createNeutralCity, this)));
+
+	pushBuilder("woods", std::function<Entity*()>(std::bind(&TileBuilder::createWoods, this)));
+	pushBuilder("hBridge", std::function<Entity*()>(std::bind(&TileBuilder::createBridge, this)));
+	pushBuilder("vBridge", std::function<Entity*()>(std::bind(&TileBuilder::createBridge, this)));
+
+	// TODO: fix.
+	// Coast can have 4 different names.
+	pushBuilder("rCoast", std::function<Entity*()>(std::bind(&TileBuilder::createCoast, this)));
+	pushBuilder("lCoast", std::function<Entity*()>(std::bind(&TileBuilder::createCoast, this)));
+	pushBuilder("tfCoast", std::function<Entity*()>(std::bind(&TileBuilder::createCoast, this)));
+	pushBuilder("bfCoast", std::function<Entity*()>(std::bind(&TileBuilder::createCoast, this)));
 
 	pushBuilder("plains", std::function<Entity*()>(std::bind(&TileBuilder::createPlains, this)));
 	pushBuilder("hills", std::function<Entity*()>(std::bind(&TileBuilder::createHills, this)));
@@ -70,8 +82,19 @@ Entity* TileBuilder::createNeutralCity() const {
 	return tile;
 }
 
+Entity* TileBuilder::createBridge() const {
+	return internalCreateTile("bridge", 0, 0, TileType::Bridge);
+}
+Entity* TileBuilder::createCoast() const {
+	return internalCreateTile("coast", 0, 0, TileType::Pains);
+}
+Entity* TileBuilder::createWoods() const {
+	return internalCreateTile("woods", 3, 4, TileType::Woods);
+}
+
+
 Entity* TileBuilder::createPlains() const {
-	return internalCreateTile("flats", 0, 0, TileType::Flats);
+	return internalCreateTile("plains", 0, 0, TileType::Pains);
 }
 Entity* TileBuilder::createHills() const {
 	return internalCreateTile("hill", 0, 3, TileType::Hills);

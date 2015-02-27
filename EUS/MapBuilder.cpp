@@ -29,7 +29,7 @@ Entity* MapBuilder::buildMap(const std::string& name, const std::string& sheetNa
 			std::string name = mappings.getTileName(ch);
 			pmath::Rectf source = sheet.getSource(name);
 
-			Entity* tile = new Entity();
+			Entity* tile = builder.buildTile(name);
 			tile->getTransform().setX(source.size.x * j);
 			tile->getTransform().setY(source.size.y * i);
 

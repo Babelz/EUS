@@ -3,12 +3,14 @@ P plains
 $ pFactory
 T pCity
 ^ hills
-W water
+W sea
 R rCoast
 L lCoast
 - tfCoast
 _ bfCoast
 F woods
++ hBridge
+? vBridge
 -mappings
 
 
@@ -17,23 +19,26 @@ plains 0 0
 pFactory 32 0
 pCity 64 0
 hills 96 0
-water 128 0
+sea 128 0
 woods 160 0
 bfCoast 192 0
 tfCoast 224 0
 rCoast 0 32
 lCoast 32 32
+cCoast 64 32
+hBridge 96 32
+vBridge 128 32 
 -sources
 
 -tiles
 WWWWWWWWWWWWWWWW
-WW------------WW
-WL$FPPP$$$PPPPRW
+WW----WWW-----WW
+WLPFPPRWLPPPPPRW
+WLPFPPP-PPPPPPRW
 WLPFPPPPPPPPPPRW
 WLPFPPPPPPPPPPRW
-WLPFPPPPPPPPPPRW
-WLPFPPPPPPPPPPRW
-WLPFPPPPTTPPPPRW
-WW____________WW
+WLPFPPP_PPPPPPRW
+WLPFPPRWLTPPPPRW
+WW____WWW_____WW
 WWWWWWWWWWWWWWWW
 -tiles

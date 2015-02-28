@@ -46,10 +46,10 @@ public:
 
 	void enable();
 	void disable();
-	bool isEnabled() const;
+	const bool isEnabled() const;
 
 	void destroy();
-	bool isDestroyed() const;
+	const bool isDestroyed() const;
 
 	void update(const float deltaTime);
 

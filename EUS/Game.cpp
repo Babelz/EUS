@@ -105,10 +105,10 @@ SDL_Window& Game::window() {
 	return *m_window;
 }
 
-int Game::getWindowWidth() const {
+const int Game::getWindowWidth() const {
 	return windowWidth;
 }
-int Game::getWindowHeight() const {
+const int Game::getWindowHeight() const {
 	return windowHeight;
 }
 
@@ -153,7 +153,7 @@ void Game::exit() {
 	
 	onExit();
 }
-bool Game::isRunning() {
+const bool Game::isRunning() {
 	return running;
 }
 #pragma endregion

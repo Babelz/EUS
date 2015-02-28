@@ -18,35 +18,35 @@ public:
 	Sprite(Texture* const texture);
 	Sprite();
 
-	float x() const;
-	float y() const;
+	const float x() const;
+	const float y() const;
 
-	void setX(float value);
-	void setY(float value);
+	void setX(const float value);
+	void setY(const float value);
 
-	float scaleX() const;
-	float scaleY() const;
+	const float scaleX() const;
+	const float scaleY() const;
 
-	void setScale(float value);
-	void setScaleX(float value);
-	void setScaleY(float value);
+	void setScale(const float value);
+	void setScaleX(const float value);
+	void setScaleY(const float value);
 
-	float originX() const;
-	float originY() const;
+	const float originX() const;
+	const float originY() const;
 
-	void setOriginX(float value);
-	void setOriginY(float value);
+	void setOriginX(const float value);
+	void setOriginY(const float value);
 
 	void setSource(const pmath::Rectf& source);
-	bool isUsingSource() const;
+	const bool isUsingSource() const;
 	
 	void useSource();
 	void disableSource();
 
-	size_t textureHeight() const;
-	size_t textureWidth() const;
+	const size_t textureHeight() const;
+	const size_t textureWidth() const;
 
-	pmath::Vec4f getColor() const;
+	const pmath::Vec4f getColor() const;
 	void setColor(pmath::Vec4f& value);
 
 	void swapTexture(Texture* const texture);

@@ -27,10 +27,10 @@ void ComponentManager::freeDestroyedComponents() {
 #pragma endregion
 
 #pragma region Public members
-bool ComponentManager::containsComponent(const Component* const component) const {
+const bool ComponentManager::containsComponent(const Component* const component) const {
 	return std::find(components.begin(), components.end(), component) != components.end();
 }
-bool ComponentManager::removeComponent(Component* const component) {
+const bool ComponentManager::removeComponent(Component* const component) {
 	require(component != nullptr, "ComponentManager removeComponent: component cant be null");
 	
 	bool remove = containsComponent(component);
@@ -47,7 +47,7 @@ bool ComponentManager::removeComponent(Component* const component) {
 
 	return remove;
 }
-bool ComponentManager::addComponent(Component* const component) {
+const bool ComponentManager::addComponent(Component* const component) {
 	require(component != nullptr && !component->isDestroyed(), "ComponentManager addComponent: component cant be null or destroyed");
 	
 	bool add = !containsComponent(component);

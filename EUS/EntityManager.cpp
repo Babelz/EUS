@@ -17,7 +17,7 @@ void EntityManager::freeEntities() {
 #pragma endregion
 
 #pragma region Public memebers
-bool EntityManager::addEntity(Entity* const entity) {
+const bool EntityManager::addEntity(Entity* const entity) {
 	require(entity != nullptr && !entity->isDestroyed(), "EntityManager addEntity: entity cant be null or destroyed");
 	
 	bool add = !containsEntity(entity);
@@ -28,7 +28,7 @@ bool EntityManager::addEntity(Entity* const entity) {
 
 	return add;
 }
-bool EntityManager::removeEntity(Entity* const entity) {
+const bool EntityManager::removeEntity(Entity* const entity) {
 	require(entity != nullptr, "EntityManager removeEntity: entity cant be null or destroyed");
 
 	bool remove = containsEntity(entity);
@@ -40,7 +40,7 @@ bool EntityManager::removeEntity(Entity* const entity) {
 	return remove;
 }
 
-bool EntityManager::containsEntity(const Entity* const entity) const {
+const bool EntityManager::containsEntity(const Entity* const entity) const {
 	return std::find(entities.begin(), entities.end(), entity) != entities.end();
 }
 

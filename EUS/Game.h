@@ -50,15 +50,15 @@ public:
 	SceneManager& sceneManager();
 	SDL_Window& window();
 
-	int getWindowWidth() const;
-	int getWindowHeight() const;
+	const int getWindowWidth() const;
+	const int getWindowHeight() const;
 
 	void setWindowTitle(const std::string& value);
 	std::string getWindowTitle() const;
 
 	void run();
 	void exit();
-	bool isRunning();
+	const bool isRunning();
 
 	virtual ~Game();
 };

@@ -10,56 +10,56 @@ Sprite::Sprite() : color(1.0f),
 }
 
 #pragma region Public members
-float Sprite::x() const {
+const float Sprite::x() const {
 	return position.x;
 }
-float Sprite::y() const {
+const float Sprite::y() const {
 	return position.y;
 }
 
-void Sprite::setX(float value) {
+void Sprite::setX(const float value) {
 	position.x = value;
 }
-void Sprite::setY(float value) {
+void Sprite::setY(const float value) {
 	position.y = value;
 }
 
-float Sprite::scaleX() const {
+const float Sprite::scaleX() const {
 	return scale.x;
 }
-float Sprite::scaleY() const {
+const float Sprite::scaleY() const {
 	return scale.y;
 }
 
-void Sprite::setScale(float value) {
+void Sprite::setScale(const float value) {
 	scale.x = value;
 	scale.y = value;
 }
-void Sprite::setScaleX(float value) {
+void Sprite::setScaleX(const float value) {
 	scale.x = value;
 }
-void Sprite::setScaleY(float value) {
+void Sprite::setScaleY(const float value) {
 	scale.y = value;
 }
 
-float Sprite::originX() const {
+const float Sprite::originX() const {
 	return origin.x;
 }
-float Sprite::originY() const {
+const float Sprite::originY() const {
 	return origin.y;
 }
 
-void Sprite::setOriginX(float value) {
+void Sprite::setOriginX(const float value) {
 	origin.x = value;
 }
-void Sprite::setOriginY(float value) {
+void Sprite::setOriginY(const float value) {
 	origin.y = value;
 }
 
 void Sprite::setSource(const pmath::Rectf& source) {
 	this->source = source;
 }
-bool Sprite::isUsingSource() const {
+const bool Sprite::isUsingSource() const {
 	return usingSource;
 }
 
@@ -70,14 +70,14 @@ void Sprite::disableSource() {
 	usingSource = false;
 }
 
-size_t Sprite::textureHeight() const {
+const size_t Sprite::textureHeight() const {
 	return texture->height;
 }
-size_t Sprite::textureWidth() const {
+const size_t Sprite::textureWidth() const {
 	return texture->width;
 }
 
-pmath::Vec4f Sprite::getColor() const {
+const pmath::Vec4f Sprite::getColor() const {
 	return color;
 }
 void Sprite::setColor(pmath::Vec4f& value){

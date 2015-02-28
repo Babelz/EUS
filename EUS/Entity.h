@@ -33,18 +33,18 @@ public:
 
 	void show();
 	void hide();
-	bool isVisible() const;
+	const bool isVisible() const;
 
 	void enable();
 	void disable();
-	bool isEnabled() const;
+	const bool isEnabled() const;
 	
 	void destroy();
-	bool isDestroyed() const;
+	const bool isDestroyed() const;
 
-	bool addComponent(Component* const component);
-	bool removeComponent(Component* const component);
-	bool containsComponent(const Component* const component) const;
+	const bool addComponent(Component* const component);
+	const bool removeComponent(Component* const component);
+	const bool containsComponent(const Component* const component) const;
 
 	template<class T> T* const getComponent() const {
 		return components.getComponent<T>();
@@ -54,13 +54,13 @@ public:
 		return components.getComponent(predicate);
 	}
 
-	bool unTag(const std::string& tag);
-	bool isTagged(const std::string& tag) const;
-	bool tag(const std::string& tag);
+	const bool unTag(const std::string& tag);
+	const bool isTagged(const std::string& tag) const;
+	const bool tag(const std::string& tag);
 	
-	bool isParentOf(const Entity* const child);
-	bool addChild(Entity* const child);
-	bool removeChild(Entity* const child);
+	const bool isParentOf(const Entity* const child);
+	const bool addChild(Entity* const child);
+	const bool removeChild(Entity* const child);
 
 	void update(const float deltaTime);
 	void draw(const float deltaTime);

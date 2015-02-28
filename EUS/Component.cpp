@@ -70,7 +70,7 @@ void Component::disable() {
 
 	onEnabledChanged(false, true);
 }
-bool Component::isEnabled() const {
+const bool Component::isEnabled() const {
 	return enabled;
 }
 
@@ -83,7 +83,7 @@ void Component::destroy() {
 	
 	onDestroyed();
 }
-bool Component::isDestroyed() const {
+const bool Component::isDestroyed() const {
 	return destroyed;
 }
 

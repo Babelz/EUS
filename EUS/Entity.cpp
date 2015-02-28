@@ -23,7 +23,7 @@ void Entity::show() {
 void Entity::hide() {
 	visible = false;
 }
-bool Entity::isVisible() const {
+const bool Entity::isVisible() const {
 	return visible;
 }
 
@@ -33,7 +33,7 @@ void Entity::enable() {
 void Entity::disable() {
 	enabled = false;
 }
-bool Entity::isEnabled() const {
+const bool Entity::isEnabled() const {
 	return enabled;
 }
 
@@ -52,7 +52,7 @@ void Entity::destroy() {
 
 	destroyed = true;
 }
-bool Entity::isDestroyed() const {
+const bool Entity::isDestroyed() const {
 	return destroyed;
 }
 
@@ -60,21 +60,21 @@ bool Entity::isDestroyed() const {
 // wont complete the wanted operation (adding/removing tags).
 
 // Component manager wrappers.
-bool Entity::addComponent(Component* component) {
+const bool Entity::addComponent(Component* component) {
 	if (destroyed) return false;
 
 	require(component != nullptr, "Entity, addComponent: component cant be null.");
 
 	return components.addComponent(component);
 }
-bool Entity::removeComponent(Component* component) {
+const bool Entity::removeComponent(Component* component) {
 	if (destroyed) return false;
 
 	require(component != nullptr, "Entity, removeComponent: component cant be null.");
 	
 	return components.removeComponent(component);
 }
-bool Entity::containsComponent(const Component* const component) const {
+const bool Entity::containsComponent(const Component* const component) const {
 	if (destroyed) return false;
 
 	require(component != nullptr, "Entity, containsComponent: component cant be null.");
@@ -83,28 +83,28 @@ bool Entity::containsComponent(const Component* const component) const {
 }
 
 // Tag container wrappers.
-bool Entity::unTag(const std::string& tag) {
+const bool Entity::unTag(const std::string& tag) {
 	if (destroyed) return false;
 
 	return tags.unTag(tag);
 }
-bool Entity::isTagged(const std::string& tag) const {
+const bool Entity::isTagged(const std::string& tag) const {
 	if (destroyed) return false;
 
 	return tags.isTagged(tag);
 }
-bool Entity::tag(const std::string& tag) {
+const bool Entity::tag(const std::string& tag) {
 	if (destroyed) return false;
 
 	return tags.tag(tag);
 }
 
-bool Entity::isParentOf(const Entity* const child) {
+const bool Entity::isParentOf(const Entity* const child) {
 	require(child != nullptr, "Entity, isParentOf: child cant be null.");
 	
 	return std::find(childs.begin(), childs.end(), child) != childs.end();
 }
-bool Entity::addChild(Entity* const child) {
+const bool Entity::addChild(Entity* const child) {
 	if (destroyed) return false;
 
 	bool add = !isParentOf(child);
@@ -115,7 +115,7 @@ bool Entity::addChild(Entity* const child) {
 
 	return add;
 }
-bool Entity::removeChild(Entity* const child) {
+const bool Entity::removeChild(Entity* const child) {
 	if (destroyed) return false;
 
 	bool remove = isParentOf(child);

@@ -14,13 +14,13 @@ protected:
 
 	virtual void drawOrderChanged(const int newOrder, const int oldOrder);
 public:
-	int getDrawOrder() const;
+	const int getDrawOrder() const;
 
 	DrawableComponent(Game& game, Entity& owner, const int updateOrder = 0, const int drawOrder = 0);
 
 	void show();
 	void hide();
-	bool isVisible() const;
+	const bool isVisible() const;
 
 	void draw(const float deltaTime);
 

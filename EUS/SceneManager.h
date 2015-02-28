@@ -51,15 +51,15 @@ private:
 
 	Scene* activeScene;
 
-	bool containsScene(Scene* const scene) const;
-	bool containsSceneWithName(const std::string& name) const;
+	const bool containsScene(Scene* const scene) const;
+	const bool containsSceneWithName(const std::string& name) const;
 	Scene* const findSceneWithName(const std::string& name) const;
 public:
 	SceneManager(Game& game);
 
-	bool addScene(Scene* const scene);
-	bool removeScene(Scene* const scene);
-	bool freeScene(const std::string& name);
+	const bool addScene(Scene* const scene);
+	const bool removeScene(Scene* const scene);
+	const bool freeScene(const std::string& name);
 
 	// Changes scene and returns current scenes name.
 	const std::string& changeScene(const std::string& name);

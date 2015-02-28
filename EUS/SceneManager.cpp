@@ -68,10 +68,10 @@ SceneManager::SceneManager(Game& game) : game(game),
 }
 
 #pragma region Private members
-bool SceneManager::containsScene(Scene* const scene) const {
+const bool SceneManager::containsScene(Scene* const scene) const {
 	return std::find(scenes.begin(), scenes.end(), scene) != scenes.end();
 }
-bool SceneManager::containsSceneWithName(const std::string& name) const {
+const bool SceneManager::containsSceneWithName(const std::string& name) const {
 	Scene* result = findSceneWithName(name);
 
 	return result != nullptr;
@@ -88,7 +88,7 @@ Scene* const SceneManager::findSceneWithName(const std::string& name) const {
 #pragma endregion
 
 #pragma region Public members
-bool SceneManager::addScene(Scene* const scene) {
+const bool SceneManager::addScene(Scene* const scene) {
 	// Just to be sure that scenes have unique name.
 	assert(!containsSceneWithName(scene->getName()));
 
@@ -100,7 +100,7 @@ bool SceneManager::addScene(Scene* const scene) {
 
 	return add;
 }
-bool SceneManager::removeScene(Scene* const scene) {
+const bool SceneManager::removeScene(Scene* const scene) {
 	bool remove = containsScene(scene);
 
 	if (remove) {
@@ -109,7 +109,7 @@ bool SceneManager::removeScene(Scene* const scene) {
 
 	return remove;
 }
-bool SceneManager::freeScene(const std::string& name) {
+const bool SceneManager::freeScene(const std::string& name) {
 	Scene* scene = findSceneWithName(name);
 
 	bool freeScene = scene != nullptr;

@@ -17,7 +17,7 @@ void DrawableComponent::drawOrderChanged(const int newOrder, const int oldOrder)
 #pragma endregion 
 
 #pragma region Public members
-int DrawableComponent::getDrawOrder() const {
+const int DrawableComponent::getDrawOrder() const {
 	return drawOrder;
 }
 void DrawableComponent::show() {
@@ -38,7 +38,7 @@ void DrawableComponent::hide() {
 
 	onVisibleChanged(false, true);
 }
-bool DrawableComponent::isVisible() const {
+const bool DrawableComponent::isVisible() const {
 	return visible;
 }
 

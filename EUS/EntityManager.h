@@ -19,9 +19,9 @@ private:
 public:
 	EntityManager();
 
-	bool addEntity(Entity* const entity);
-	bool removeEntity(Entity* const entity);
-	bool containsEntity(const Entity* const entity) const;
+	const bool addEntity(Entity* const entity);
+	const bool removeEntity(Entity* const entity);
+	const bool containsEntity(const Entity* const entity) const;
 
 	std::vector<Entity* const>& findEntitiesWithTag(const std::string& tag);
 	

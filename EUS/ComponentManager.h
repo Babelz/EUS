@@ -17,9 +17,9 @@ private:
 public:
 	ComponentManager();
 
-	bool containsComponent(const Component* const component) const;
-	bool removeComponent(Component* const component);
-	bool addComponent(Component* const component);
+	const bool containsComponent(const Component* const component) const;
+	const bool removeComponent(Component* const component);
+	const bool addComponent(Component* const component);
 
 	void freeComponents();
 

@@ -13,57 +13,34 @@ class MapNode {
 private:
 	int h, g, f;
 
-	int parentXIndex, parentYIndex;
-
+	int childXIndex, childYIndex;
 	int goalIndexX, goalIndexY;
+	int xIndex, yIndex;
 
-	void calcG() {
-		// Calc g.
-	}
-	void calcH() {
-		// Calc h.
-	}
-public:
 	Entity* const tile;
-
-	const int xIndex;
-	const int yIndex;
 
 	NodeType nodeType;
 
-	// TODO: astar stuff.
+	void calcG();
+	void calcH();
+public:
 
-	MapNode(Entity* const tile, const int xIndex, const int yIndex) : tile(tile),
-																	  xIndex(xIndex),
-																	  yIndex(yIndex),
-																	  parentXIndex(-1),
-																	  parentYIndex(-1),
-																	  goalIndexX(-1),
-																	  goalIndexY(-1),
-																	  h(0), 
-																	  g(0),
-																	  f(0),
-																	  nodeType(NodeType::Passable) {
-	}
+	MapNode(Entity* const tile, const int xIndex, const int yIndex);
 
-	// TODO: getters for g, h, j.
+	const NodeType getType() const;
 
-	void setGoa(int x, int y) {
-		goalIndexX = x;
-		goalIndexY = y;
-	}
+	const bool hasChild() const;
+	const bool hasGoal() const;
 
-	void update() {
-		calcG();
-		calcH();
+	const int getG() const;
+	const int getH() const;
+	const int getF() const;
 
-		f = h + g;
-	}
-	void reset() {
-		f = g = h = 0;
-		parentXIndex = parentYIndex = -1;
-		goalIndexX = goalIndexY = -1;
-	}
+	void setGoal(const int x, const int y);
+	void update();
+	void reset();
+
+	~MapNode();
 };
 
 class MapGrid : public Component {
@@ -76,7 +53,7 @@ protected:
 public:
 	MapGrid(Game& game, Entity& entity, TileEngine& tileEngine);
 	
-	MapNode& nodeAtIndex(int i, int j);
+	MapNode& nodeAtIndex(const int i, const int j);
 
 	~MapGrid();
 };

@@ -31,10 +31,10 @@ Entity* MapBuilder::buildMap(const std::string& name, const std::string& sheetNa
 
 	for (size_t i = 0; i < loader.getMapHeight(); i++) {
 		for (size_t j = 0; j < loader.getMapWidth(); j++) {
-			char ch = loader.charAt(i, j);
+			const char ch = loader.charAt(i, j);
 
-			std::string name = mappings.getTileName(ch);
-			pmath::Rectf source = sheet.getSource(name);
+			const std::string name = mappings.getTileName(ch);
+			const pmath::Rectf source = sheet.getSource(name);
 
 			Entity* tile = builder.buildTile(name);
 			tile->getTransform().setX(static_cast<float>(tileSize * j));
@@ -42,14 +42,11 @@ Entity* MapBuilder::buildMap(const std::string& name, const std::string& sheetNa
 
 			SpriteRenderer* renderer = new SpriteRenderer(game(), *tile);
 			renderer->setSprite(new Sprite());
+			renderer->getSprite().setScaleX(tileSize / source.size.x);
+			renderer->getSprite().setScaleY(tileSize / source.size.y);
 			renderer->getSprite().swapTexture(texture);
 			renderer->getSprite().setSource(source);
 			renderer->getSprite().useSource();
-
-			// TODO: debug scale.
-			renderer->getSprite().setScale(2.0f);
-			renderer->getSprite().setX(tile->getTransform().getPosition().x);
-			renderer->getSprite().setY(tile->getTransform().getPosition().y);
 
 			tile->addComponent(renderer);
 			renderer->enable();
@@ -63,7 +60,11 @@ Entity* MapBuilder::buildMap(const std::string& name, const std::string& sheetNa
 	MapGrid* grid = new MapGrid(game(), *map, engine->mapWidthInTiles(), engine->mapHeightInTiles(), engine->tileSize());
 	grid->enable();
 
+	AStarPathfinder* pathfinder = new AStarPathfinder(game(), *map, *grid);
+	grid->enable();
+
 	map->addComponent(grid);
+	map->addComponent(pathfinder);
 
 	return map;
 }

@@ -20,7 +20,9 @@ public:
 
 	const float x() const;
 	const float y() const;
+	const float z() const;
 
+	void setZ(const float value);
 	void setX(const float value);
 	void setY(const float value);
 

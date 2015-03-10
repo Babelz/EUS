@@ -10,11 +10,11 @@ AStarPathfinder::AStarPathfinder(Game& game, Entity& owner, MapGrid& grid) : Com
 
 #pragma region Private members
 bool AStarPathfinder::isWalkable(const size_t indexX, const size_t indexY, const std::vector<NodeInfo>& nodeInfos) {
-	// Stay in the deim grid son!
-	assert(indexX >= 0 && indexX < grid.getWidth());
-	assert(indexY >= 0 && indexY < grid.getHeight());
+	if (indexX >= grid.getWidth()) return false;
 
-	MapNode& node = grid.nodeAtIndex(indexX, indexY);
+	if (indexY >= grid.getHeight()) return false;
+
+	MapNode& node = grid.nodeAtIndex(indexY, indexX);
 	
 	for (size_t i = 0; i < nodeInfos.size(); i++) {
 		if (node.getTileInfo()->getType() == nodeInfos[i].type) {
@@ -22,7 +22,7 @@ bool AStarPathfinder::isWalkable(const size_t indexX, const size_t indexY, const
 		}
 	}
 
-	throw std::logic_error("Unsupported tile type.");
+	return false;
 }
 void AStarPathfinder::internalFindPath(bool& foundPath, std::vector<pmath::Vec2f>& outPath, const std::vector<NodeInfo>& nodeInfos, const pmath::Vec2f& start, const pmath::Vec2f& goal) {
 	const size_t width = grid.getWidth();
@@ -34,19 +34,22 @@ void AStarPathfinder::internalFindPath(bool& foundPath, std::vector<pmath::Vec2f
 	const int goalX = static_cast<int>(goal.x / grid.getNodeSize());
 	const int goalY = static_cast<int>(goal.y / grid.getNodeSize());
 
-	std::vector<MapNode* const> openList;
-	std::vector<MapNode* const> closedList;
+	std::vector<MapNode*> openList;
+	std::vector<MapNode*> closedList;
 
-	MapNode& current = grid.nodeAtIndex(startX, startY);
+	MapNode* current = &grid.nodeAtIndex(startY, startX);
+	openList.push_back(current);
 
-	while (true) {
-		float currentX = current.getTile()->getTransform().getPosition().x;
-		float currentY = current.getTile()->getTransform().getPosition().y;
-		
+	float currentX = current->getTile()->getTransform().getPosition().x;
+	float currentY = current->getTile()->getTransform().getPosition().y;
+
+	while (openList.size() > 0) {
 		// At goal.
 		if (currentX == goal.x && currentY == goal.y) {
 			break;
 		}
+
+		closedList.push_back(current);
 
 		std::vector<MapNode*> newNodes;
 
@@ -55,19 +58,19 @@ void AStarPathfinder::internalFindPath(bool& foundPath, std::vector<pmath::Vec2f
 
 		// Top.
 		if (isWalkable(x, y - 1, nodeInfos)) {
-			newNodes.push_back(&grid.nodeAtIndex(x, y - 1));
+			newNodes.push_back(&grid.nodeAtIndex(y - 1, x));
 		}
 		// Bottom.
 		if (isWalkable(x, y + 1, nodeInfos)) {
-			newNodes.push_back(&grid.nodeAtIndex(x, y + 1));
+			newNodes.push_back(&grid.nodeAtIndex(y + 1, x));
 		}
 		// Right.
 		if (isWalkable(x + 1, y, nodeInfos)) {
-			newNodes.push_back(&grid.nodeAtIndex(x + 1, y));
+			newNodes.push_back(&grid.nodeAtIndex(y, x + 1));
 		}
 		// Left.
 		if (isWalkable(x - 1, y, nodeInfos)) {
-			newNodes.push_back(&grid.nodeAtIndex(x - 1, y));
+			newNodes.push_back(&grid.nodeAtIndex(y, x - 1));
 		}
 
 		// TODO: implement.
@@ -75,21 +78,77 @@ void AStarPathfinder::internalFindPath(bool& foundPath, std::vector<pmath::Vec2f
 			throw std::logic_error("Not implemented - AStarPathfinder \"skipCorners\"");
 		}
 
-		for (size_t i = 0; i < newNodes.size(); i++) {
+		openList.erase(std::remove(openList.begin(), openList.end(), current), openList.end());
+
+		std::for_each(newNodes.begin(), newNodes.end(), [this, startX, startY, goalX, goalY, &closedList, &openList, &nodeInfos, &current] (MapNode* n) {
 			// Node is in closed list, skip it.
+			if (std::find(closedList.begin(), closedList.end(), n) != closedList.end()) {
+				return;
+			}
+
+			// Set values for node.
+			n->setStart(startX, startY);
+			n->setGoal(goalX, goalY);
+			
+			// Set A mod, if node infos contain value for it.
+			for (size_t i = 0; i < nodeInfos.size(); i++) {
+				if (n->getTileInfo()->getType() == nodeInfos[i].type) {
+					n->setA(nodeInfos[i].cost);
+				}
+			}
 
 			// Node is in open list, check if its cheaper to move trough it.
+			if (std::find(openList.begin(), openList.end(), n) != openList.end()) {
+				if (n->getG() > current->getG()) {
+					// Set child and calculate values.
+					n->setChild(current->getXIndex(), current->getYIndex());
+					n->update();
+				}
+			} else {
+				// New node, add it to open list and set its parent index.
+				n->setChild(current->getXIndex(), current->getYIndex());
+				n->update();
 
-			// New node, add it to open list and set its parent index.
+				openList.push_back(n);
+			}
+		});
 
+		// At goal or no path was found.
+		if (openList.size() == 0) {
+			break;
+		} else {
+			// Sort all nodes based on their total cost (F).
+			std::sort(openList.begin(), openList.end(), [](MapNode* a, MapNode* b) {
+				int aF = a->getF();
+				int bF = b->getF();
+
+				return aF < bF;
+			});
 		}
-	}
 
-	// Get surrounding nodes.
-	// Set modifier value (A)
-	// Set goal
-	// Update nodes
-	// Get best one
+		current = openList[0];
+
+		currentX = current->getTile()->getTransform().getPosition().x;
+		currentY = current->getTile()->getTransform().getPosition().y;
+	};
+
+	foundPath = currentX == goal.x && currentY == goal.y;
+
+	while (current->hasChild()) {
+		extractVectorFrom(*current, outPath);
+		
+		MapNode* last = current;
+
+		current = &grid.nodeAtIndex(current->getChildIndexY(), current->getChildIndexX());
+		
+		last->reset();
+	}
+	
+	std::reverse(outPath.begin(), outPath.end());
+}
+void AStarPathfinder::extractVectorFrom(const MapNode& current, std::vector<pmath::Vec2f>& outPath) {
+	outPath.push_back(pmath::Vec2f(current.getTile()->getTransform().getPosition().x,
+								   current.getTile()->getTransform().getPosition().y));
 }
 #pragma endregion
 

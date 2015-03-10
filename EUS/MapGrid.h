@@ -10,9 +10,10 @@ private:
 	// A = additional cost.
 	int h, g, f, a;
 
+	int startIndexX, startIndexY;
 	int childXIndex, childYIndex;
 	int goalIndexX, goalIndexY;
-	size_t xIndex, yIndex;
+	int xIndex, yIndex;
 
 	Entity* tile;
 	TileInfo* tileInfo;
@@ -28,15 +29,30 @@ public:
 
 	const bool hasChild() const;
 	const bool hasGoal() const;
+	const bool hasStart() const;
 
 	void setA(const int value);
 	
+	// TODO: your damn code son.
+
+	// Modifier value.
 	const int getA() const;
+	// Movement cost G.
 	const int getG() const;
+	// H cost.
 	const int getH() const;
+	// Total cost.
 	const int getF() const;
 
+	const int getChildIndexX() const;
+	const int getChildIndexY() const;
+	
+	const int getXIndex() const;
+	const int getYIndex() const;
+
+	void setChild(const int x, const int y);
 	void setGoal(const int x, const int y);
+	void setStart(const int x, const int y);
 	void update();
 	void reset();
 
@@ -44,6 +60,7 @@ public:
 
 	MapNode& operator = (const MapNode& other) {
 		tile = other.tile;
+		tileInfo = other.tileInfo;
 		
 		xIndex = other.xIndex;
 		yIndex = other.yIndex;
@@ -53,10 +70,14 @@ public:
 
 		goalIndexX = other.goalIndexX;
 		goalIndexY = other.goalIndexY;
+
+		startIndexX = other.startIndexX;
+		startIndexY = other.startIndexY;
 		
 		h = other.h;
 		g = other.g;
 		f = other.f;
+		a = other.a;
 
 		return *this;
 	}

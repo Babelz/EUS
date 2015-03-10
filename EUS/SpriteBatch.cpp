@@ -121,7 +121,7 @@ void SpriteBatch::generateVertices() {
 
 void SpriteBatch::sortBatch() {
 	std::sort(spriteQueue.begin(), spriteQueue.begin() + spritesCount, [](SpriteInfo& a, SpriteInfo& b) {
-		return a.texture->getId() < b.texture->getId();
+		return a.texture->getId() < b.texture->getId() && a.position.z < b.position.z;
 	});
 }
 void SpriteBatch::flushBatch() {

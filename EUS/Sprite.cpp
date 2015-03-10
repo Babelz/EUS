@@ -16,7 +16,13 @@ const float Sprite::x() const {
 const float Sprite::y() const {
 	return position.y;
 }
+const float Sprite::z() const {
+	return position.z;
+}
 
+void Sprite::setZ(const float value) {
+	position.z = value;
+}
 void Sprite::setX(const float value) {
 	position.x = value;
 }

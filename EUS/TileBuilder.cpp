@@ -121,14 +121,14 @@ Entity* TileBuilder::createBridge() const {
 	return internalCreateTile("bridge", 0, 0, TileType::Bridge);
 }
 Entity* TileBuilder::createCoast() const {
-	return internalCreateTile("coast", 0, 0, TileType::Pains);
+	return internalCreateTile("coast", 0, 0, TileType::Plains);
 }
 Entity* TileBuilder::createWoods() const {
 	return internalCreateTile("woods", 3, 4, TileType::Woods);
 }
 
 Entity* TileBuilder::createPlains() const {
-	return internalCreateTile("plains", 0, 0, TileType::Pains);
+	return internalCreateTile("plains", 0, 0, TileType::Plains);
 }
 Entity* TileBuilder::createHills() const {
 	return internalCreateTile("hill", 0, 3, TileType::Hills);

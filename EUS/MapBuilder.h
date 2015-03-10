@@ -1,4 +1,5 @@
 #pragma once
+#include "AStarPathfinder.h"
 #include "SpriteRenderer.h"
 #include "NamedTileSheet.h"
 #include "EntityBuilder.h"

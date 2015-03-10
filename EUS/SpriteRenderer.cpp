@@ -2,11 +2,11 @@
 
 SpriteRenderer::SpriteRenderer(Game& game, Entity& owner, Sprite* sprite) : DrawableComponent(game, owner),
 																			sprite(sprite),
-																			follow(false) {
+																			follow(true) {
 }
 SpriteRenderer::SpriteRenderer(Game& game, Entity& owner) : DrawableComponent(game, owner),
 															sprite(nullptr),
-															follow(false) {
+															follow(true) {
 
 }
 
@@ -16,7 +16,7 @@ void SpriteRenderer::onUpdate(const float deltaTime) {
 
 	if (follow) {
 		sprite->setX(getOwner().getTransform().getPosition().x);
-		sprite->setY(getOwner().getTransform().getPosition().x);
+		sprite->setY(getOwner().getTransform().getPosition().y);
 	}
 }
 void SpriteRenderer::onDraw(const float deltaTime) {

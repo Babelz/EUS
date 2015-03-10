@@ -4,7 +4,7 @@
 #include "Resources.h"
 
 enum TileType {
-	Pains,
+	Plains,
 	Hills,
 	Water,
 	Urban,

@@ -29,6 +29,7 @@ private:
 
 	bool isWalkable(const size_t indexX, const size_t indexY, const std::vector<NodeInfo>& nodeInfos);
 	void internalFindPath(bool& foundPath, std::vector<pmath::Vec2f>& outPath, const std::vector<NodeInfo>& nodeInfos, const pmath::Vec2f& start, const pmath::Vec2f& goal);
+	void extractVectorFrom(const MapNode& current, std::vector<pmath::Vec2f>& outPath);
 public:
 	AStarPathfinder(Game& game, Entity& owner, MapGrid& grid);
 

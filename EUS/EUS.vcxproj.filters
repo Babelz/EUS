@@ -128,6 +128,9 @@
     <ClCompile Include="Sprite.cpp">
       <Filter>Source Files\Graphics</Filter>
     </ClCompile>
+    <ClCompile Include="AStarPathfinder.cpp">
+      <Filter>Source Files\Components\AI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.h">
@@ -218,6 +221,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MapGrid.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AStarPathfinder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

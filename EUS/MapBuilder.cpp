@@ -21,11 +21,12 @@ Entity* MapBuilder::buildMap(const std::string& name, const std::string& sheetNa
 	loader.load(path);
 
 	Entity* map = new Entity();
+
 	TileEngine* engine = new TileEngine(game(), *map, 
 		loader.getMapWidth(), 
 		loader.getMapHeight(), 
 		tileSize);
-	
+
 	map->addComponent(engine);
 
 	for (size_t i = 0; i < loader.getMapHeight(); i++) {
@@ -36,14 +37,15 @@ Entity* MapBuilder::buildMap(const std::string& name, const std::string& sheetNa
 			pmath::Rectf source = sheet.getSource(name);
 
 			Entity* tile = builder.buildTile(name);
-			tile->getTransform().setX(tileSize * j);
-			tile->getTransform().setY(tileSize * i);
+			tile->getTransform().setX(static_cast<float>(tileSize * j));
+			tile->getTransform().setY(static_cast<float>(tileSize * i));
 
 			SpriteRenderer* renderer = new SpriteRenderer(game(), *tile);
 			renderer->setSprite(new Sprite());
 			renderer->getSprite().swapTexture(texture);
 			renderer->getSprite().setSource(source);
 			renderer->getSprite().useSource();
+
 			// TODO: debug scale.
 			renderer->getSprite().setScale(2.0f);
 			renderer->getSprite().setX(tile->getTransform().getPosition().x);
@@ -58,7 +60,7 @@ Entity* MapBuilder::buildMap(const std::string& name, const std::string& sheetNa
 		}
 	}
 
-	MapGrid* grid = new MapGrid(game(), *map, *engine);
+	MapGrid* grid = new MapGrid(game(), *map, engine->mapWidthInTiles(), engine->mapHeightInTiles(), engine->tileSize());
 	grid->enable();
 
 	map->addComponent(grid);

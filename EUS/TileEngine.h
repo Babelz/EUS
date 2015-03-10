@@ -3,21 +3,20 @@
 
 class TileEngine : public Component {
 private:
-	int m_mapWidth;
-	int m_mapHeight;
+	size_t m_mapWidth;
+	size_t m_mapHeight;
 	
-	int m_tileSize;
+	size_t m_tileSize;
 public:
-	TileEngine(Game& game, Entity& owner, const int mapWidth, const int mapHeight,
-										  const int tileSize);
+	TileEngine(Game& game, Entity& owner, const size_t mapWidth, const size_t mapHeight, const size_t tileSize);
 
-	const int mapWidthInTiles() const;
-	const int mapHeightInTiles() const;
+	const size_t mapWidthInTiles() const;
+	const size_t mapHeightInTiles() const;
 
-	const int mapWidthInPixels() const;
-	const int mapHeightInPixels() const;
+	const size_t mapWidthInPixels() const;
+	const size_t mapHeightInPixels() const;
 
-	const int tileSize() const;
+	const size_t tileSize() const;
 
 	~TileEngine();
 };

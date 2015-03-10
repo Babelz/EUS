@@ -1,28 +1,27 @@
 #include "TileEngine.h"
 
-TileEngine::TileEngine(Game& game, Entity& owner, const int mapWidth, const int mapHeight,
-												  const int tileSize) : Component(game, owner, 0),
-																	    m_mapWidth(mapWidth),
-															            m_mapHeight(mapHeight),
-														                m_tileSize(tileSize) {
+TileEngine::TileEngine(Game& game, Entity& owner, const size_t mapWidth, const size_t mapHeight, const size_t tileSize) : Component(game, owner, 0),
+																														  m_mapWidth(mapWidth),
+																														  m_mapHeight(mapHeight),
+																														  m_tileSize(tileSize) {
 }
 
 #pragma region Public members
-const int TileEngine::mapWidthInTiles() const {
+const size_t TileEngine::mapWidthInTiles() const {
 	return m_mapWidth;
 }
-const int TileEngine::mapHeightInTiles() const {
+const size_t TileEngine::mapHeightInTiles() const {
 	return m_mapHeight;
 }
 
-const int TileEngine::mapWidthInPixels() const {
+const size_t TileEngine::mapWidthInPixels() const {
 	return m_mapWidth * m_tileSize;
 }
-const int TileEngine::mapHeightInPixels() const {
+const size_t TileEngine::mapHeightInPixels() const {
 	return m_mapHeight * m_tileSize;
 }
 
-const int TileEngine::tileSize() const {
+const size_t TileEngine::tileSize() const {
 	return m_tileSize;
 }
 #pragma endregion

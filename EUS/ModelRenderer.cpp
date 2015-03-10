@@ -53,6 +53,7 @@ void ModelRenderer::onDraw() {
 
 	glBindTexture(GL_TEXTURE_2D, texture->getId());
 
+	// TODO: fix. Using static res.
 	glm::mat4 projection = glm::translate(glm::vec3(-1.0f, 1.0f, 0.0f)) * glm::perspective(glm::radians(45.0f), 1280.0f / 720.0f, 0.1f, 100.0f);
 	glm::mat4 view = glm::lookAt(glm::vec3(0.0f, 0.0f, 10.0f),
 								 glm::vec3(0.0f, 0.0f, 0.0f),

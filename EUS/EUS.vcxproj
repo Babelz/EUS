@@ -85,6 +85,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AStarPathfinder.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="ComponentManager.cpp" />
     <ClCompile Include="Content.cpp" />
@@ -119,6 +120,7 @@
     <ClCompile Include="VertexColorPositionTexture.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AStarPathfinder.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="ComponentManager.h" />
     <ClInclude Include="Content.h" />

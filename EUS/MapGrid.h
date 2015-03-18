@@ -20,21 +20,20 @@ private:
 
 	void calcG();
 	void calcH();
+
+	const bool hasGoal() const;
+	const bool hasStart() const;
 public:
-	MapNode(Entity* const tile, const size_t xIndex, const size_t yIndex);
+	MapNode(Entity* const tile, const int xIndex, const int yIndex);
 	MapNode();
+
+	const bool hasChild() const;
 
 	TileInfo* const getTileInfo() const;
 	Entity* const getTile() const;
 
-	const bool hasChild() const;
-	const bool hasGoal() const;
-	const bool hasStart() const;
-
+	// Modifier value for randomizing the path.
 	void setA(const int value);
-	
-	// TODO: your damn code son.
-
 	// Modifier value.
 	const int getA() const;
 	// Movement cost G.
@@ -53,6 +52,7 @@ public:
 	void setChild(const int x, const int y);
 	void setGoal(const int x, const int y);
 	void setStart(const int x, const int y);
+
 	void update();
 	void reset();
 
@@ -87,19 +87,19 @@ class MapGrid : public Component {
 private:
 	std::vector<std::vector<MapNode>> nodes;
 	
-	const size_t width;
-	const size_t height;
-	const size_t nodeSize;
+	const int width;
+	const int height;
+	const int nodeSize;
 protected:
 	void onInitialize();
 public:
-	MapGrid(Game& game, Entity& entity, const size_t width, const size_t height, const size_t nodeSize);
+	MapGrid(Game& game, Entity& entity, const int width, const int height, const int nodeSize);
 	
-	MapNode& nodeAtIndex(const size_t i, const size_t j);
+	MapNode& nodeAtIndex(const int i, const int j);
 
-	const size_t getWidth() const;
-	const size_t getHeight() const;
-	const size_t getNodeSize() const;
+	const int getWidth() const;
+	const int getHeight() const;
+	const int getNodeSize() const;
 
 	~MapGrid();
 };

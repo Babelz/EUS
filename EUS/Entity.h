@@ -7,6 +7,7 @@
 #include "Vector2.hpp"
 #include "Transform.h"
 
+__declspec(align(16))
 class Entity {
 private:
 	static int idCounter; 
@@ -68,4 +69,12 @@ public:
 	std::list<Entity* const> getChilds() const;
 
 	~Entity();
+
+	void* operator new (const size_t i){
+		return _mm_malloc(i, 16);
+	}
+
+	void operator delete(void* chunk) {
+		_mm_free(chunk);
+	}
 };

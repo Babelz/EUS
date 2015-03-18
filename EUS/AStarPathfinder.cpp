@@ -9,10 +9,10 @@ AStarPathfinder::AStarPathfinder(Game& game, Entity& owner, MapGrid& grid) : Com
 }
 
 #pragma region Private members
-bool AStarPathfinder::isWalkable(const size_t indexX, const size_t indexY, const std::vector<NodeInfo>& nodeInfos) {
-	if (indexX >= grid.getWidth()) return false;
+bool AStarPathfinder::isWalkable(const int indexX, const int indexY, const std::vector<NodeInfo>& nodeInfos) {
+	if (indexX >= grid.getWidth() || indexX < 0) return false;
 
-	if (indexY >= grid.getHeight()) return false;
+	if (indexY >= grid.getHeight() || indexY < 0) return false;
 
 	MapNode& node = grid.nodeAtIndex(indexY, indexX);
 	
@@ -31,8 +31,14 @@ void AStarPathfinder::internalFindPath(bool& foundPath, std::vector<pmath::Vec2f
 	const int startX = static_cast<int>(start.x / grid.getNodeSize());
 	const int startY = static_cast<int>(start.y / grid.getNodeSize());
 
+	if (startX < 0 || startX >= grid.getWidth()) return;
+	if (startY < 0 || startY >= grid.getHeight()) return;
+
 	const int goalX = static_cast<int>(goal.x / grid.getNodeSize());
 	const int goalY = static_cast<int>(goal.y / grid.getNodeSize());
+
+	if (goalX < 0 || goalX >= grid.getWidth()) return;
+	if (goalY < 0 || goalY >= grid.getHeight()) return;
 
 	std::vector<MapNode*> openList;
 	std::vector<MapNode*> closedList;
@@ -53,8 +59,8 @@ void AStarPathfinder::internalFindPath(bool& foundPath, std::vector<pmath::Vec2f
 
 		std::vector<MapNode*> newNodes;
 
-		const size_t x = static_cast<size_t>(currentX / grid.getNodeSize());
-		const size_t y = static_cast<size_t>(currentY / grid.getNodeSize());
+		const int x = currentX / grid.getNodeSize();
+		const int y = currentY / grid.getNodeSize();
 
 		// Top.
 		if (isWalkable(x, y - 1, nodeInfos)) {

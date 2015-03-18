@@ -66,9 +66,6 @@ void GameplayScene::draw(const float deltaTime)  {
 			getGame().spriteBatch().draw(getGame().content().load<Texture>("tuksu"), pmath::Rectf(path[i].x, path[i].y, 64, 64));
 		}
 	}
-
-
-
 }
 #pragma endregion
 

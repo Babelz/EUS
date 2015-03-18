@@ -1,7 +1,7 @@
 #include "MapGrid.h"
 
 #pragma region MapNode class
-MapNode::MapNode(Entity* const tile, const size_t xIndex, const size_t yIndex) : tile(tile),
+MapNode::MapNode(Entity* const tile, const int xIndex, const int yIndex) : tile(tile),
 																			     xIndex(xIndex),
 																			     yIndex(yIndex),
 																				 childXIndex(-1),
@@ -35,8 +35,6 @@ MapNode::MapNode() : tile(nullptr),
 
 #pragma region Private members
 void MapNode::calcG() {
-	assert(hasChild());
-
 	if (childYIndex + 1 == yIndex || childYIndex - 1 == yIndex) {
 		g = 10;
 	} else if (childXIndex + 1 == xIndex || childXIndex - 1 == xIndex) {
@@ -46,9 +44,7 @@ void MapNode::calcG() {
 	g = 14;
 }
 void MapNode::calcH() {
-	assert(hasGoal());
-
-	int startX = std::min(goalIndexX, xIndex);//goalIndexX > xIndex ? xIndex : goalIndexX;
+	int startX = std::min(goalIndexX, xIndex);
 	int startY = std::min(goalIndexY, yIndex);
 
 	int endX = std::max(goalIndexX, xIndex);
@@ -56,24 +52,24 @@ void MapNode::calcH() {
 
 	h = ((endX - startX) + (endY - startY)) * 10;
 }
-#pragma endregion
 
-#pragma region Public members 
-TileInfo* const MapNode::getTileInfo() const {
-	return tileInfo;
-}
-Entity* const MapNode::getTile() const {
-	return tile;
-}
-
-const bool MapNode::hasChild() const {
-	return childXIndex > 0 && childYIndex > 0;
-}
 const bool MapNode::hasGoal() const {
 	return goalIndexX > 0 && goalIndexY > 0;
 }
 const bool MapNode::hasStart() const {
 	return startIndexX > 0 && startIndexY > 0;
+}
+#pragma endregion
+
+#pragma region Public members 
+const bool MapNode::hasChild() const {
+	return childXIndex > 0 && childYIndex > 0;
+}
+TileInfo* const MapNode::getTileInfo() const {
+	return tileInfo;
+}
+Entity* const MapNode::getTile() const {
+	return tile;
 }
 
 void MapNode::setA(const int value) {
@@ -142,9 +138,9 @@ MapNode::~MapNode() {
 #pragma endregion
 
 #pragma region MapGrid class
-MapGrid::MapGrid(Game& game, Entity& entity, const size_t width, const size_t height, const size_t nodeSize) : Component(game, entity),
-																											   width(width),
-																											   height(height),																											   nodeSize(nodeSize) {
+MapGrid::MapGrid(Game& game, Entity& entity, const int width, const int height, const int nodeSize) : Component(game, entity),
+																								      width(width),
+																								      height(height),																											   nodeSize(nodeSize) {
 }
 
 #pragma region Protected members
@@ -173,17 +169,17 @@ void MapGrid::onInitialize() {
 #pragma endregion
 
 #pragma region Public members
-MapNode& MapGrid::nodeAtIndex(const size_t i, const size_t j) {
+MapNode& MapGrid::nodeAtIndex(const int i, const int j) {
 	return nodes[i][j];
 }
 
-const size_t MapGrid::getWidth() const {
+const int MapGrid::getWidth() const {
 	return width;
 }
-const size_t MapGrid::getHeight() const {
+const int MapGrid::getHeight() const {
 	return height;
 }
-const size_t MapGrid::getNodeSize() const {
+const int MapGrid::getNodeSize() const {
 	return nodeSize;
 }
 #pragma endregion

@@ -32,8 +32,8 @@ public:
 	
 	const float getHitPoints() const;
 
-	void takeDamageFrom(DamageType damageType, const float enemyAddedDamage);
-	const float dealDamageTo(ArmorType armorType, const float enemyAddedArmor);
+	void takeDamageFrom(const DamageType damageType, const float enemyAddedDamage);
+	const float dealDamageTo(const ArmorType armorType, const float enemyAddedArmor);
 
 	const bool alive() const;
 

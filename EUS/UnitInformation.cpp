@@ -14,6 +14,7 @@ UnitInformation::UnitInformation(Game& game, Entity& owner,
 															movementRange(movementRange),
 															addedDefence(addedDefence),
 															addedDamage(addedDamage),
+															hitPoints(10.0f),
 															Component(game, owner) {
 }
 
@@ -27,7 +28,7 @@ const float UnitInformation::getHitPoints() const {
 	return hitPoints;
 }
 
-void UnitInformation::takeDamageFrom(DamageType damageType, const float enemyAddedDamage) {
+void UnitInformation::takeDamageFrom(const DamageType damageType, const float enemyAddedDamage) {
 	switch (damageType) {
 		case Light:
 			break;
@@ -39,7 +40,7 @@ void UnitInformation::takeDamageFrom(DamageType damageType, const float enemyAdd
 			break;
 	}
 }
-const float UnitInformation::dealDamageTo(ArmorType armorType, const float enemyAddedArmor) {
+const float UnitInformation::dealDamageTo(const ArmorType armorType, const float enemyAddedArmor) {
 	return 0.0f;
 }
 

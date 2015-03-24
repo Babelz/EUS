@@ -10,6 +10,14 @@
 #include "Content.h"
 #include "VertexColorPositionTexture.h"
 
+enum SortMode {
+	BackToFront,
+	FrontToBack,
+	Deferred,
+	Depth
+};
+
+
 struct SpriteInfo {
 	pmath::Vec3f position;
 	pmath::Vec4f color;
@@ -63,6 +71,8 @@ private:
 	std::vector<SpriteInfo> spriteQueue;
 	std::vector<VertexPositionColorTexture> vertices;
 
+	SortMode sortMode;
+
 	void initializeShader();
 	void initializeBuffers();
 	void createIndices();
@@ -79,7 +89,7 @@ public:
 
 	void initialize();
 
-	void begin();
+	void begin(const SortMode sortMode = SortMode::Deferred);
 	
 	void draw(Texture* const texture, pmath::Rectf& rect);
 	void draw(Texture* const texture, pmath::Vec3f& position, pmath::Vec2f& origin, pmath::Vec4f& color, float xScale, float yScale);

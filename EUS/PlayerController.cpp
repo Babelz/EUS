@@ -1,13 +1,20 @@
 #include "PlayerController.h"
 
-PlayerController::PlayerController(Game& game, Entity& owner, const int updateOrder) : Component(game, owner, updateOrder) {
+PlayerController::PlayerController(Game& game, Entity& owner) : Component(game, owner) {
 }
 
 #pragma region Protected members
-void PlayerController::onDestroy() {
+void PlayerController::onDestroyed() {
 }
 
 void PlayerController::onInitialize() {
+	cursor = getOwner().getComponent<PlayerCursor>();
+
+	assert(cursor != nullptr);
+}
+
+void PlayerController::onUpdate(const float deltaTime) {
+
 }
 #pragma endregion
 

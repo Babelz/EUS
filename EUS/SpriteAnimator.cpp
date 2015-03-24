@@ -10,12 +10,12 @@ SpriteAnimator::SpriteAnimator(Game& game, Entity& entity) : DrawableComponent(g
 
 #pragma region Private members
 AnimationInformation& SpriteAnimator::findInformationWithName(const std::string& name) const {
-	return std::find_if(animations.begin(), animations.end(), [&name](AnimationInformation& a) {
+	return std::find_if(animations.begin(), animations.end(), [&name](const AnimationInformation a) {
 		return a.name == name;
 	})._Ptr->_Myval;
 }
 const bool SpriteAnimator::canAnimate() const {
-	return !currentAnimation.empty() && texture != nullptr;
+	return currentAnimation.empty() && texture != nullptr;
 }
 void SpriteAnimator::updateSource() {
 	assert(canAnimate());
@@ -31,7 +31,7 @@ void SpriteAnimator::onUpdate(const float deltaTime) {
 
 	elapsed += deltaTime;
 
-	if (elapsed >= currentAnimation.millis) {
+	if (elapsed >= currentAnimation.seconds) {
 		if (currentFrameIndexX + 1.0f < currentAnimation.frames) {
 			// Next frame.
 
@@ -58,7 +58,7 @@ void SpriteAnimator::onDraw(const float deltaTime) {
 	destination.size.x = size.x;
 	destination.size.y = size.y;
 
-	spriteBatch.draw(texture, source, destination, pmath::Vec4f(0.0f));
+	spriteBatch.draw(texture, source, destination, pmath::Vec4f(1.0f));
 }
 #pragma endregion
 
@@ -84,14 +84,21 @@ void SpriteAnimator::setAnimationFramesCount(const std::string& name, const size
 	
 	animation.frames = static_cast<float>(frames);
 }
-void SpriteAnimator::setAnimationDuration(const std::string& name, const float millis) {
+void SpriteAnimator::setAnimationDuration(const std::string& name, const float seconds) {
 	assert(containsAnimation(name));
 
 	AnimationInformation& animation = findInformationWithName(name);
 
-	animation.millis = millis;
+	animation.seconds = seconds;
 }
 
+
+void SpriteAnimator::setFrameSize(const size_t size) {
+	const float value = static_cast<float>(size);
+
+	source.size.x = value;
+	source.size.y = value;
+}
 void SpriteAnimator::setAnimatorSize(const pmath::Vec2f& size) {
 	this->size = size;
 }

@@ -11,11 +11,11 @@ struct AnimationInformation {
 	float indexX;
 	float indexY;
 
-	float millis;
+	float seconds;
 
 	AnimationInformation() {
 		frames = indexX = indexY = 0;
-		millis = 0.0f;
+		seconds = 0.0f;
 	}
 
 	const bool empty() const {
@@ -53,8 +53,9 @@ public:
 	
 	void createAnimation(const std::string& name, const size_t indexX, const size_t indexY);
 	void setAnimationFramesCount(const std::string& name, const size_t frames);
-	void setAnimationDuration(const std::string& name, const float millis);
+	void setAnimationDuration(const std::string& name, const float seconds);
 	
+	void setFrameSize(const size_t size);
 	void setAnimatorSize(const pmath::Vec2f& size);
 
 	// Returns current animations name.

@@ -134,8 +134,8 @@ void AStarPathfinder::internalFindPath(bool& foundPath, std::vector<pmath::Vec2f
 
 		current = openList[0];
 
-		currentX = current->getTile()->getTransform().getPosition().x;
-		currentY = current->getTile()->getTransform().getPosition().y;
+		currentX = static_cast<int>(current->getTile()->getTransform().getPosition().x);
+		currentY = static_cast<int>(current->getTile()->getTransform().getPosition().y);
 	};
 
 	foundPath = currentX == goal.x && currentY == goal.y;

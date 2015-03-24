@@ -54,6 +54,7 @@ void Game::internalInitialize() {
 	glGetIntegerv(GL_MINOR_VERSION, &versionMinor);
 
 	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_ALPHA);
 
 	std::cout << "OpenGL context version: " << versionMajor << "." << versionMinor << std::endl;
 

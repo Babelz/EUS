@@ -56,7 +56,7 @@ void SpriteBatch::renderBatch(Texture* const texture, const size_t first, const 
 
 	glDrawElements(
 		GL_TRIANGLES,
-		INDICES_PER_SPRITE * last - first,
+		INDICES_PER_SPRITE * (last - first),
 		GL_UNSIGNED_SHORT,
 		(void*)(first * INDICES_PER_SPRITE * sizeof(unsigned short)));
 
@@ -120,9 +120,25 @@ void SpriteBatch::generateVertices() {
 }
 
 void SpriteBatch::sortBatch() {
-	std::sort(spriteQueue.begin(), spriteQueue.begin() + spritesCount, [](SpriteInfo& a, SpriteInfo& b) {
-		return a.texture->getId() < b.texture->getId() && a.position.z < b.position.z;
-	});
+	switch (sortMode) {
+		case BackToFront:
+			std::reverse(spriteQueue.begin(), spriteQueue.begin() + spritesCount);
+			break;
+		case FrontToBack:
+			break;
+		case Depth:
+			std::sort(spriteQueue.begin(), spriteQueue.begin() + spritesCount, [](SpriteInfo& a, SpriteInfo& b) {
+				return a.position.z > b.position.z;
+			});
+			break;
+		case Deferred:
+			std::sort(spriteQueue.begin(), spriteQueue.begin() + spritesCount, [](SpriteInfo& a, SpriteInfo& b) {
+				return a.texture->getId() < b.texture->getId();
+			});
+			break;
+		default:
+			break;
+	}
 }
 void SpriteBatch::flushBatch() {
 	sortBatch();
@@ -138,25 +154,27 @@ void SpriteBatch::flushBatch() {
 	glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(perspective));
 
 	Texture* batchTexture = spriteQueue[0].texture;
+	Texture* texture = nullptr;
+
 	size_t first = 0;
 	size_t last = 0;
 
 	for (size_t i = 0; i < spritesCount; i++)	{
-		Texture* texture = spriteQueue[i].texture;
+		texture = spriteQueue[i].texture;
 
 		// Render whenever texture changes.
 		if (texture != batchTexture) {
 			// Flush from first to last.
-			renderBatch(batchTexture, first, last);
-			
+			renderBatch(batchTexture, first, last + 1);
+
 			// Next render will start from this index.
 			first = i;
 		}
-		
+
 		batchTexture = texture;
 		last = i;
 	}
-
+	
 	renderBatch(batchTexture, first, last + 1);
 
 	shader->unbind();
@@ -183,10 +201,12 @@ void SpriteBatch::initialize() {
 	initializeBuffers();
 }
 
-void SpriteBatch::begin() {
+void SpriteBatch::begin(const SortMode sortMode) {
 	if (isDrawing) {
 		throw std::logic_error("End must be called before begin.");
 	}
+
+	this->sortMode = sortMode;
 
 	isDrawing = true;
 }

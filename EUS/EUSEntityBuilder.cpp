@@ -21,6 +21,18 @@ Entity* EUSEntityBuilder::buildPlayer() const {
 
 	return player;
 }
+Entity* EUSEntityBuilder::buildRifleman(const std::string& ownerTag) const {
+	const static std::string CPU = std::string("cpu");
+	const static std::string PLAYER = std::string("player");
+
+	assert(ownerTag == CPU || ownerTag == PLAYER);
+
+	Entity* rifleman = new Entity();
+
+	rifleman->tag(ownerTag);
+
+	return rifleman;
+}
 #pragma endregion
 
 EUSEntityBuilder::~EUSEntityBuilder() {

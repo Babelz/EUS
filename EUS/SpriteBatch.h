@@ -9,14 +9,7 @@
 #include "Rectangle.hpp"
 #include "Content.h"
 #include "VertexColorPositionTexture.h"
-
-enum SortMode {
-	BackToFront,
-	FrontToBack,
-	Deferred,
-	Depth
-};
-
+#include "Enums.h"
 
 struct SpriteInfo {
 	pmath::Vec3f position;

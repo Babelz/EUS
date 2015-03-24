@@ -21,6 +21,16 @@ void Transform::setZ(const float z) {
 	setPosition(Vector3(position.x, position.y, z));
 }
 
+const float Transform::getX() const {
+	return position.x;
+}
+const float Transform::getY() const {
+	return position.y;
+}
+const float Transform::getZ() const {
+	return position.z;
+}
+
 Vector3 Transform::getPosition() const {
 	return position;
 }

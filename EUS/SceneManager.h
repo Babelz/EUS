@@ -17,7 +17,6 @@ private:
 	bool destroyed;
 protected:
 	SceneManager& getSceneManager();
-	EntityManager& getEntities();
 	Game& getGame();
 
 	// Called at destroy.
@@ -37,6 +36,8 @@ public:
 
 	virtual void draw(const float deltaTime);
 	virtual void update(const float deltaTime);
+
+	EntityManager& getEntities();
 
 	virtual ~Scene();
 };
@@ -60,6 +61,8 @@ public:
 	const bool addScene(Scene* const scene);
 	const bool removeScene(Scene* const scene);
 	const bool freeScene(const std::string& name);
+	
+	Scene& getActiveScene() const;
 
 	// Changes scene and returns current scenes name.
 	const std::string& changeScene(const std::string& name);

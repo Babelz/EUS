@@ -2,16 +2,7 @@
 #include <string>
 #include "Entity.h"
 #include "Resources.h"
-
-enum TileType {
-	Plains,
-	Hills,
-	Water,
-	Urban,
-	Bridge,
-	Coast,
-	Woods
-};
+#include "Enums.h"
 
 class TileInfo : public Component {
 private:	

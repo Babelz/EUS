@@ -21,6 +21,7 @@ Entity* MapBuilder::buildMap(const std::string& name, const std::string& sheetNa
 	loader.load(path);
 
 	Entity* map = new Entity();
+	map->tag("map");
 
 	TileEngine* engine = new TileEngine(game(), *map, 
 		loader.getMapWidth(), 

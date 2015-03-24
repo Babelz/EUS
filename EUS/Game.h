@@ -7,6 +7,7 @@
 #include "SDL\SDL.h"
 #include "SpriteBatch.h"
 #include "SceneManager.h"
+#include "Input.h"
 
 // Base class for all games.
 class Game {
@@ -17,6 +18,7 @@ private:
 	ContentManager m_content;
 	SpriteBatch m_spriteBatch;
 	SceneManager m_sceneManager;
+	InputManager m_inputManager;
 
 	std::string windowTitle;
 	SDL_Event e;
@@ -48,6 +50,7 @@ public:
 	ContentManager& content();
 	SpriteBatch& spriteBatch();
 	SceneManager& sceneManager();
+	InputManager& inputManager();
 	SDL_Window& window();
 
 	const int getWindowWidth() const;

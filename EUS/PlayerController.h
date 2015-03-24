@@ -5,6 +5,11 @@
 class PlayerController : public Component {
 private:
 	PlayerCursor* cursor;
+
+	float bottomBound;
+	float rightBound;
+
+	bool inBounds(const float nextX, const float nextY);
 protected:
 	void onDestroyed() override;
 

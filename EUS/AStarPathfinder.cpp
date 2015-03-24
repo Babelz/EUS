@@ -46,8 +46,8 @@ void AStarPathfinder::internalFindPath(bool& foundPath, std::vector<pmath::Vec2f
 	MapNode* current = &grid.nodeAtIndex(startY, startX);
 	openList.push_back(current);
 
-	float currentX = current->getTile()->getTransform().getPosition().x;
-	float currentY = current->getTile()->getTransform().getPosition().y;
+	int currentX = static_cast<int>(current->getTile()->getTransform().getPosition().x);
+	int currentY = static_cast<int>(current->getTile()->getTransform().getPosition().y);
 
 	while (openList.size() > 0) {
 		// At goal.

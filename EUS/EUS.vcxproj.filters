@@ -131,6 +131,12 @@
     <ClCompile Include="AStarPathfinder.cpp">
       <Filter>Source Files\Components\AI</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerCursor.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteAnimator.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.h">
@@ -224,6 +230,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="AStarPathfinder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerCursor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteAnimator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -137,6 +137,9 @@
     <ClCompile Include="SpriteAnimator.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
+    <ClCompile Include="EUSEntityBuilder.cpp">
+      <Filter>Source Files\Entities\Builders</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.h">
@@ -236,6 +239,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SpriteAnimator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EUSEntityBuilder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

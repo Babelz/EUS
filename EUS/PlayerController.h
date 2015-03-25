@@ -1,13 +1,23 @@
 #pragma once
 #include "Entity.h"
+#include "PlayerCursor.h"
 
 class PlayerController : public Component {
-protected:
-	void onDestroy();
+private:
+	PlayerCursor* cursor;
 
-	void onInitialize();
+	float bottomBound;
+	float rightBound;
+
+	bool inBounds(const float nextX, const float nextY);
+protected:
+	void onDestroyed() override;
+
+	void onInitialize() override;
+
+	void onUpdate(const float deltaTime) override;
 public:
-	PlayerController(Game& game, Entity& owner, const int updateOrder = 0);
+	PlayerController(Game& game, Entity& owner);
 	
 	~PlayerController();
 };

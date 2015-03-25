@@ -11,9 +11,6 @@ Scene::Scene(const std::string& name) : name(name),
 SceneManager& Scene::getSceneManager() {
 	return *sceneManager;
 }
-EntityManager& Scene::getEntities() {
-	return entities;
-}
 Game& Scene::getGame() {
 	return *game;
 }
@@ -54,6 +51,10 @@ const bool Scene::isDestroyed() const {
 
 void Scene::draw(const float deltaTime) { }
 void Scene::update(const float deltaTime) { }
+
+EntityManager& Scene::getEntities() {
+	return entities;
+}
 #pragma endregion
 
 Scene::~Scene() {
@@ -129,6 +130,10 @@ const bool SceneManager::freeScene(const std::string& name) {
 	}
 
 	return freeScene;
+}
+
+Scene& SceneManager::getActiveScene() const {
+	return *activeScene;
 }
 
 const std::string& SceneManager::changeScene(const std::string& name) {

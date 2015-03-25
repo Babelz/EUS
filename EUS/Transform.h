@@ -18,6 +18,10 @@ public:
 	void setY(const float y);
 	void setZ(const float z);
 
+	const float getX() const;
+	const float getY() const;
+	const float getZ() const;
+
 	Vector3 getPosition() const;
 
 	void setRotation(const float r, const Vector3& axis);

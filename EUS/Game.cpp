@@ -54,6 +54,7 @@ void Game::internalInitialize() {
 	glGetIntegerv(GL_MINOR_VERSION, &versionMinor);
 
 	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_ALPHA);
 
 	std::cout << "OpenGL context version: " << versionMajor << "." << versionMinor << std::endl;
 
@@ -101,6 +102,9 @@ SpriteBatch& Game::spriteBatch() {
 SceneManager& Game::sceneManager() {
 	return m_sceneManager;
 }
+InputManager& Game::inputManager() {
+	return m_inputManager;
+}
 SDL_Window& Game::window() {
 	return *m_window;
 }
@@ -131,6 +135,8 @@ void Game::run() {
 		currentTime = static_cast<float>(SDL_GetTicks());
 		deltaTime = (currentTime - lastTime) / 1000.0f;
 		lastTime = currentTime;
+
+		m_inputManager.update();
 
 		internalUpdate();
 		internalDraw();

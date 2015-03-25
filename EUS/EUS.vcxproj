@@ -94,12 +94,16 @@
     <ClCompile Include="EntityBuilder.cpp" />
     <ClCompile Include="EntityManager.cpp" />
     <ClCompile Include="EUS.cpp" />
+    <ClCompile Include="EUSEntityBuilder.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameplayScene.cpp" />
+    <ClCompile Include="Input.cpp" />
     <ClCompile Include="lodepng.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MapBuilder.cpp" />
     <ClCompile Include="MapGrid.cpp" />
+    <ClCompile Include="PlayerCursor.cpp" />
+    <ClCompile Include="SpriteAnimator.cpp" />
     <ClCompile Include="TileEngine.cpp" />
     <ClCompile Include="MapLoader.cpp" />
     <ClCompile Include="ModelRenderer.cpp" />
@@ -117,6 +121,8 @@
     <ClCompile Include="TileInfo.cpp" />
     <ClCompile Include="TileBuilder.cpp" />
     <ClCompile Include="Transform.cpp" />
+    <ClCompile Include="Triggers.cpp" />
+    <ClCompile Include="UnitInformation.cpp" />
     <ClCompile Include="VertexColorPositionTexture.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -128,11 +134,16 @@
     <ClInclude Include="Entity.h" />
     <ClInclude Include="EntityBuilder.h" />
     <ClInclude Include="EntityManager.h" />
+    <ClInclude Include="Enums.h" />
     <ClInclude Include="EUS.h" />
+    <ClInclude Include="EUSEntityBuilder.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameplayScene.h" />
+    <ClInclude Include="Input.h" />
     <ClInclude Include="MapBuilder.h" />
     <ClInclude Include="MapGrid.h" />
+    <ClInclude Include="PlayerCursor.h" />
+    <ClInclude Include="SpriteAnimator.h" />
     <ClInclude Include="TileEngine.h" />
     <ClInclude Include="MapLoader.h" />
     <ClInclude Include="ModelRenderer.h" />
@@ -150,6 +161,8 @@
     <ClInclude Include="TileInfo.h" />
     <ClInclude Include="TileBuilder.h" />
     <ClInclude Include="Transform.h" />
+    <ClInclude Include="Triggers.h" />
+    <ClInclude Include="UnitInformation.h" />
     <ClInclude Include="VertexColorPositionTexture.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -61,14 +61,14 @@ Entity* const EntityManager::findEntityWithTag(const std::string& tag) const {
 		return e->isTagged(tag);
 	});
 
-	return *result;
+	return result._Ptr->_Myval;
 }
 Entity* const EntityManager::findEntityWithID(const int id) const {
 	auto result = std::find_if(entities.begin(), entities.end(), [this, &id](Entity* e) {
 		return e->getID() == id;
 	});
 
-	return *result;
+	return result._Ptr->_Myval;
 }
 
 void EntityManager::update(const float deltaTime) {

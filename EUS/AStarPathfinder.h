@@ -2,6 +2,7 @@
 #include "Entity.h"
 #include "Game.h"
 #include "MapGrid.h"
+#include "Enums.h"
 
 struct NodeInfo {
 	// Readonly fields.

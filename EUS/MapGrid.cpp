@@ -147,12 +147,14 @@ MapGrid::MapGrid(Game& game, Entity& entity, const int width, const int height, 
 void MapGrid::onInitialize() {
 	std::list<Entity* const> tiles = getOwner().getChilds();
 
-	for (size_t i = 0; i < height; i++) {
+	const size_t height_t = static_cast<size_t>(height);
+
+	for (size_t i = 0; i < height_t; i++) {
 		nodes.push_back(std::vector<MapNode>(width));
 	}
 
-	size_t i = 0;
-	size_t j = 0;
+	int i = 0;
+	int j = 0;
 
 	std::for_each(tiles.begin(), tiles.end(), [this, &i, &j](Entity* const e) {
 		if (j >= width) {

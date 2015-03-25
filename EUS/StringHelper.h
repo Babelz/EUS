@@ -1,11 +1,7 @@
 #pragma once
 #include <string>
 #include <vector>
-
-enum StringSplitOptions {
-	REMOVE_EMPTY,
-	NONE
-};
+#include "Enums.h"
 
 class StringHelper {
 public:

@@ -17,7 +17,7 @@ private:
 	void initializeBuffers();
 protected:
 	void onInitialize();
-	void onDraw();
+	void onDraw(const float deltaTime);
 public:
 	ModelRenderer(Game& game, Entity& owner, Model* const model, const int updateOrder = 0, const int drawOrder = 0);
 

@@ -19,12 +19,7 @@ void EUS::update(const float deltaTime) {
 }
 
 void EUS::draw(const float deltaTime) {
-	// TODO: sorting with depth not implemented.
-	spriteBatch().begin(SortMode::BackToFront);
-
 	sceneManager().draw(deltaTime);
-
-	spriteBatch().end();
 }
 
 #pragma endregion Protected members

@@ -84,6 +84,8 @@ private:
 	std::vector<float> vertices;
 
 	std::string materialLib;
+
+	Texture* texture;
 public:
 	Model();
 
@@ -92,6 +94,9 @@ public:
 	bool isEmpty() const;
 
 	const std::vector<float>& getVertices() const;
+
+	void setTexture(Texture* const texture);
+	Texture* const getTexture() const;
 
 	~Model();
 };

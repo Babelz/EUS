@@ -1,39 +1,65 @@
 -mappings
-# plains
-$ factory
-T city
+P plains
+$ pFactory
+T pCity
 ^ hills
+W sea
+R rCoast
+L lCoast
+c blcCoast
+e brcCoast
+r trcCoast
+t tlcCoast
+- tfCoast
+_ bfCoast
+F woods
++ hBridge
+? vBridge
+p leftPartTop
+o rightPartTop
+i leftPartBottom
+j rightPartBottom
+Q playerHQ
+h cpu1HQ
+g cpu1Factory
+b cpu1City
 -mappings
 
 
 -sources
 plains 0 0
-factory 32 0
-city 64 0
+pFactory 32 0
+pCity 64 0
 hills 96 0
+sea 128 0
+woods 160 0
+bfCoast 192 0
+tfCoast 224 0
+rCoast 0 32
+lCoast 32 32
+brcCoast 64 32
+blcCoast 128 32
+trcCoast 160 32
+tlcCoast 96 32
+rightPartTop 192 32
+leftPartTop 224 32
+leftPartBottom 0 64
+rightPartBottom 32 64
+playerHQ 64 64
+cpu1HQ 64 64
+cpu1Factory 32 0
+cpu1City 64 0
 -sources
 
-
 -tiles
-#######################
-######################^
-#$#T#T####^############
-###T####^#####^########
-###T#########^^########
-#$#T#T#^^^^^^^^^^^^^^^^
-###T###^^^^^^^^^^^^^^^^
-###T###^^^^^^^^^^^^^^^^
-#######^^^^^^^^^^^^^^^^
-#######################
-#######################
-######################^
-#$#T#T####^############
-###T####^#####^########
-###T#########^^########
-#$#T#T#^^^^^^^^^^^^^^^^
-###T###^^^^^^^^^^^^^^^^
-###T###^^^^^^^^^^^^^^^^
-#######^^^^^^^^^^^^^^^^
-#######################
-#######################
+WWWWWWWWWWWWWWWW
+Wo----pWo-----pW
+WLPPPPRWLPPgghRW
+WLPPPPr-tPPPbgRW
+WL$$$PPPPPPPbgRW
+WLTPPPPPPPPPbPRW
+WLTPPPc_ePPPbPRW
+WLQTT$RWLPPPPPRW
+Wj____iWj_____iW
+WWWWWWWWWWWWWWWW
 -tiles

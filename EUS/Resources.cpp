@@ -284,6 +284,8 @@ bool Model::readFromFile(const std::string& path) {
 
 	// | Position (3) | Texture coords (2) | Normals (3) |
 
+	std::vector<float> tmpUv;
+
 	for (size_t i = 0; i < vertexIndices.size(); i++) {
 		unsigned short vertexIndex = vertexIndices[i] * 3;
 		
@@ -302,6 +304,9 @@ bool Model::readFromFile(const std::string& path) {
 			// Push texture coordinates.
 			vertices.push_back(uvVertices[uvIndex - 1]);
 			vertices.push_back(uvVertices[uvIndex - 2]);
+
+			tmpUv.push_back(uvVertices[uvIndex - 1]);
+			tmpUv.push_back(uvVertices[uvIndex - 2]);
 		}
 
 		unsigned short normalIndex = normalIndicies[i] * 3;
@@ -327,6 +332,14 @@ bool Model::isEmpty() const {
 
 const std::vector<float>& Model::getVertices() const {
 	return vertices;
+}
+
+
+void Model::setTexture(Texture* const texture) {
+	this->texture = texture;
+}
+Texture* const Model::getTexture() const {
+	return texture;
 }
 #pragma endregion
 

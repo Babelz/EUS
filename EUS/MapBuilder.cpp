@@ -91,6 +91,8 @@ Entity* MapBuilder::buildModelMap(const std::string& name, size_t tileSize, std:
 										tileSize);
 
 	map->addComponent(engine);
+	map->tag("map");
+
 	engine->enable();
 
 	TileBuilder tileBuilder(game());

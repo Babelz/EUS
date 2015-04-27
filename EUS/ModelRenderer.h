@@ -12,6 +12,7 @@ private:
 
 	GLuint vertexArray;
 	GLuint vertexBuffer;
+	GLuint textureID;
 
 	void releaseBuffers();
 	void initializeBuffers();
@@ -20,6 +21,8 @@ protected:
 	void onDraw(const float deltaTime);
 public:
 	ModelRenderer(Game& game, Entity& owner, Model* const model, const int updateOrder = 0, const int drawOrder = 0);
+
+	void setTextureId(GLuint id);
 
 	~ModelRenderer();
 };

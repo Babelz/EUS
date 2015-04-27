@@ -156,6 +156,20 @@ Entity* TileBuilder::buildTile(const std::string& name) const {
 
 	return nullptr;
 }
+
+// TODO: used with model maps, hacks hacks... Time is short.
+Entity* TileBuilder::buildTile(const char ch) const {
+	switch (ch) {
+	case '#':
+		return createPlains();
+	case 'p':
+		return createSea();
+	default:
+		throw std::logic_error("TileBuilder: unsupported tile token");
+	}
+
+	return nullptr;
+}
 #pragma endregion
 
 TileBuilder::~TileBuilder() {

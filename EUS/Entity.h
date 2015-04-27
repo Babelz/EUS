@@ -63,6 +63,9 @@ public:
 	const bool addChild(Entity* const child);
 	const bool removeChild(Entity* const child);
 
+	const size_t childsCount() const;
+	Entity* childAtIndex(const size_t index);
+
 	void update(const float deltaTime);
 	void draw(const float deltaTime);
 

@@ -127,6 +127,16 @@ const bool Entity::removeChild(Entity* const child) {
 	return remove;
 }
 
+const size_t Entity::childsCount() const {
+	return childs.size();
+}
+Entity* Entity::childAtIndex(const size_t index) {
+	std::list<Entity*>::iterator iter = childs.begin();
+	std::advance(iter, index);
+
+	return iter._Ptr->_Myval;
+}
+
 // Update all components that are enabled if entity is in enabled
 // state, and is not destroyed.
 void Entity::update(const float deltaTime) {

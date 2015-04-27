@@ -102,6 +102,7 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MapBuilder.cpp" />
     <ClCompile Include="MapGrid.cpp" />
+    <ClCompile Include="ModelMapping.cpp" />
     <ClCompile Include="PlayerCursor.cpp" />
     <ClCompile Include="SpriteAnimator.cpp" />
     <ClCompile Include="TileEngine.cpp" />
@@ -120,6 +121,7 @@
     <ClCompile Include="NamedTileSheet.cpp" />
     <ClCompile Include="TileInfo.cpp" />
     <ClCompile Include="TileBuilder.cpp" />
+    <ClCompile Include="TileLoader.cpp" />
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="Triggers.cpp" />
     <ClCompile Include="UnitInformation.cpp" />
@@ -142,6 +144,7 @@
     <ClInclude Include="Input.h" />
     <ClInclude Include="MapBuilder.h" />
     <ClInclude Include="MapGrid.h" />
+    <ClInclude Include="ModelMapping.h" />
     <ClInclude Include="PlayerCursor.h" />
     <ClInclude Include="SpriteAnimator.h" />
     <ClInclude Include="TileEngine.h" />
@@ -160,6 +163,7 @@
     <ClInclude Include="NamedTileSheet.h" />
     <ClInclude Include="TileInfo.h" />
     <ClInclude Include="TileBuilder.h" />
+    <ClInclude Include="TileLoader.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="Triggers.h" />
     <ClInclude Include="UnitInformation.h" />

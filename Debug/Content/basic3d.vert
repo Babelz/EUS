@@ -1,17 +1,17 @@
 #version 330
 
-layout(location = 0)
+layout(location = 0) 
 in vec3 inPosition;
 layout(location = 1)
-in vec4 inColor;
+in vec2 inTexcoords;
 layout(location = 2)
-in vec2 coords;
-out vec2 texCoords;
-out vec4 color;
+in vec3 inNormals;
 uniform mat4 MVP;
+out vec2 texCoords;
+out vec3 normals;
 
 void main() {
-	gl_Position = MVP * vec4(inPosition, 1.0);
-	texCoords = coords;
-	color = inColor;
+	gl_Position = MVP * vec4(inPosition, 1f);
+	texCoords = inTexcoords;
+	normals = inNormals;
 }

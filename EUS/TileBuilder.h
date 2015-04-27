@@ -48,6 +48,7 @@ public:
 	TileBuilder(Game& game);
 
 	Entity* buildTile(const std::string& name) const;
+	Entity* TileBuilder::buildTile(const char ch) const;
 
 	~TileBuilder();
 };

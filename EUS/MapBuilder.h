@@ -7,12 +7,14 @@
 #include "TileBuilder.h"
 #include "MapLoader.h"
 #include "TileEngine.h"
+#include "ModelMapping.h"
 
 class MapBuilder : public EntityBuilder {
 public:
 	MapBuilder(Game& game);
 
 	Entity* buildMap(const std::string& name, const std::string& sheetName, size_t tileSize, std::vector<Entity*>& outTiles) const;
+	Entity* buildModelMap(const std::string& name, size_t tileSize, std::vector<Entity*>& outTiles) const;
 
 	~MapBuilder();
 };

@@ -5,20 +5,16 @@
 #include <string>
 #include <vector>
 #include <fstream>
+#include "TileLoader.h"
 
 class MapLoader {
 private:
-	const std::string SCOPE_TOKEN = "-tiles";
-
-	std::vector<std::vector<char>> chars;
+	TileLoader loader;
 
 	std::string sheetName;
 	std::string mapName;
-
-	size_t mapHeight;
-	size_t mapWidth;
 public:
-	MapLoader();
+	MapLoader(Game& game);
 
 	void load(const std::string& filename);
 

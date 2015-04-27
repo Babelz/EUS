@@ -108,6 +108,10 @@ SDL_Window& Game::window() {
 	return *m_window;
 }
 
+View& Game::view() {
+	return m_view;
+}
+
 const int Game::getWindowWidth() const {
 	return windowWidth;
 }

@@ -51,10 +51,14 @@ void ModelRenderer::onDraw(const float deltaTime) {
 	glBindTexture(GL_TEXTURE_2D, textureID);
 
 	// TODO: fix. Using static res.
-	glm::mat4 projection = glm::translate(glm::vec3(-0.9f, 0.84f, 0.0f)) * glm::perspective(glm::radians(65.0f), 1280.0f / 720.0f, 0.1f, 100.0f);
-	glm::mat4 view = glm::lookAt(glm::vec3(0.0f, 0.0f, 10.0f),
-								 glm::vec3(0.0f, 0.0f, 0.0f),
-								 glm::vec3(0.0f, 1.0f, 0.0f));
+	// TODO: use views size.
+	// TODO: rotations are implemented but arent working.
+	glm::mat4 projection = glm::perspective(glm::radians(65.0f), 1280.0f / 720.0f, 0.1f, 100.0f);
+	glm::mat4 view = glm::lookAt(glm::vec3(getGame().view().getX(), getGame().view().getY(), 10.0f),
+								 glm::vec3(getGame().view().getX(), getGame().view().getY(), 0.0f),
+								 glm::vec3(0.0f, 1.0f, 0.0f)) 
+								 * glm::rotate(getGame().view().getRotY(), glm::vec3(0.0f, 1.0f, 0.0f))
+								 * glm::rotate(getGame().view().getRotX(), glm::vec3(1.0f, 0.0f, 0.0f));
 
 	GLuint mvp = glGetUniformLocation(shader->getProgram(), "MVP");
  	glUniformMatrix4fv(mvp, 1, GL_FALSE, glm::value_ptr(projection * view * getOwner().getTransform().getTransform()));

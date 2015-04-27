@@ -126,6 +126,7 @@
     <ClCompile Include="Triggers.cpp" />
     <ClCompile Include="UnitInformation.cpp" />
     <ClCompile Include="VertexColorPositionTexture.cpp" />
+    <ClCompile Include="View.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AStarPathfinder.h" />
@@ -168,6 +169,7 @@
     <ClInclude Include="Triggers.h" />
     <ClInclude Include="UnitInformation.h" />
     <ClInclude Include="VertexColorPositionTexture.h" />
+    <ClInclude Include="View.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

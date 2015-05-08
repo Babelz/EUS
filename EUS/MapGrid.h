@@ -15,7 +15,11 @@ private:
 	int goalIndexX, goalIndexY;
 	int xIndex, yIndex;
 
+	// Tile that is located in this node.
 	Entity* tile;
+	// Entity that is located inside this node.
+	Entity* entity;
+	// Information regarding the tile that this node owns.
 	TileInfo* tileInfo;
 
 	void calcG();
@@ -28,9 +32,11 @@ public:
 	MapNode();
 
 	const bool hasChild() const;
+	const bool hasEntity() const;
 
 	TileInfo* const getTileInfo() const;
 	Entity* const getTile() const;
+	Entity* const getEntity() const;
 
 	// Modifier value for randomizing the path.
 	void setA(const int value);
@@ -52,6 +58,7 @@ public:
 	void setChild(const int x, const int y);
 	void setGoal(const int x, const int y);
 	void setStart(const int x, const int y);
+	void setEntity(Entity* entity);
 
 	void update();
 	void reset();
@@ -100,6 +107,10 @@ public:
 	const int getWidth() const;
 	const int getHeight() const;
 	const int getNodeSize() const;
+	
+	// Debug print methods.
+	const void printEntityMappings() const;
+	const void printTiles() const;
 
 	~MapGrid();
 };

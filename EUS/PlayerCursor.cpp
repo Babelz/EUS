@@ -37,7 +37,7 @@ void PlayerCursor::onInitialize() {
 
 	getOwner().getTransform().setX(0.0f);
 	getOwner().getTransform().setY(0.0f);
-	getOwner().getTransform().setZ(1.0f);
+	getOwner().getTransform().setZ(0.25f);
 
 	getOwner().addComponent(renderer);
 }

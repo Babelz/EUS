@@ -53,6 +53,7 @@ void ModelRenderer::onDraw(const float deltaTime) {
 	// TODO: fix. Using static res.
 	// TODO: use views size.
 	// TODO: rotations are implemented but arent working.
+	// TODO: vertices get fucked sometimes when drawing different models, fix it.
 	glm::mat4 projection = glm::perspective(glm::radians(65.0f), 1280.0f / 720.0f, 0.1f, 100.0f);
 	glm::mat4 view = glm::lookAt(glm::vec3(getGame().view().getX(), getGame().view().getY(), 10.0f),
 								 glm::vec3(getGame().view().getX(), getGame().view().getY(), 0.0f),

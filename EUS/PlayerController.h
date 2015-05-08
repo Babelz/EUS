@@ -4,12 +4,15 @@
 
 class PlayerController : public Component {
 private:
+	Entity* selectedUnit;
 	PlayerCursor* cursor;
 
 	float bottomBound;
 	float rightBound;
 
 	bool inBounds(const float nextX, const float nextY);
+	void interact();
+	void interactWithUnit(Entity* unit);
 protected:
 	void onDestroyed() override;
 

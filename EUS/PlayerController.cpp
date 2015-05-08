@@ -1,5 +1,6 @@
 #include "PlayerController.h"
 #include "TileEngine.h"
+#include "MapGrid.h"
 
 PlayerController::PlayerController(Game& game, Entity& owner) : Component(game, owner) {
 }
@@ -10,6 +11,32 @@ bool PlayerController::inBounds(const float nextX, const float nextY) {
 
 	return nextX >= 0.0f && nextX < rightBound && 
 		   transformNextY < bottomBound && transformNextY >= 0.0f;
+}
+// Handle interactions.
+void PlayerController::interact() {
+	// Calculate index.
+	const int column = static_cast<int>(getOwner().getTransform().getX() / 2.0f);
+	const int row = static_cast<int>(getOwner().getTransform().getY() / 2.0f);
+
+	// Should be inbounds so we can skip all bounding checks.
+	// Just get the grid and find node at given index.
+	Entity* map = getGame().sceneManager().getActiveScene().getEntities().findEntityWithTag("map");
+	MapGrid* grid = map->getComponent<MapGrid>();
+
+	MapNode& node = grid->nodeAtIndex(row, column);
+
+	// Node has no entity to interact with, just return.
+	if (!node.hasEntity()) return;
+
+	// Handle entities by their tags.
+	Entity* entity = node.getEntity();
+
+	if (entity->isTagged("unit")) interactWithUnit(entity);
+}
+void PlayerController::interactWithUnit(Entity* unit) {
+	selectedUnit = unit;
+
+
 }
 #pragma endregion
 
@@ -60,6 +87,19 @@ void PlayerController::onInitialize() {
 
 		owner.getTransform().setX(owner.getTransform().getX() + 2.0f);
 	}, 1, new KeyTrigger(SDLK_d));
+
+	inputManager.bind("interact", [&owner, this, tileSize](InputArgs& args) {
+		if (args.state != InputState::PRESSED || !inBounds(owner.getTransform().getX(), owner.getTransform().getY())) return;
+
+		// TODO: handle interactions.
+		interact();
+	}, 1, new KeyTrigger(SDLK_e));
+
+	inputManager.bind("deselect", [&owner, this, tileSize](InputArgs& args) {
+		if (args.state != InputState::PRESSED || !inBounds(owner.getTransform().getX(), owner.getTransform().getY())) return;
+
+		selectedUnit = nullptr;
+	}, 1, new KeyTrigger(SDLK_r));
 }
 
 void PlayerController::onUpdate(const float deltaTime) {

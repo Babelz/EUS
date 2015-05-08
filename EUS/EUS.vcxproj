@@ -103,6 +103,7 @@
     <ClCompile Include="MapBuilder.cpp" />
     <ClCompile Include="MapGrid.cpp" />
     <ClCompile Include="ModelMapping.cpp" />
+    <ClCompile Include="MovementSpaceHandler.cpp" />
     <ClCompile Include="PlayerCursor.cpp" />
     <ClCompile Include="SpriteAnimator.cpp" />
     <ClCompile Include="TileEngine.cpp" />
@@ -146,6 +147,7 @@
     <ClInclude Include="MapBuilder.h" />
     <ClInclude Include="MapGrid.h" />
     <ClInclude Include="ModelMapping.h" />
+    <ClInclude Include="MovementSpaceHandler.h" />
     <ClInclude Include="PlayerCursor.h" />
     <ClInclude Include="SpriteAnimator.h" />
     <ClInclude Include="TileEngine.h" />

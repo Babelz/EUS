@@ -13,11 +13,14 @@ MapNode::MapNode(Entity* const tile, const int xIndex, const int yIndex) : tile(
 																				 f(0),
 																				 a(0),
 																				 startIndexX(-1),
-																				 startIndexY(-1) {
+																				 startIndexY(-1),
+																				 entity(nullptr) {
 	tileInfo = tile->getComponent<TileInfo>();
 
 	assert(tileInfo != nullptr);
 }
+
+// TODO: dafuq.
 MapNode::MapNode() : tile(nullptr),
 					 xIndex(0),
 					 yIndex(0),
@@ -30,7 +33,8 @@ MapNode::MapNode() : tile(nullptr),
 					 f(0),
 					 a(0),
 					 startIndexX(-1),
-					 startIndexY(-1) {
+					 startIndexY(-1),
+					 entity(nullptr) {
 }
 
 #pragma region Private members
@@ -65,11 +69,18 @@ const bool MapNode::hasStart() const {
 const bool MapNode::hasChild() const {
 	return childXIndex > 0 && childYIndex > 0;
 }
+const bool MapNode::hasEntity() const {
+	return entity != nullptr;
+}
+
 TileInfo* const MapNode::getTileInfo() const {
 	return tileInfo;
 }
 Entity* const MapNode::getTile() const {
 	return tile;
+}
+void Entity* const MapNode::getEntity() const {
+	return entity;
 }
 
 void MapNode::setA(const int value) {
@@ -114,6 +125,9 @@ void MapNode::setGoal(const int x, const int y) {
 void MapNode::setStart(const int x, const int y) {
 	startIndexX = x;
 	startIndexY = y;
+}
+void MapNode::setEntity(Entity* entity) {
+	this->entity = entity;
 }
 
 void MapNode::update() {
@@ -183,6 +197,35 @@ const int MapGrid::getHeight() const {
 }
 const int MapGrid::getNodeSize() const {
 	return nodeSize;
+}
+const void MapGrid::printEntityMappings() const {
+	std::cout << "ENTITY MAPPINGS: " << std::endl;
+
+	for (size_t i = 0; i < height; i++) {
+		std::cout << "\t";
+
+		for (size_t j = 0; j < width; j++) {
+			if (nodes[i][j].hasEntity()) std::cout << "1";
+			else                         std::cout << "0";
+		}
+
+		std::cout << std::endl;
+	}
+
+	std::cout << std::endl;
+}
+const void MapGrid::printTiles() const {
+	std::cout << "TILE MAPPINGS: " << std::endl;
+
+	for (size_t i = 0; i < height; i++) {
+		std::cout << "\t";
+
+		for (size_t j = 0; j < width; j++) std::cout << nodes[i][j].getTileInfo()->getName() << " - ";
+
+		std::cout << std::endl;
+	}
+
+	std::cout << std::endl;
 }
 #pragma endregion
 

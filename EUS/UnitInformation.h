@@ -3,6 +3,7 @@
 #include "Enums.h"
 #include <list>
 
+// Class that contains information about unit.
 class UnitInformation : public Component {
 private:
 	const std::list<TileType> walkableTerrainTypes;
@@ -20,6 +21,7 @@ private:
 	const OrganicUnit organicUnit;
 protected:
 	void onInitialize() override;
+
 public:
 	UnitInformation(Game& game, Entity& owner,
 					const std::list<TileType>& walkableTerrainTypes,

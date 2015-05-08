@@ -1,5 +1,6 @@
 #include "EUSEntityBuilder.h"
 #include "PlayerController.h"
+#include "ModelRenderer.h"
 
 EUSEntityBuilder::EUSEntityBuilder(const std::string& name, Game& game) : EntityBuilder(name, game) {
 }
@@ -28,8 +29,27 @@ Entity* EUSEntityBuilder::buildRifleman(const std::string& ownerTag) const {
 	assert(ownerTag == CPU || ownerTag == PLAYER);
 
 	Entity* rifleman = new Entity();
-
 	rifleman->tag(ownerTag);
+	rifleman->tag("unit");
+
+	std::string textureName;
+
+	if (ownerTag == PLAYER) {
+		// Player init.
+		textureName = "p1inf";
+	} else {
+		// CPU init.
+		textureName = "p2inf";
+	}
+
+	Texture* texture = game().content().load<Texture>(textureName);
+	Model* model = game().content().load<Model>("box");
+	model->setTexture(texture);
+
+	ModelRenderer* renderer = new ModelRenderer(game(), *rifleman, model);
+	renderer->enable();
+
+	rifleman->addComponent(renderer);
 
 	return rifleman;
 }

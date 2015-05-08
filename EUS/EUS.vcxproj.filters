@@ -161,6 +161,9 @@
     <ClCompile Include="View.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MovementSpaceHandler.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.h">
@@ -284,6 +287,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="View.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MovementSpaceHandler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

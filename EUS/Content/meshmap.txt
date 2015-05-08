@@ -2,12 +2,12 @@
 box
 
 -mappings
-tank_blue #
-tuksu p
+plains #
+lake p
 
 -tiles
-#########
-#ppppppp#
-#########
-#########
+p##p###p#
+##p####p#
+#####p###
+##p#p##p#
 #########

@@ -1,4 +1,5 @@
 #include "PlayerCursor.h"
+#include "ModelRenderer.h"
 
 PlayerCursor::PlayerCursor(Game& game, Entity& owner) : Component(game, owner),
 														animator(nullptr) {
@@ -6,11 +7,11 @@ PlayerCursor::PlayerCursor(Game& game, Entity& owner) : Component(game, owner),
 
 #pragma region Protected members
 void PlayerCursor::onDestroyed() {
-	animator->destroy();
+	//animator->destroy();
 }
 
 void PlayerCursor::onInitialize() {
-	Texture* sheet = getGame().content().load<Texture>("cursor");
+	/*Texture* sheet = getGame().content().load<Texture>("cursor");
 	
 	animator = new SpriteAnimator(getGame(), getOwner());
 	animator->enable();
@@ -25,7 +26,20 @@ void PlayerCursor::onInitialize() {
 	animator->setFrameSize(32);
 	animator->changeAnimation(name);
 
-	getOwner().addComponent(animator);
+	getOwner().addComponent(animator);*/
+
+	Model* model = getGame().content().load<Model>("box");
+	model->setTexture(getGame().content().load<Texture>("cursor1"));
+
+	ModelRenderer* renderer = new ModelRenderer(getGame(), getOwner(), model);
+	renderer->setTextureId(model->getTexture()->getId());
+	renderer->enable();
+
+	getOwner().getTransform().setX(0.0f);
+	getOwner().getTransform().setY(0.0f);
+	getOwner().getTransform().setZ(1.0f);
+
+	getOwner().addComponent(renderer);
 }
 #pragma endregion
 

@@ -13,10 +13,14 @@ static Entity* map;
 void GameplayScene::onActivate() {
 	// Build the map.
 	MapBuilder mapBuilder(getGame());
-	map = mapBuilder.buildModelMap("meshmap", 32, tiles);
+	// Each tile is 2 units in width and height.
+	map = mapBuilder.buildModelMap("meshmap", 2, tiles);
 
 	// Add tiles.
-	for (size_t i = 0; i < tiles.size(); i++) getEntities().addEntity(tiles[i]);
+	for (size_t i = 0; i < tiles.size(); i++) {
+		getEntities().addEntity(tiles[i]);
+		//tiles[i]->hide();
+	}
 	
 	getEntities().addEntity(map);
 

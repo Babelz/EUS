@@ -89,6 +89,7 @@
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="ComponentManager.cpp" />
     <ClCompile Include="Content.cpp" />
+    <ClCompile Include="DijkstraPathfinder.cpp" />
     <ClCompile Include="DrawableComponent.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="EntityBuilder.cpp" />
@@ -134,6 +135,7 @@
     <ClInclude Include="Component.h" />
     <ClInclude Include="ComponentManager.h" />
     <ClInclude Include="Content.h" />
+    <ClInclude Include="DijkstraPathfinder.h" />
     <ClInclude Include="DrawableComponent.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="EntityBuilder.h" />

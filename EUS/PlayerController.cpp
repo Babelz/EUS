@@ -1,6 +1,7 @@
 #include "PlayerController.h"
 #include "TileEngine.h"
 #include "MapGrid.h"
+#include "MovementSpaceHandler.h"
 
 PlayerController::PlayerController(Game& game, Entity& owner) : Component(game, owner) {
 }
@@ -16,7 +17,7 @@ bool PlayerController::inBounds(const float nextX, const float nextY) {
 void PlayerController::interact() {
 	// Calculate index.
 	const int column = static_cast<int>(getOwner().getTransform().getX() / 2.0f);
-	const int row = static_cast<int>(getOwner().getTransform().getY() / 2.0f);
+	const int row = std::abs(static_cast<int>(getOwner().getTransform().getY() / 2.0f));
 
 	// Should be inbounds so we can skip all bounding checks.
 	// Just get the grid and find node at given index.
@@ -36,7 +37,9 @@ void PlayerController::interact() {
 void PlayerController::interactWithUnit(Entity* unit) {
 	selectedUnit = unit;
 
+	MovementSpaceHandler* handler = getOwner().getComponent<MovementSpaceHandler>();
 
+	handler->changeSelectedUnit(unit);
 }
 #pragma endregion
 
@@ -59,6 +62,11 @@ void PlayerController::onInitialize() {
 
 	// Get engine.
 	TileEngine* tileEngine = map->getComponent<TileEngine>();
+
+	MovementSpaceHandler* handler = new MovementSpaceHandler(getGame(), getOwner(), tileEngine->mapWidthInTiles(), tileEngine->mapHeightInTiles(), *map->getComponent<MapGrid>());
+	handler->enable();
+
+	owner.addComponent(handler);
 
 	bottomBound = static_cast<float>(tileEngine->mapHeightInPixels());
 	rightBound = static_cast<float>(tileEngine->mapWidthInPixels());

@@ -1,6 +1,8 @@
 #include "EUSEntityBuilder.h"
 #include "PlayerController.h"
 #include "ModelRenderer.h"
+#include "UnitInformation.h"
+#include "AStarPathfinder.h"
 
 EUSEntityBuilder::EUSEntityBuilder(const std::string& name, Game& game) : EntityBuilder(name, game) {
 }
@@ -49,7 +51,27 @@ Entity* EUSEntityBuilder::buildRifleman(const std::string& ownerTag) const {
 	ModelRenderer* renderer = new ModelRenderer(game(), *rifleman, model);
 	renderer->enable();
 
+	// Initialize unit information.
+	const static std::list<NodeInfo> walkableTerrainTypes =
+	{
+		NodeInfo(true, TileType::Plains, 1)
+	};
+	
+	const static DamageType damageType = DamageType::LightWeight;
+	const static ArmorType armorType = ArmorType::Light;
+	const static OrganicUnit organicUnit = OrganicUnit::GroundForces;
+	
+	const static int movementRange = 4;
+
+	UnitInformation* unitInformation = new UnitInformation(game(), *rifleman,
+														   walkableTerrainTypes,
+														   damageType,
+														   armorType,
+														   organicUnit,
+														   movementRange);
+
 	rifleman->addComponent(renderer);
+	rifleman->addComponent(unitInformation);
 
 	return rifleman;
 }

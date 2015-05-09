@@ -1,13 +1,13 @@
 #include "UnitInformation.h"
 
 UnitInformation::UnitInformation(Game& game, Entity& owner,
-							     const std::list<TileType>& walkableTerrainTypes, 
+								 const std::list<NodeInfo>& terrainInfos,
 								 const DamageType damageType,
 								 const ArmorType armorType,
 								 const OrganicUnit organicUnit,
 								 const int movementRange,
 								 const float addedDefence,
-								 const float addedDamage) : walkableTerrainTypes(walkableTerrainTypes),
+								 const float addedDamage) : terrainInfos(terrainInfos),
 														    armorType(armorType),
 															damageType(damageType),
 															organicUnit(organicUnit),
@@ -44,9 +44,18 @@ const float UnitInformation::dealDamageTo(const ArmorType armorType, const float
 	return 0.0f;
 }
 
+const std::list<NodeInfo>& UnitInformation::getTerrainInfos() const {
+	return terrainInfos;
+}
+
 const bool UnitInformation::alive() const {
 	return false;
 }
+
+const int UnitInformation::getMovementRange() const {
+	return movementRange;
+}
+
 #pragma endregion
 
 UnitInformation::~UnitInformation() {

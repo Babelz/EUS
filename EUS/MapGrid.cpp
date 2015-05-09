@@ -79,7 +79,7 @@ TileInfo* const MapNode::getTileInfo() const {
 Entity* const MapNode::getTile() const {
 	return tile;
 }
-void Entity* const MapNode::getEntity() const {
+Entity* const MapNode::getEntity() const {
 	return entity;
 }
 

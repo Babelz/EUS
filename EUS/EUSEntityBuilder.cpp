@@ -3,6 +3,7 @@
 #include "ModelRenderer.h"
 #include "UnitInformation.h"
 #include "AStarPathfinder.h"
+#include "PointNavigator.h"
 
 EUSEntityBuilder::EUSEntityBuilder(const std::string& name, Game& game) : EntityBuilder(name, game) {
 }
@@ -51,6 +52,9 @@ Entity* EUSEntityBuilder::buildRifleman(const std::string& ownerTag) const {
 	ModelRenderer* renderer = new ModelRenderer(game(), *rifleman, model);
 	renderer->enable();
 
+	PointNavigator* navigator = new PointNavigator(game(), *rifleman);
+	navigator->enable();
+
 	// Initialize unit information.
 	const static std::list<NodeInfo> walkableTerrainTypes =
 	{
@@ -61,7 +65,7 @@ Entity* EUSEntityBuilder::buildRifleman(const std::string& ownerTag) const {
 	const static ArmorType armorType = ArmorType::Light;
 	const static OrganicUnit organicUnit = OrganicUnit::GroundForces;
 	
-	const static int movementRange = 4;
+	const static int movementRange = 2;
 
 	UnitInformation* unitInformation = new UnitInformation(game(), *rifleman,
 														   walkableTerrainTypes,
@@ -72,6 +76,7 @@ Entity* EUSEntityBuilder::buildRifleman(const std::string& ownerTag) const {
 
 	rifleman->addComponent(renderer);
 	rifleman->addComponent(unitInformation);
+	rifleman->addComponent(navigator);
 
 	return rifleman;
 }

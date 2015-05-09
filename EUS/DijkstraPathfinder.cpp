@@ -51,9 +51,9 @@ void DijkstraPathfinder::findPath(std::vector<DijkstarNode>& outPath, const std:
 		DijkstarNode current = openList[0];
 		openList.erase(openList.begin());
 		
-		if (current.cost > range) continue;;
-
 		outPath.push_back(current);
+
+		if (current.cost > range) continue;;
 
 		if (current.x >= 0 && current.x < grid.getWidth() &&
 			current.y >= 0 && current.y < grid.getHeight()) {
@@ -72,7 +72,7 @@ void DijkstraPathfinder::findPath(std::vector<DijkstarNode>& outPath, const std:
 			if (isWalkable(nl, current.y, nodeInfos)) {
 				DijkstarNode n = createNewNode(current);
 
-				n.parentIndex = outPath.size();
+				n.parentIndex = outPath.size() - 1;
 				n.x = nl;
 
 				openList.push_back(n);
@@ -82,7 +82,7 @@ void DijkstraPathfinder::findPath(std::vector<DijkstarNode>& outPath, const std:
 			if (isWalkable(nr, current.y, nodeInfos)) {
 				DijkstarNode n = createNewNode(current);
 
-				n.parentIndex = outPath.size();
+				n.parentIndex = outPath.size() - 1;
 				n.x = nr;
 
 				openList.push_back(n);
@@ -92,7 +92,7 @@ void DijkstraPathfinder::findPath(std::vector<DijkstarNode>& outPath, const std:
 			if (isWalkable(current.x, nt, nodeInfos)) {
 				DijkstarNode n = createNewNode(current);
 
-				n.parentIndex = outPath.size();
+				n.parentIndex = outPath.size() - 1;
 				n.y = nt;
 
 				openList.push_back(n);
@@ -102,7 +102,7 @@ void DijkstraPathfinder::findPath(std::vector<DijkstarNode>& outPath, const std:
 			if (isWalkable(current.x, nb, nodeInfos)) {
 				DijkstarNode n = createNewNode(current);
 
-				n.parentIndex = outPath.size();
+				n.parentIndex = outPath.size() - 1;
 				n.y = nb;
 
 				openList.push_back(n);

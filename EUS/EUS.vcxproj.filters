@@ -149,14 +149,8 @@
     <ClCompile Include="Triggers.cpp">
       <Filter>Source Files\Input</Filter>
     </ClCompile>
-    <ClCompile Include="UnitInformation.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ModelMapping.cpp">
       <Filter>Source Files\Maps</Filter>
-    </ClCompile>
-    <ClCompile Include="TileLoader.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="View.cpp">
       <Filter>Source Files</Filter>
@@ -165,7 +159,16 @@
       <Filter>Source Files\Components</Filter>
     </ClCompile>
     <ClCompile Include="DijkstraPathfinder.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Components\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="UnitInformation.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="TileLoader.cpp">
+      <Filter>Source Files\Maps</Filter>
+    </ClCompile>
+    <ClCompile Include="PointNavigator.cpp">
+      <Filter>Source Files\Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -296,6 +299,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DijkstraPathfinder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PointNavigator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

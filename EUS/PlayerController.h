@@ -12,7 +12,6 @@ private:
 
 	bool inBounds(const float nextX, const float nextY);
 	void interact();
-	void interactWithUnit(Entity* unit);
 protected:
 	void onDestroyed() override;
 

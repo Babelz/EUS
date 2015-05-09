@@ -7,9 +7,6 @@ class MovementSpaceHandler : public DrawableComponent {
 private:
 	DijkstraPathfinder* pathfinder;
 
-	const int mapWidth;
-	const int mapHeight;
-
 	// Selected unit.
 	Entity* unit;
 	// Entity that owns the renderer.
@@ -19,16 +16,23 @@ private:
 	MapGrid& grid;
 
 	std::vector<DijkstarNode> nodes;
-
-	int x;
-	int y;
 protected:
 	void onDraw(const float deltaTime) override;
 public:
-	MovementSpaceHandler(Game& game, Entity& owner, const int mapWidth, const int mapHeight, MapGrid& grid);
+	MovementSpaceHandler(Game& game, Entity& owner, MapGrid& grid);
 
+	// Unit to select, row and column index of the unit in the map grid. 
 	void changeSelectedUnit(Entity* unit);
+
 	const bool hasUnitSelected() const;
+	const bool canMoveTo(const int x, const int y) const;
+
+	Entity* getSelectedUnit();
+
+	const int getSelectedX() const;
+	const int getSelectedY() const;
+
+	void generatePointMapTo(std::vector<pmath::Vec2f>& outMap, const int x, const int y) const;
 
 	~MovementSpaceHandler() override;
 };

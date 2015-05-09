@@ -2,11 +2,9 @@
 #include "UnitInformation.h"
 #include "MapGrid.h"
 
-MovementSpaceHandler::MovementSpaceHandler(Game& game, Entity& owner, const int mapWidth, const int mapHeight, MapGrid& grid) : DrawableComponent(game, owner),
-																																mapWidth(mapWidth),
-																																mapHeight(mapHeight),
-																																unit(nullptr),
-																																grid(grid) {
+MovementSpaceHandler::MovementSpaceHandler(Game& game, Entity& owner, MapGrid& grid) : DrawableComponent(game, owner),
+																					   unit(nullptr),
+																					   grid(grid) {
 	// Initialize area.
 	area = new Entity();
 	area->getTransform().setZ(owner.getTransform().getZ() - 0.1f);
@@ -49,15 +47,54 @@ void MovementSpaceHandler::changeSelectedUnit(Entity* unit) {
 		return;
 	}
 
-	const int x = static_cast<int>(unit->getTransform().getX()) / 2;
-	const int y = std::abs(static_cast<int>(unit->getTransform().getY())) / 2;
-
 	UnitInformation* information = unit->getComponent<UnitInformation>();
 
-	pathfinder->findPath(nodes, information->getTerrainInfos(), x, y, information->getMovementRange());
+	pathfinder->findPath(nodes, information->getTerrainInfos(), getSelectedX(), getSelectedY(), information->getMovementRange());
 }
+
 const bool MovementSpaceHandler::hasUnitSelected() const {
 	return unit != nullptr;
+}
+const bool MovementSpaceHandler::canMoveTo(const int x, const int y) const {
+	assert(hasUnitSelected());
+
+	if (x == getSelectedX() && y == getSelectedY()) return false;
+
+	for (DijkstarNode n : nodes) if (n.x == x && n.y == y) return true;
+
+	return false;
+}
+
+Entity* MovementSpaceHandler::getSelectedUnit() {
+	return unit;
+}
+
+const int MovementSpaceHandler::getSelectedX() const {
+	return static_cast<int>(unit->getTransform().getX()) / 2;
+}
+const int MovementSpaceHandler::getSelectedY() const {
+	return static_cast<int>(std::fabs(unit->getTransform().getY())) / 2;
+}
+
+void MovementSpaceHandler::generatePointMapTo(std::vector<pmath::Vec2f>& outMap, const int x, const int y) const {
+	DijkstarNode current;
+
+	for (DijkstarNode n : nodes) {
+		if (n.x == x && n.y == y) {
+			current = n;
+
+			break;
+		}
+	}
+
+	while (current.parentIndex != -1) {
+		outMap.push_back(pmath::Vec2f(static_cast<float>(current.x * 2), 
+									  static_cast<float>(-current.y * 2)));
+
+		current = nodes[current.parentIndex];
+	}
+
+	std::reverse(outMap.begin(), outMap.end());
 }
 #pragma endregion
 

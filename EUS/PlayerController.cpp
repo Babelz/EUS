@@ -2,13 +2,14 @@
 #include "TileEngine.h"
 #include "MapGrid.h"
 #include "MovementSpaceHandler.h"
+#include "PointNavigator.h"
 
 PlayerController::PlayerController(Game& game, Entity& owner) : Component(game, owner) {
 }
 
 #pragma region Private members
 bool PlayerController::inBounds(const float nextX, const float nextY) {
-	const float transformNextY = nextY == 0 ? nextY : -nextY;
+	const float transformNextY = nextY == 0.0f ? nextY : -nextY;
 
 	return nextX >= 0.0f && nextX < rightBound && 
 		   transformNextY < bottomBound && transformNextY >= 0.0f;
@@ -26,20 +27,53 @@ void PlayerController::interact() {
 
 	MapNode& node = grid->nodeAtIndex(row, column);
 
+	// Check if unit is selected.
+	MovementSpaceHandler* handler = getOwner().getComponent<MovementSpaceHandler>();
+
+	if (handler->hasUnitSelected()) {
+		// Unit is selected, check if it can be moved to given location.
+		Entity* entity = handler->getSelectedUnit();
+		
+		if (handler->canMoveTo(column, row)) {
+			// Swap nodes for the unit.
+			grid->nodeAtIndex(handler->getSelectedY(), handler->getSelectedX()).setEntity(nullptr);
+			grid->nodeAtIndex(row, column).setEntity(entity);
+
+			// Generate point map and start moving the unit.
+			std::vector<pmath::Vec2f> pointMap;
+			handler->generatePointMapTo(pointMap, column, row);
+		
+			// Move the unit.
+			PointNavigator* navigator = entity->getComponent<PointNavigator>();
+			navigator->beginNavigate([column, row](Entity* const e) {
+				e->getTransform().setX(column * 2.0f); 
+				e->getTransform().setY(-row * 2.0f); 
+			}, pointMap);
+
+			
+			//entity->getTransform().setX(column * 2.0f); entity->getTransform().setY(-row * 2.0f);
+
+			// Unit was moved, reset handler.
+			handler->changeSelectedUnit(nullptr);
+
+			return;
+		}
+	}
+
 	// Node has no entity to interact with, just return.
 	if (!node.hasEntity()) return;
 
 	// Handle entities by their tags.
 	Entity* entity = node.getEntity();
 
-	if (entity->isTagged("unit")) interactWithUnit(entity);
-}
-void PlayerController::interactWithUnit(Entity* unit) {
-	selectedUnit = unit;
+	// Interact with unit.
+	if (entity->isTagged("unit")) {
+		selectedUnit = entity;
 
-	MovementSpaceHandler* handler = getOwner().getComponent<MovementSpaceHandler>();
+		MovementSpaceHandler* handler = getOwner().getComponent<MovementSpaceHandler>();
 
-	handler->changeSelectedUnit(unit);
+		handler->changeSelectedUnit(entity);
+	}
 }
 #pragma endregion
 
@@ -63,7 +97,7 @@ void PlayerController::onInitialize() {
 	// Get engine.
 	TileEngine* tileEngine = map->getComponent<TileEngine>();
 
-	MovementSpaceHandler* handler = new MovementSpaceHandler(getGame(), getOwner(), tileEngine->mapWidthInTiles(), tileEngine->mapHeightInTiles(), *map->getComponent<MapGrid>());
+	MovementSpaceHandler* handler = new MovementSpaceHandler(getGame(), getOwner(), *map->getComponent<MapGrid>());
 	handler->enable();
 
 	owner.addComponent(handler);

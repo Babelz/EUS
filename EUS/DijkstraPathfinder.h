@@ -11,7 +11,7 @@ public:
 	
 	int cost;
 
-	DijkstarNode() : x(0), y(0), cost(1), parentIndex(0) { };
+	DijkstarNode() : x(0), y(0), cost(1), parentIndex(-1) { };
 	~DijkstarNode() { };
 };
 

@@ -17,7 +17,7 @@ const bool PointNavigator::isAt(const pmath::Vec2f& location) const {
 
 	// std::cout << "DIST: " << (Vec2f::distance(ownerLoc, location)) << std::endl;
 
-	return Vec2f::distance(ownerLoc, location) < 0.05f;
+	return Vec2f::distance(ownerLoc, location) < 0.3f;
 }
 
 bool PointNavigator::atDestination() const {
@@ -28,14 +28,18 @@ bool PointNavigator::atCurrent() const {
 }
 
 void PointNavigator::nextPoint() {
+	if (points.size() == 0) {
+		current = pmath::Vec2f(getOwner().getTransform().getX(), getOwner().getTransform().getY());
+		
+		return;
+	}
+
 	current = points[index];
 	index++;
 
 	pmath::Vec2f ownerLoc = getOwnerLocation();
 
 	velocity = (current - ownerLoc).normalized() * 4.5f;
-
-	std::cout << "NEXT PT" << std::endl;
 }
 #pragma endregion
 
@@ -58,6 +62,8 @@ void PointNavigator::onUpdate(const float deltaTime) {
 
 	getOwner().getTransform().setX(loc.x + velocity.x * deltaTime);
 	getOwner().getTransform().setY(loc.y + velocity.y * deltaTime);
+
+	float dist = pmath::Vec2f::distance(pmath::Vec2f(getOwner().getTransform().getX(), getOwner().getTransform().getY()), destination);
 }
 #pragma endregion
 
@@ -70,7 +76,13 @@ void PointNavigator::beginNavigate(std::function<void(Entity* const)> callback, 
 	this->points = points;
 
 	index = 0;
-	destination = pmath::Vec2f(points.back());
+	
+	if (points.size() == 0.0f) {
+		destination.x = getOwner().getTransform().getX();
+		destination.y = getOwner().getTransform().getY();
+	} else {
+		destination = pmath::Vec2f(points.back());
+	}
 
 	nextPoint();
 }

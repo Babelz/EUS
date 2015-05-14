@@ -72,7 +72,8 @@ void ModelRenderer::onDraw(const float deltaTime) {
 	glBindTexture(GL_TEXTURE_2D, 0);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 
-	assert(glGetError() == 0);
+	GLuint err = glGetError();
+	assert(err == 0);
 }
 #pragma endregion
 

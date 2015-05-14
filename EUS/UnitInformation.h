@@ -44,6 +44,9 @@ public:
 
 	const int getMovementRange() const;
 
+	const DamageType getDamageType() const { return damageType; }
+	const float getAddedDamage() const { return addedDamage; }
+
 	~UnitInformation();
 };
 

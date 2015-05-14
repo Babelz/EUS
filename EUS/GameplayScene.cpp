@@ -3,6 +3,8 @@
 #include "ModelRenderer.h"
 #include "ModelMapping.h"
 #include "MapGrid.h"
+#include "PlayerController.h"
+#include "TurnManager.h"
 
 GameplayScene::GameplayScene() : Scene("gameplay") {
 }
@@ -28,8 +30,18 @@ void GameplayScene::onActivate() {
 	// TODO: debug.
 	// Insert units to the map.
 	EUSEntityBuilder entityBuilder("entitybuilder", getGame());
-	getEntities().addEntity(entityBuilder.buildPlayer());
+	getEntities().addEntity(entityBuilder.buildPlayer("p1"));
 
+	getEntities().addEntity(entityBuilder.buildPlayer("p2"));
+
+	TurnManager::instance().setEntities(&getEntities());
+	TurnManager::instance().changeTurn();
+
+	getGame().inputManager().bind("next turn", [](InputArgs& args) {
+		if (args.state != InputState::PRESSED) return;
+		std::cout << "TURN" << std::endl;
+		TurnManager::instance().changeTurn();
+	}, 1, new KeyTrigger(SDLK_SPACE));
 
 	// Bounds of the debug map
 	// min x, y = 0
@@ -37,30 +49,55 @@ void GameplayScene::onActivate() {
 	// max y = -8 units
 	// 1 tile = 2 units
 	
-	// Create player units.
-	Entity* p1Rifleman1 = entityBuilder.buildRifleman("player");
+	// Create player 1 units.
+	Entity* p1Rifleman1 = entityBuilder.buildRifleman("p1");
 	p1Rifleman1->getTransform().setZ(0.45f);
 	p1Rifleman1->getTransform().setY(-8.0);
 
-	Entity* p1Rifleman2 = entityBuilder.buildRifleman("player");
+	Entity* p1Rifleman2 = entityBuilder.buildRifleman("p1");
 	p1Rifleman2->getTransform().setZ(0.45f);
 	p1Rifleman2->getTransform().setY(-8.0);
 	p1Rifleman2->getTransform().setX(2.0);
 
-	Entity* p1Rifleman3 = entityBuilder.buildRifleman("player");
+	Entity* p1Rifleman3 = entityBuilder.buildRifleman("p1");
 	p1Rifleman3->getTransform().setZ(0.45f);
 	p1Rifleman3->getTransform().setY(-6.0);
 	
+	// Create player 2 units.
+	Entity* p2Rifleman1 = entityBuilder.buildRifleman("p2");
+	p2Rifleman1->getTransform().setZ(0.45f);
+	p2Rifleman1->getTransform().setY(0.0f);
+	p2Rifleman1->getTransform().setX(16.0f);
+	
+	Entity* p2Rifleman2 = entityBuilder.buildRifleman("p2");
+	p2Rifleman2->getTransform().setZ(0.45f);
+	p2Rifleman2->getTransform().setY(-2.0f);
+	p2Rifleman2->getTransform().setX(16.0f);
+
+	Entity* p2Rifleman3 = entityBuilder.buildRifleman("p2");
+	p2Rifleman3->getTransform().setZ(0.45f);
+	p2Rifleman3->getTransform().setY(-4.0f);
+	p2Rifleman3->getTransform().setX(16.0f);
+
 	// Add entities and register them to the grid.
 	getEntities().addEntity(p1Rifleman1);
 	getEntities().addEntity(p1Rifleman2);
 	getEntities().addEntity(p1Rifleman3);
+
+	getEntities().addEntity(p2Rifleman1);
+	getEntities().addEntity(p2Rifleman2);
+	getEntities().addEntity(p2Rifleman3);
 
 	// Register entities.
 	MapGrid* grid = map->getComponent<MapGrid>();
 	grid->nodeAtIndex(4, 0).setEntity(p1Rifleman1);
 	grid->nodeAtIndex(4, 1).setEntity(p1Rifleman2);
 	grid->nodeAtIndex(3, 0).setEntity(p1Rifleman3);
+
+	grid->nodeAtIndex(0, 8).setEntity(p2Rifleman1);
+	grid->nodeAtIndex(1, 8).setEntity(p2Rifleman2);
+	grid->nodeAtIndex(2, 8).setEntity(p2Rifleman3);
+
 	grid->printEntityMappings();
 	grid->printTiles();
 

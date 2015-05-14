@@ -34,6 +34,9 @@ public:
 	Mapping(std::string name, InputEvent event);
 	void addTrigger(ITrigger*);
 	const std::string& getName() const;
+
+	std::vector<ITrigger*>& getTriggers();
+	ITrigger* getTrigger(size_t i);
 	~Mapping();
 };
 
@@ -45,6 +48,7 @@ private:
 	std::vector<int> binds;
 	// contains mapping names for specific SDL_Keycode
 	std::map<int, std::vector<std::string>> bindings;
+
 	// links all the callbacks to binding name
 	std::map<std::string, Mapping*> mappings;
 	// maps trigger to all three containers
@@ -57,6 +61,7 @@ public:
 	void bind(std::string name, InputEvent args, int numTriggers, ...);
 	// checks if the binding name has any mappings on it
 	bool hasMapping(std::string name);
+	void unbind(const std::string& name);
 	
 	Mapping* getMapping(std::string name);
 	// updates all the listeners and buffers 

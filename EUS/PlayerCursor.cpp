@@ -45,14 +45,10 @@ void PlayerCursor::onInitialize() {
 
 #pragma region Public members
 void PlayerCursor::hide() {
-	assert(animator != nullptr);
-
-	animator->hide();
+	getOwner().getComponent<ModelRenderer>()->hide();
 }
 void PlayerCursor::show() {
-	assert(animator != nullptr);
-
-	animator->show();
+	getOwner().getComponent<ModelRenderer>()->show();
 }
 #pragma endregion
 

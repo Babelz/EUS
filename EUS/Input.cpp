@@ -46,6 +46,27 @@ void InputManager::bind(std::string name, InputEvent event, int numTriggers, ...
 	
 	va_end(args);
 }
+void InputManager::unbind(const std::string& name) {
+	// there isnt mapping
+	if (!mappings.count(name)) return;
+
+	Mapping* mapping = mappings[name];
+	for (size_t i = 0; i < mapping->getTriggers().size(); ++i) {
+		ITrigger* triger = mapping->getTrigger(i);
+		std::vector<std::string>& names = bindings[triger->triggerHash()];
+		names.erase(std::find(names.begin(), names.end(), name));
+
+	}
+	mappings.erase(name);
+	delete mapping;
+}
+std::vector<ITrigger*>& Mapping::getTriggers() {
+	return triggers;
+}
+
+ITrigger* Mapping::getTrigger(size_t i) {
+	return triggers[i];
+}
 
 void InputManager::mapTrigger(std::string mappingName, ITrigger* trigger) {
 	std::vector<std::string> names;

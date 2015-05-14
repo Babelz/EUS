@@ -127,6 +127,8 @@
     <ClCompile Include="TileLoader.cpp" />
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="Triggers.cpp" />
+    <ClCompile Include="TurnManager.cpp" />
+    <ClCompile Include="UnitActionControl.cpp" />
     <ClCompile Include="UnitInformation.cpp" />
     <ClCompile Include="VertexColorPositionTexture.cpp" />
     <ClCompile Include="View.cpp" />
@@ -173,6 +175,8 @@
     <ClInclude Include="TileLoader.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="Triggers.h" />
+    <ClInclude Include="TurnManager.h" />
+    <ClInclude Include="UnitActionControl.h" />
     <ClInclude Include="UnitInformation.h" />
     <ClInclude Include="VertexColorPositionTexture.h" />
     <ClInclude Include="View.h" />

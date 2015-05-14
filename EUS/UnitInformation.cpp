@@ -31,10 +31,49 @@ const float UnitInformation::getHitPoints() const {
 void UnitInformation::takeDamageFrom(const DamageType damageType, const float enemyAddedDamage) {
 	switch (damageType) {
 		case Light:
+			switch (armorType) {
+			case Light:
+				hitPoints -= (enemyAddedDamage + 3.0f);
+				break;
+			case Medium:
+				hitPoints -= (enemyAddedDamage + 2.0f);
+				break;
+			case Heavy:
+				hitPoints -= (enemyAddedDamage + 1.0f);
+				break;
+			default:
+				break;
+			}
 			break;
 		case Piercing:
+			switch (armorType) {
+			case Light:
+				hitPoints -= (enemyAddedDamage + 7.0f);
+				break;
+			case Medium:
+				hitPoints -= (enemyAddedDamage + 4.0f);
+				break;
+			case Heavy:
+				hitPoints -= (enemyAddedDamage + 3.0f);
+				break;
+			default:
+				break;
+			}
 			break;
 		case Explosive:
+			switch (armorType) {
+			case Light:
+				hitPoints -= (enemyAddedDamage + 9.0f);
+				break;
+			case Medium:
+				hitPoints -= (enemyAddedDamage + 7.0f);
+				break;
+			case Heavy:
+				hitPoints -= (enemyAddedDamage + 4.0f);
+				break;
+			default:
+				break;
+			}
 			break;
 		default:
 			break;
@@ -49,7 +88,7 @@ const std::list<NodeInfo>& UnitInformation::getTerrainInfos() const {
 }
 
 const bool UnitInformation::alive() const {
-	return false;
+	return hitPoints > 0.0f;
 }
 
 const int UnitInformation::getMovementRange() const {

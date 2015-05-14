@@ -28,8 +28,11 @@ void MovementSpaceHandler::onDraw(const float deltaTime) {
 	if (!hasUnitSelected()) return;
 
 	for (DijkstarNode n : nodes) {
-		area->getTransform().setX(n.x * 2.0f);
-		area->getTransform().setY(-n.y * 2.0f);
+		const float x = n.x * 2.0f;
+		const float y = -n.y * 2.0f;
+
+		area->getTransform().setX(x);
+		area->getTransform().setY(y);
 		
 		renderer->draw(deltaTime);
 	}
@@ -57,8 +60,6 @@ const bool MovementSpaceHandler::hasUnitSelected() const {
 }
 const bool MovementSpaceHandler::canMoveTo(const int x, const int y) const {
 	assert(hasUnitSelected());
-
-	if (x == getSelectedX() && y == getSelectedY()) return false;
 
 	for (DijkstarNode n : nodes) if (n.x == x && n.y == y) return true;
 

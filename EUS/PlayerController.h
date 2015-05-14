@@ -4,6 +4,7 @@
 
 class PlayerController : public Component {
 private:
+	std::string name;
 	Entity* selectedUnit;
 	PlayerCursor* cursor;
 	
@@ -19,8 +20,11 @@ protected:
 
 	void onUpdate(const float deltaTime) override;
 public:
-	PlayerController(Game& game, Entity& owner);
+	PlayerController(Game& game, Entity& owner, const std::string& name);
 	
+	void bindInput();
+	void unbindInput();
+
 	~PlayerController();
 };
 

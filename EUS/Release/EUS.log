@@ -1,0 +1,97 @@
+﻿Build started 15.5.2015 0:59:24.
+     1>Project "C:\Users\VoidBab\Gits\ogl\eus\EUS\EUS.vcxproj" on node 2 (Rebuild target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt AStarPathfinder.cpp Component.cpp ComponentManager.cpp Content.cpp DijkstraPathfinder.cpp DrawableComponent.cpp Entity.cpp EntityBuilder.cpp EntityManager.cpp EUS.cpp EUSEntityBuilder.cpp Game.cpp GameplayScene.cpp Input.cpp lodepng.cpp Main.cpp MapBuilder.cpp MapGrid.cpp ModelMapping.cpp MovementSpaceHandler.cpp PlayerCursor.cpp PointNavigator.cpp SpriteAnimator.cpp TileEngine.cpp MapLoader.cpp ModelRenderer.cpp PlayerController.cpp Require.cpp Resources.cpp SceneManager.cpp SheetMapping.cpp Sprite.cpp SpriteBatch.cpp SpriteRenderer.cpp StringHelper.cpp TagContainer.cpp NamedTileSheet.cpp TileInfo.cpp TileBuilder.cpp TileLoader.cpp Transform.cpp Triggers.cpp TurnManager.cpp UnitActionControl.cpp UnitInformation.cpp VertexColorPositionTexture.cpp View.cpp
+         AStarPathfinder.cpp
+     1>c:\users\voidbab\gits\ogl\eus\eus\Entity.h(6): fatal error C1083: Cannot open include file: 'Vector.hpp': No such file or directory
+         Component.cpp
+         ComponentManager.cpp
+         Content.cpp
+     1>c:\users\voidbab\gits\ogl\eus\eus\resources.h(5): fatal error C1083: Cannot open include file: 'Vector.hpp': No such file or directory
+         DijkstraPathfinder.cpp
+     1>c:\users\voidbab\gits\ogl\eus\eus\Entity.h(6): fatal error C1083: Cannot open include file: 'Vector.hpp': No such file or directory
+         DrawableComponent.cpp
+         Entity.cpp
+     1>c:\users\voidbab\gits\ogl\eus\eus\Entity.h(6): fatal error C1083: Cannot open include file: 'Vector.hpp': No such file or directory
+         EntityBuilder.cpp
+     1>c:\users\voidbab\gits\ogl\eus\eus\Game.h(6): fatal error C1083: Cannot open include file: 'GL\glew.h': No such file or directory
+         EntityManager.cpp
+     1>c:\users\voidbab\gits\ogl\eus\eus\Entity.h(6): fatal error C1083: Cannot open include file: 'Vector.hpp': No such file or directory
+         EUS.cpp
+     1>c:\users\voidbab\gits\ogl\eus\eus\Game.h(6): fatal error C1083: Cannot open include file: 'GL\glew.h': No such file or directory
+         EUSEntityBuilder.cpp
+     1>c:\users\voidbab\gits\ogl\eus\eus\Game.h(6): fatal error C1083: Cannot open include file: 'GL\glew.h': No such file or directory
+         Game.cpp
+     1>c:\users\voidbab\gits\ogl\eus\eus\Game.h(6): fatal error C1083: Cannot open include file: 'GL\glew.h': No such file or directory
+         GameplayScene.cpp
+     1>c:\users\voidbab\gits\ogl\eus\eus\Entity.h(6): fatal error C1083: Cannot open include file: 'Vector.hpp': No such file or directory
+         Input.cpp
+     1>c:\users\voidbab\gits\ogl\eus\eus\Triggers.h(4): fatal error C1083: Cannot open include file: 'SDL\SDL.h': No such file or directory
+         lodepng.cpp
+     1>lodepng.cpp(31): fatal error C1083: Cannot open include file: 'lodepng\lodepng.h': No such file or directory
+         Main.cpp
+     1>c:\users\voidbab\gits\ogl\eus\eus\Game.h(6): fatal error C1083: Cannot open include file: 'GL\glew.h': No such file or directory
+         MapBuilder.cpp
+     1>c:\users\voidbab\gits\ogl\eus\eus\Entity.h(6): fatal error C1083: Cannot open include file: 'Vector.hpp': No such file or directory
+         MapGrid.cpp
+     1>c:\users\voidbab\gits\ogl\eus\eus\Entity.h(6): fatal error C1083: Cannot open include file: 'Vector.hpp': No such file or directory
+         ModelMapping.cpp
+     1>c:\users\voidbab\gits\ogl\eus\eus\Resources.h(5): fatal error C1083: Cannot open include file: 'Vector.hpp': No such file or directory
+         MovementSpaceHandler.cpp
+     1>c:\users\voidbab\gits\ogl\eus\eus\Entity.h(6): fatal error C1083: Cannot open include file: 'Vector.hpp': No such file or directory
+         Compiling...
+         PlayerCursor.cpp
+     1>c:\users\voidbab\gits\ogl\eus\eus\Entity.h(6): fatal error C1083: Cannot open include file: 'Vector.hpp': No such file or directory
+         PointNavigator.cpp
+     1>c:\users\voidbab\gits\ogl\eus\eus\Entity.h(6): fatal error C1083: Cannot open include file: 'Vector.hpp': No such file or directory
+         SpriteAnimator.cpp
+     1>c:\users\voidbab\gits\ogl\eus\eus\Game.h(6): fatal error C1083: Cannot open include file: 'GL\glew.h': No such file or directory
+         TileEngine.cpp
+     1>c:\users\voidbab\gits\ogl\eus\eus\Entity.h(6): fatal error C1083: Cannot open include file: 'Vector.hpp': No such file or directory
+         MapLoader.cpp
+     1>c:\users\voidbab\gits\ogl\eus\eus\Entity.h(6): fatal error C1083: Cannot open include file: 'Vector.hpp': No such file or directory
+         ModelRenderer.cpp
+     1>c:\users\voidbab\gits\ogl\eus\eus\Resources.h(5): fatal error C1083: Cannot open include file: 'Vector.hpp': No such file or directory
+         PlayerController.cpp
+     1>c:\users\voidbab\gits\ogl\eus\eus\Entity.h(6): fatal error C1083: Cannot open include file: 'Vector.hpp': No such file or directory
+         Require.cpp
+         Resources.cpp
+     1>c:\users\voidbab\gits\ogl\eus\eus\resources.h(5): fatal error C1083: Cannot open include file: 'Vector.hpp': No such file or directory
+         SceneManager.cpp
+     1>c:\users\voidbab\gits\ogl\eus\eus\Entity.h(6): fatal error C1083: Cannot open include file: 'Vector.hpp': No such file or directory
+         SheetMapping.cpp
+         Sprite.cpp
+     1>c:\users\voidbab\gits\ogl\eus\eus\Sprite.h(3): fatal error C1083: Cannot open include file: 'Vector4.hpp': No such file or directory
+         SpriteBatch.cpp
+     1>c:\users\voidbab\gits\ogl\eus\eus\SpriteBatch.h(5): fatal error C1083: Cannot open include file: 'GLM.h': No such file or directory
+         SpriteRenderer.cpp
+     1>c:\users\voidbab\gits\ogl\eus\eus\Sprite.h(3): fatal error C1083: Cannot open include file: 'Vector4.hpp': No such file or directory
+         StringHelper.cpp
+         TagContainer.cpp
+         NamedTileSheet.cpp
+     1>c:\users\voidbab\gits\ogl\eus\eus\Resources.h(5): fatal error C1083: Cannot open include file: 'Vector.hpp': No such file or directory
+         TileInfo.cpp
+     1>c:\users\voidbab\gits\ogl\eus\eus\Entity.h(6): fatal error C1083: Cannot open include file: 'Vector.hpp': No such file or directory
+         TileBuilder.cpp
+     1>c:\users\voidbab\gits\ogl\eus\eus\Game.h(6): fatal error C1083: Cannot open include file: 'GL\glew.h': No such file or directory
+         TileLoader.cpp
+     1>c:\users\voidbab\gits\ogl\eus\eus\Game.h(6): fatal error C1083: Cannot open include file: 'GL\glew.h': No such file or directory
+         Compiling...
+         Transform.cpp
+     1>c:\users\voidbab\gits\ogl\eus\eus\Transform.h(2): fatal error C1083: Cannot open include file: 'GLM.h': No such file or directory
+         Triggers.cpp
+     1>c:\users\voidbab\gits\ogl\eus\eus\Triggers.h(4): fatal error C1083: Cannot open include file: 'SDL\SDL.h': No such file or directory
+         TurnManager.cpp
+     1>c:\users\voidbab\gits\ogl\eus\eus\Entity.h(6): fatal error C1083: Cannot open include file: 'Vector.hpp': No such file or directory
+         UnitActionControl.cpp
+     1>c:\users\voidbab\gits\ogl\eus\eus\Entity.h(6): fatal error C1083: Cannot open include file: 'Vector.hpp': No such file or directory
+         UnitInformation.cpp
+     1>c:\users\voidbab\gits\ogl\eus\eus\Entity.h(6): fatal error C1083: Cannot open include file: 'Vector.hpp': No such file or directory
+         VertexColorPositionTexture.cpp
+     1>c:\users\voidbab\gits\ogl\eus\eus\VertexColorPositionTexture.h(2): fatal error C1083: Cannot open include file: 'Vector.hpp': No such file or directory
+         View.cpp
+     1>Done Building Project "C:\Users\VoidBab\Gits\ogl\eus\EUS\EUS.vcxproj" (Rebuild target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:14.54
